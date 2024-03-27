@@ -1483,7 +1483,7 @@ body {
   background: var(--global-bg);
   color: var(--font-color);
   font-size: var(--global-font-size);
-  font-family: YZGCRYNKS;
+  font-family: Font;
   line-height: 2;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
@@ -1744,7 +1744,7 @@ figure.highlight pre .javascript .function {
 #article-container pre,
 #article-container code {
   font-size: 16px;
-  font-family: YZGCRYNKS !important;
+  font-family: Font !important;
 }
 #article-container code {
   padding: 2px 4px;
