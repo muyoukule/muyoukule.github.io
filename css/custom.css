@@ -96,7 +96,7 @@
 
 /* 个人信息Follow me按钮 */
 #aside-content>.card-widget.card-info>#card-info-btn {
-  background-color: #3eb8be;
+  background-color: #AAAFE3;
   border-radius: 8px;
 }
 
@@ -212,6 +212,7 @@
   backdrop-filter: var(--backdrop-filter);
   border-radius: 25px;
   border: var(--border-style);
+  border: 3px solid #AAAFE3;
 }
 
 /* 首页侧栏卡片 */
@@ -220,6 +221,7 @@
   backdrop-filter: var(--backdrop-filter);
   border-radius: 18px;
   border: var(--border-style);
+  border: 3px solid #AAAFE3;
 }
 
 /* 文章页、归档页、普通页面 */
@@ -230,6 +232,7 @@ div#archive {
   backdrop-filter: var(--backdrop-filter);
   border: var(--border-style);
   border-radius: 20px;
+  border: 3px solid #AAAFE3;
 }
 
 /* 导航栏 */
@@ -282,24 +285,31 @@ div#archive {
 }
 
 
-
 /* 
 更改导航栏字体颜色 
 */
 #nav a {
-  color: #05e7f7;
+  color: #AAAFE3;
 }
 
 /* 
 标题颜色 
 */
 #page-header #site-title {
-  color: #05e7f7;
+  color: #AAAFE3;
 }
 
 /* 
 副标题颜色 
 */
 #page-header #site-subtitle {
-  color: #05e7f7;
+  color: #AAAFE3;
+}
+
+#footer-wrap {
+  color: #AAAFE3;
+}
+
+#footer-wrap a {
+  color: #AAAFE3;
 }
