@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const copy = ctx => {
       if (document.queryCommandSupported && document.queryCommandSupported('copy')) {
         document.execCommand('copy')
-        alertInfo(ctx, GLOBAL_CONFIG.copy.success)
+        // alertInfo(ctx, GLOBAL_CONFIG.copy.success)
       } else {
         alertInfo(ctx, GLOBAL_CONFIG.copy.noSupport)
       }
@@ -560,18 +560,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
       newEle.addEventListener('click', clickFn)
     },
-    darkmode: () => { // switch between light and dark mode
-      const willChangeMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
-      if (willChangeMode === 'dark') {
-        activateDarkMode()
-        GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.day_to_night)
-      } else {
-        activateLightMode()
-        GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.night_to_day)
-      }
-      saveToLocal.set('theme', willChangeMode, 2)
-      handleThemeChange(willChangeMode)
-    },
+    // darkmode: () => { // switch between light and dark mode
+    //   const willChangeMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
+    //   if (willChangeMode === 'dark') {
+    //     activateDarkMode()
+    //     GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.day_to_night)
+    //   } else {
+    //     activateLightMode()
+    //     GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.night_to_day)
+    //   }
+    //   saveToLocal.set('theme', willChangeMode, 2)
+    //   handleThemeChange(willChangeMode)
+    // },
     'rightside-config': item => { // Show or hide rightside-hide-btn
       const hideLayout = item.firstElementChild
       if (hideLayout.classList.contains('show')) {
