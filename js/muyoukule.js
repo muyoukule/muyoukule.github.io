@@ -55,16 +55,8 @@ function share_() {
 
 // 防抖
 function share() {
-    debounce(share_, 0);
+    debounce(share_, 300);
 }
-
-
-
-
-
-
-
-
 
 
 function darkmode_() {
