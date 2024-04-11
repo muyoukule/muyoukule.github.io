@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Git教程 | muyoukule</title><meta name="author" content="木又枯了"><meta name="copyright" content="木又枯了"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="Git官网：https:&#x2F;&#x2F;git-scm.com&#x2F; 参考视频：黑马程序员Git全套教程，完整的Git项目管理工具教程，一套精通Git 1. 版本控制 版本管理概念  版本控制是指对软件开发过程中各种程序代码、配置文件及说明文档等文件变更的管理，是软件配置管理的核心思想之一。  版本管理工具概念  版本管理工具，也被称为版本控制工具，是一个用于记录文件内容变化，以便将来查阅特定版本修订情况的系统。">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Git教程 | muyoukule</title><meta name="author" content="木又枯了"><meta name="copyright" content="木又枯了"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="本文主要讲述Git的基本使用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git教程">
 <meta property="og:url" content="https://zz.muyoukule.cn/posts/Git/index.html">
 <meta property="og:site_name" content="muyoukule">
-<meta property="og:description" content="Git官网：https:&#x2F;&#x2F;git-scm.com&#x2F; 参考视频：黑马程序员Git全套教程，完整的Git项目管理工具教程，一套精通Git 1. 版本控制 版本管理概念  版本控制是指对软件开发过程中各种程序代码、配置文件及说明文档等文件变更的管理，是软件配置管理的核心思想之一。  版本管理工具概念  版本管理工具，也被称为版本控制工具，是一个用于记录文件内容变化，以便将来查阅特定版本修订情况的系统。">
+<meta property="og:description" content="本文主要讲述Git的基本使用">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zz.muyoukule.cn/img/avatar_muyoukule.png">
 <meta property="article:published_time" content="2024-03-17T16:00:00.000Z">
@@ -394,7 +394,7 @@ document.addEventListener('pjax:send', () => {
 <p>安装完 Git 后首先要做的事情是设置用户名和 email 地址。这 非常重要，因为每次 Git 提交都会使用该信息，它被永远的嵌入到了提交中。<font color="red"><strong>所以！！！是一定要配置的！！！</strong></font></p>
 <p>否则就会出现如下提示：</p>
 <p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/ToolsIMG/Git/Git%E6%9C%AA%E8%AE%BE%E7%BD%AE%E5%90%8D%E7%A7%B0%E5%92%8C%E9%82%AE%E7%AE%B1.png"></p>
-<p>此时需要按照下面两个命令来设置用户名🏃和邮箱📧( muyoukule 是我的用户名，<a href="mailto:&#x79;&#111;&#x75;&#114;&#x5f;&#101;&#x6d;&#x61;&#105;&#108;&#64;&#101;&#120;&#97;&#x6d;&#112;&#108;&#x65;&#x2e;&#x63;&#111;&#x6d;">&#x79;&#111;&#x75;&#114;&#x5f;&#101;&#x6d;&#x61;&#105;&#108;&#64;&#101;&#120;&#97;&#x6d;&#112;&#108;&#x65;&#x2e;&#x63;&#111;&#x6d;</a> 是邮箱，你需要设置属于你自己的用户名和邮箱)。</p>
+<p>此时需要按照下面两个命令来设置用户名🏃和邮箱📧( muyoukule 是我的用户名，<a href="mailto:&#121;&#111;&#x75;&#114;&#95;&#x65;&#109;&#x61;&#105;&#108;&#x40;&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#46;&#x63;&#111;&#x6d;">&#121;&#111;&#x75;&#114;&#95;&#x65;&#109;&#x61;&#105;&#108;&#x40;&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#46;&#x63;&#111;&#x6d;</a> 是邮箱，你需要设置属于你自己的用户名和邮箱)。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name muyoukule</span><br><span class="line">git config --global user.email your_email@example.com</span><br></pre></td></tr></table></figure>
 
 <p>如果使用了 <code>--global</code> 选项，表示设置了全局的用户名和邮箱。如果希望在一个特定的项目中使用不同的用户名和邮箱，可以在该项目中运行该命令而不添加 –global 选项。总之 <code>--global</code> 为全局配置，不加为某个项目的特定配置。</p>
