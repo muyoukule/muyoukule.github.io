@@ -1,6 +1,5 @@
 var stop, staticx;
 var img = new Image();
-// 将引入的图片文件替换为你想要的即可
 img.src = "/img/樱花.png";
 
 function Sakura(x, y, s, r, fn) {

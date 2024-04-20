@@ -1,3 +1,27 @@
+/* 字体样式 */
+@font-face {
+  font-family: 'Font';
+  font-display: swap;
+  src: url('../font/AaShunFengShunShuiShunCaiShen-2.woff2') format("truetype");
+}
+
+/* 背景宇宙星光  */
+#universe {
+  display: block;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+
 /* 
 一图流
  */
@@ -90,7 +114,8 @@
 
 /* 黑夜模式适配 */
 [data-theme="dark"] #aside-content>.card-widget.card-info {
-  background: #191919ee;
+  background: rgb(27, 23, 41, 0.88);
+  ;
 }
 
 /* 个人信息Follow me按钮 */
@@ -98,22 +123,6 @@
   background-color: #AAAFE3;
   border-radius: 8px;
 }
-
-
-/* 个人信息卡片背景图 */
-/* [data-theme="light"] #aside-content > .card-widget.card-info {
-  background-image: url(/img/1.png);
-  background-repeat: no-repeat;
-  background-attachment: inherit;
-  background-size: 100%;
-}
-[data-theme="dark"] #aside-content > .card-widget.card-info {
-  background-image: url(/img/1.png);
-  background-repeat: no-repeat;
-  background-attachment: inherit;
-  background-size: 100%;
-} */
-
 
 /* 
 信息卡片头像状态 
@@ -208,19 +217,13 @@
   }
 }
 
-
-
-/* 
-调节各个页面透明度、模糊度（亚克力效果）、圆角、边框样式等
- */
 :root {
-  --trans-light: rgba(255, 255, 255, 0.88);
-  --trans-dark: rgba(25, 25, 25, 0.88);
+  --trans-light: rgb(225, 238, 239, 0.88);
+  --trans-dark: rgb(27, 23, 41, 0.88);
   --border-style: 1px solid rgb(169, 169, 169);
   --backdrop-filter: blur(5px) saturate(150%);
 }
 
-/* 首页文章卡片 */
 #recent-posts>.recent-post-item {
   background: var(--trans-light);
   backdrop-filter: var(--backdrop-filter);
@@ -300,7 +303,6 @@ div#archive {
 
 
 /* 文章页H1-H6图标样式效果 */
-/* 控制风车转动速度 4s那里可以自己调节快慢 */
 h1::before,
 h2::before,
 h3::before,
@@ -311,7 +313,7 @@ h6::before {
   animation: ccc 4s linear infinite;
 }
 
-/* 控制风车转动方向 -1turn 为逆时针转动，1turn 为顺时针转动，相同数字部分记得统一修改 */
+/* 控制风车转动方向 -1turn 为逆时针转动，1turn 为顺时针转动 */
 @-webkit-keyframes ccc {
   0% {
     -webkit-transform: rotate(0deg);
@@ -375,7 +377,7 @@ h6::before {
 }
 
 /* 
-设置风车hover动效 6s那里可以自己调节快慢
+设置风车hover动效
 */
 #content-inner.layout h1:hover,
 #content-inner.layout h2:hover,
@@ -430,11 +432,8 @@ h6::before {
   background-size: cover;
 }
 
-
-
-
 /* 
-tzy页脚样式 
+页脚样式 
 */
 #ft {
   max-width: 1200px;
@@ -757,7 +756,7 @@ tzy页脚样式
 
 
 #card-tuijian#card-tuijian#card-tuijian#card-tuijian {
-  background: linear-gradient(to right, #AAAFE3, #5636ed) !important;
+  background: linear-gradient(to right, #8d95ec, #806aea) !important;
   padding: 15px 0;
   height: 118px;
   -moz-user-select: none;
@@ -828,4 +827,3 @@ tzy页脚样式
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
-
