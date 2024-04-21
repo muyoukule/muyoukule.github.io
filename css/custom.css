@@ -114,7 +114,7 @@
 
 /* 黑夜模式适配 */
 [data-theme="dark"] #aside-content>.card-widget.card-info {
-  background: rgb(27, 23, 41, 0.88);
+  background: rgba(25, 25, 25, 0.88);
   ;
 }
 
@@ -218,9 +218,9 @@
 }
 
 :root {
-  --trans-light: rgb(225, 238, 239, 0.88);
-  --trans-dark: rgb(27, 23, 41, 0.88);
-  --border-style: 1px solid rgb(169, 169, 169);
+  --trans-light: rgb(210 ,230 ,249 , 0.88);
+  --trans-dark: rgba(25, 25, 25, 0.88);
+  --border-style: 3px solid #7BC9FF;
   --backdrop-filter: blur(5px) saturate(150%);
 }
 
@@ -229,7 +229,6 @@
   backdrop-filter: var(--backdrop-filter);
   border-radius: 25px;
   border: var(--border-style);
-  border: 3px solid #AAAFE3;
 }
 
 /* 首页侧栏卡片 */
@@ -238,7 +237,6 @@
   backdrop-filter: var(--backdrop-filter);
   border-radius: 18px;
   border: var(--border-style);
-  border: 3px solid #AAAFE3;
 }
 
 /* 文章页、归档页、普通页面 */
@@ -249,7 +247,6 @@ div#archive {
   backdrop-filter: var(--backdrop-filter);
   border: var(--border-style);
   border-radius: 20px;
-  border: 3px solid #AAAFE3;
 }
 
 /* 导航栏 */
