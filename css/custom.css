@@ -218,7 +218,7 @@
 }
 
 :root {
-  --trans-light: rgb(210 ,230 ,249 , 0.88);
+  --trans-light: rgb(210, 230, 249, 0.88);
   --trans-dark: rgba(25, 25, 25, 0.88);
   --border-style: 3px solid #7BC9FF;
   --backdrop-filter: blur(5px) saturate(150%);
@@ -396,23 +396,14 @@ h6::before {
   animation: ccc 6s linear infinite;
 }
 
-/* 
-更改导航栏字体颜色 
-*/
 #nav a {
   color: #AAAFE3;
 }
 
-/* 
-标题颜色 
-*/
 #page-header #site-title {
   color: #AAAFE3;
 }
 
-/* 
-副标题颜色 
-*/
 #page-header #site-subtitle {
   color: #AAAFE3;
 }
