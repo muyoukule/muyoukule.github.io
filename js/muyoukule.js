@@ -29,7 +29,7 @@ function share_() {
         // 截取标题
         var title = document.title;
         var subTitle = title.endsWith("| muyoukule") ? title.substring(0, title.length - 12) : title;
-        navigator.clipboard.writeText('muyoukule的站内分享\n标题：' + subTitle + '\n链接：' + url + '\n🎉欢迎来访哦(*^_^*)🎉');
+        navigator.clipboard.writeText('木又枯了的站内分享\n标题：' + subTitle + '\n链接：' + url + '\n🎉欢迎来访哦(*^_^*)🎉');
         new Vue({
             data: function () {
                 this.$notify({
