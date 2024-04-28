@@ -1,19 +1,17 @@
 // 防抖全局计时器
-let TT = null;    //time用来控制事件的触发
-// 防抖函数:fn->逻辑 time->防抖时间
+let TT = null;
 function debounce(fn, time) {
     if (TT !== null) clearTimeout(TT);
     TT = setTimeout(fn, time);
 }
 
-// 复制提醒
 document.addEventListener("copy", function () {
     debounce(function () {
         new Vue({
             data: function () {
                 this.$notify({
-                    title: "哎嘿！复制成功了哦！✨",
-                    message: "若要转载最好保留原文链接哦，给你一个大大的赞！",
+                    title: "复制成功！✨",
+                    message: "若要转载最好保留原文链接哦！",
                     position: 'top-left',
                     offset: 50,
                     showClose: true,
@@ -25,14 +23,13 @@ document.addEventListener("copy", function () {
     }, 300);
 })
 
-// 分享本页
 function share_() {
     let url = window.location.origin + window.location.pathname
     try {
         // 截取标题
         var title = document.title;
         var subTitle = title.endsWith("| muyoukule") ? title.substring(0, title.length - 12) : title;
-        navigator.clipboard.writeText('muyoukule的站内分享\n标题：' + subTitle + '\n链接：' + url + '\n欢迎来访！！');
+        navigator.clipboard.writeText('muyoukule的站内分享\n标题：' + subTitle + '\n链接：' + url + '\n🎉欢迎来访哦(*^_^*)🎉');
         new Vue({
             data: function () {
                 this.$notify({
@@ -52,12 +49,10 @@ function share_() {
     }
 
 }
-
 // 防抖
 function share() {
     debounce(share_, 300);
 }
-
 
 function darkmode_() {
     const willChangeMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
@@ -67,8 +62,8 @@ function darkmode_() {
         new Vue({
             data: function () {
                 this.$notify({
-                    title: "关灯啦🌙",
-                    message: "当前已成功切换至夜间模式！",
+                    title: "切换成功📢",
+                    message: "当前已成功切换至深色模式！",
                     position: "top-left",
                     offset: 50,
                     showClose: !0,
@@ -77,15 +72,14 @@ function darkmode_() {
                 })
             }
         })
-
     } else {
         activateLightMode()
         // GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.night_to_day)
         new Vue({
             data: function () {
                 this.$notify({
-                    title: "开灯啦🌞",
-                    message: "当前已成功切换至白天模式！",
+                    title: "切换成功📢",
+                    message: "当前已成功切换至浅色模式！",
                     position: "top-left",
                     offset: 50,
                     showClose: !0,
@@ -94,16 +88,13 @@ function darkmode_() {
                 })
             }
         })
-
     }
     saveToLocal.set('theme', willChangeMode, 2)
-
 }
 // 防抖
 function darkmode() {
     debounce(darkmode_, 300);
 }
-
 
 var now = new Date();
 function createtime() {
