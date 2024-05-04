@@ -1,11 +1,9 @@
-/* 字体样式 */
 @font-face {
   font-family: 'Font';
   font-display: swap;
   src: url('../font/YeZiGongChangRuiYunNongKaiShu-2.subset.woff2') format("truetype");
 }
 
-/* 背景宇宙星光  */
 #universe {
   display: block;
   position: fixed;
@@ -21,11 +19,7 @@
   z-index: -1;
 }
 
-
-/* 
-一图流
- */
-/* 页脚与头图透明 */
+/* 一图流 */
 #footer {
   background: transparent !important;
 }
@@ -34,7 +28,6 @@
   background: transparent !important;
 }
 
-/* 白天模式遮罩透明 */
 #footer::before {
   background: transparent !important;
 }
@@ -43,7 +36,6 @@
   background: transparent !important;
 }
 
-/* 夜间模式遮罩透明 */
 [data-theme="dark"] #footer::before {
   background: transparent !important;
 }
@@ -52,9 +44,6 @@
   background: transparent !important;
 }
 
-/* 
-侧边栏个人信息卡片动态渐变色 
-*/
 #aside-content>.card-widget.card-info {
   background: linear-gradient(-45deg,
       #e8d8b9,
@@ -112,21 +101,16 @@
   }
 }
 
-/* 黑夜模式适配 */
 [data-theme="dark"] #aside-content>.card-widget.card-info {
   background: rgba(25, 25, 25, 0.88);
   ;
 }
 
-/* 个人信息Follow me按钮 */
 #aside-content>.card-widget.card-info>#card-info-btn {
   background-color: #AAAFE3;
   border-radius: 8px;
 }
 
-/* 
-信息卡片头像状态 
-*/
 .card-info-avatar .author-status-box {
   position: absolute;
   bottom: 0;
@@ -178,9 +162,6 @@
 }
 
 
-/* 
-头像呼吸灯 
-*/
 [data-theme="light"] .avatar-img {
   animation: huxi_light 4s ease-in-out infinite;
 }
@@ -191,47 +172,46 @@
 
 @keyframes huxi_light {
   0% {
-    box-shadow: 0px 0px 2px 2px #39c5bb;
+    box-shadow: 0px 0px 2px 2px #FA8BFF;
   }
 
   50% {
-    box-shadow: 0px 0px 6px 6px #39c5bb;
+    box-shadow: 0px 0px 4px 4px #2BD2FF;
   }
 
   100% {
-    box-shadow: 0px 0px 2px 2px #39c5bb;
+    box-shadow: 0px 0px 2px 2px #2BFF88;
   }
 }
 
 @keyframes huxi_dark {
   0% {
-    box-shadow: 0px 0px 2px 2px #11659a;
+    box-shadow: 0px 0px 2px 2px #3c73c9;
   }
 
   50% {
-    box-shadow: 0px 0px 6px 6px #346c9c;
+    box-shadow: 0px 0px 4px 4px #EE74E1;
   }
 
   100% {
-    box-shadow: 0px 0px 2px 2px #4e7ca1;
+    box-shadow: 0px 0px 2px 2px #b02aeb;
   }
 }
 
 :root {
   --trans-light: rgb(210, 230, 249, 0.95);
   --trans-dark: rgba(25, 25, 25, 0.95);
-  --border-style: 2.8px solid #7BC9FF;
+  --border-style: 1px solid #31bb93;
   --backdrop-filter: blur(5px) saturate(150%);
 }
 
 #recent-posts>.recent-post-item {
   background: var(--trans-light);
   backdrop-filter: var(--backdrop-filter);
-  border-radius: 25px;
+  border-radius: 18px;
   border: var(--border-style);
 }
 
-/* 首页侧栏卡片 */
 #aside-content .card-widget {
   background: var(--trans-light);
   backdrop-filter: var(--backdrop-filter);
@@ -239,7 +219,6 @@
   border: var(--border-style);
 }
 
-/* 文章页、归档页、普通页面 */
 div#post,
 div#page,
 div#archive {
@@ -249,7 +228,6 @@ div#archive {
   border-radius: 20px;
 }
 
-/* 导航栏 */
 #page-header.nav-fixed #nav {
   background: rgba(255, 255, 255, 0.75);
   backdrop-filter: var(--backdrop-filter);
@@ -259,7 +237,6 @@ div#archive {
   background: rgba(0, 0, 0, 0.7) !important;
 }
 
-/* 夜间模式遮罩 */
 [data-theme="dark"] #recent-posts>.recent-post-item,
 [data-theme="dark"] #aside-content .card-widget,
 [data-theme="dark"] div#post,
@@ -268,8 +245,6 @@ div#archive {
   background: var(--trans-dark);
 }
 
-
-/* 夜间模式页脚页头遮罩透明 */
 [data-theme="dark"] #footer::before {
   background: transparent !important;
 }
@@ -287,7 +262,6 @@ div#archive {
   background: rgba(158, 204, 171, 0.5) !important;
 }
 
-/* 夜间模式下的阅读模式 */
 [data-theme="dark"] .read-mode #aside-content .card-widget {
   background: rgba(25, 25, 25, 0.9) !important;
   color: #ffffff;
@@ -297,7 +271,6 @@ div#archive {
   background: rgba(25, 25, 25, 0.9) !important;
   color: #ffffff;
 }
-
 
 /* 文章页H1-H6图标样式效果 */
 h1::before,
@@ -310,7 +283,7 @@ h6::before {
   animation: ccc 4s linear infinite;
 }
 
-/* 控制风车转动方向 -1turn 为逆时针转动，1turn 为顺时针转动 */
+/* -1turn 为逆时针转动，1turn 为顺时针转动 */
 @-webkit-keyframes ccc {
   0% {
     -webkit-transform: rotate(0deg);
@@ -335,7 +308,6 @@ h6::before {
   }
 }
 
-/* 设置风车颜色 */
 #content-inner.layout h1::before {
   color: #ef50a8;
   /* margin-left: -1.55rem; */
@@ -373,9 +345,6 @@ h6::before {
   margin-top: 0rem;
 }
 
-/* 
-设置风车hover动效
-*/
 #content-inner.layout h1:hover,
 #content-inner.layout h2:hover,
 #content-inner.layout h3:hover,
@@ -396,33 +365,11 @@ h6::before {
   animation: ccc 6s linear infinite;
 }
 
-#nav a {
-  color: #AAAFE3;
-}
-
-#page-header #site-title {
-  color: #AAAFE3;
-}
-
-#page-header #site-subtitle {
-  color: #AAAFE3;
-}
-
-#footer-wrap {
-  color: #AAAFE3;
-}
-
-/* 
-加载样式
- */
 .loading-img {
   background: url(/img/avatar_muyoukule.png) no-repeat center center;
   background-size: cover;
 }
 
-/* 
-页脚样式 
-*/
 #ft {
   max-width: 1200px;
   margin: 0 auto 12px;
@@ -589,9 +536,7 @@ h6::before {
 }
 
 
-/* 
-黑夜霓虹灯 
-*/
+/* 黑夜霓虹灯 */
 /* 日间模式不生效 */
 [data-theme="light"] #site-name,
 [data-theme="light"] #site-title,
@@ -741,10 +686,8 @@ h6::before {
   }
 }
 
-
-
 #card-tuijian#card-tuijian#card-tuijian#card-tuijian {
-  background: linear-gradient(to right, #8d95ec, #806aea) !important;
+  background: linear-gradient(to right, #46a59f, #5f88ae) !important;
   padding: 15px 0;
   height: 118px;
   -moz-user-select: none;
@@ -815,3 +758,19 @@ h6::before {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
+
+/* #nav a {
+  color: #AAAFE3;
+}
+
+#page-header #site-title {
+  color: #AAAFE3;
+}
+
+#page-header #site-subtitle {
+  color: #AAAFE3;
+}
+
+#footer-wrap {
+  color: #AAAFE3;
+} */
