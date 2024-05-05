@@ -1,0 +1,415 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【步骤一】本地数据集上传到数据仓库Hive | muyoukule</title><meta name="author" content="木又枯了"><meta name="copyright" content="木又枯了"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本文主要讲述了数据集的下载和预处理。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【步骤一】本地数据集上传到数据仓库Hive">
+<meta property="og:url" content="https://zz.muyoukule.cn/posts/19926/index.html">
+<meta property="og:site_name" content="muyoukule">
+<meta property="og:description" content="本文主要讲述了数据集的下载和预处理。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/Source/CoverIMG/cover5.png">
+<meta property="article:published_time" content="2024-03-23T16:00:01.000Z">
+<meta property="article:modified_time" content="2024-03-23T16:00:01.000Z">
+<meta property="article:author" content="木又枯了">
+<meta property="article:tag" content="Hadoop">
+<meta property="article:tag" content="Hive">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/Source/CoverIMG/cover5.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zz.muyoukule.cn/posts/19926/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"距离本文上次更新已经过去","messageNext":"天，请注意时效性。"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【步骤一】本地数据集上传到数据仓库Hive',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-24 00:00:01'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 22
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/progress_bar.css"><link rel="stylesheet" href="https://cdn1.tianli0.top/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><div id="myscoll"></div><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/animate.min.css" media="print" onload="this.media='screen'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"></head><body><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><div class="loading-img"></div><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+document.addEventListener('pjax:send', () => {
+  Pace.restart()
+})
+</script><link rel="stylesheet" href="/css/progress_bar.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar_muyoukule.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">39</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-heart"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about_website/"><i class="fa-fw fas fa-laptop-house"></i><span> 关于本站</span></a></li><li><a class="site-page child" href="/about_me/"><i class="fa-fw fas fa-address-card"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/love/"><i class="fa-fw fas fa-heart"></i><span> 恋爱小屋</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/Source/CoverIMG/cover5.png')"><nav id="nav"><span id="blog-info"><a href="/" title="muyoukule"><span class="site-name">muyoukule</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-heart"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about_website/"><i class="fa-fw fas fa-laptop-house"></i><span> 关于本站</span></a></li><li><a class="site-page child" href="/about_me/"><i class="fa-fw fas fa-address-card"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/love/"><i class="fa-fw fas fa-heart"></i><span> 恋爱小屋</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【步骤一】本地数据集上传到数据仓库Hive</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-23T16:00:01.000Z" title="发表于 2024-03-24 00:00:01">2024-03-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-03-23T16:00:01.000Z" title="更新于 2024-03-24 00:00:01">2024-03-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/BigData/">BigData</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3459</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【步骤一】本地数据集上传到数据仓库Hive"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>简介：本文章基于厦门大学提供的<a target="_blank" rel="noopener" href="https://dblab.xmu.edu.cn/post/7499/">大数据课程实验案例：网站用户行为分析</a>，通过使用 CentOS 操作编写而来。具体介绍请打开链接进行阅读。</p>
+<p><font color="red">这里介绍几点值得特别注意的事项：</font></p>
+<p>1、对于案例所涉及的系统及软件此文档使用的是以下版本，其他软件版本随意：</p>
+<ul>
+<li>Linux系统（CentOS7）</li>
+<li>MySQL（5.7）</li>
+<li>Hadoop（3.1.3）</li>
+<li>HBase（2.2.2，HBase版本需要和Hadoop版本兼容）</li>
+<li>Hive（3.1.2，Hive需要和Hadoop版本兼容）</li>
+<li>Sqoop（1.4.7）</li>
+<li>R（3.6.0）</li>
+<li>IDEA（ 2023.3.6 社区版）</li>
+</ul>
+<p><font color="red"><strong>PS：Hadoop 与 HBase、Hive 版本一定要兼容！！！版本一定要兼容！！！这很重要！！！</strong></font>😃😃😃其他软件随意。</p>
+<p>2、本文章所有<strong>下载</strong>的所有软件均在 <code>/</code> 目录下。所有<strong>安装</strong>的所有软件均在 <code>/usr/local/</code> 目录下以 <code>软件名-版本号</code> 方式命名。在进行每个软件的安装操作之前请先<strong>整体阅读</strong>整个软件安装流程的文章有个整体思路，<strong>了解到安装此软件需要做哪些设置再进行操作</strong>，这样可以避免很多不必要的麻烦。</p>
+<p>3、<font color="red"><strong>此案例分为五个步骤，请按照步骤顺序进行阅读！！</strong>🙂🙂</font></p>
+<h1 id="1-实验数据集的下载"><a href="#1-实验数据集的下载" class="headerlink" title="1. 实验数据集的下载"></a>1. 实验数据集的下载</h1><p>本案例采用的数据集为 <code>user.zip</code>，包含了一个大规模数据集 <code>raw_user.csv</code> (包含2000万条记录)，和一个小数据集 <code>small_user.csv</code>(只包含30万条记录)。小数据集 <code>small_user.csv</code> 是从大规模数据集 <code>raw_user.csv</code> 中抽取的一小部分数据。之所以抽取出一少部分记录单独构成一个小数据集，是因为，在第一遍跑通整个实验流程时，会遇到各种错误，各种问题，先用小数据集测试，可以大量节约程序运行时间。等到第一次完整实验流程都顺利跑通以后，就可以最后用大规模数据集进行最后的测试。</p>
+<p>下面，请在本机先下载 <a target="_blank" rel="noopener" href="http://pan.baidu.com/s/1nuOSo7B">user.zip数据集</a> ，然后上传到自己的 Linux 系统。或者直接在虚拟机的浏览器打开下载。</p>
+<p>我这里将它上传到 Linux 的 <code>/</code> 目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入 / 目录</span></span><br><span class="line"><span class="built_in">cd</span> /</span><br><span class="line"></span><br><span class="line"><span class="comment"># 上传</span></span><br><span class="line">sudo rz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看</span></span><br><span class="line">ll</span><br></pre></td></tr></table></figure>
+
+<p>通过上面命令，就进入到了 user.zip 文件所在的目录，并且可以看到有个 user.zip 文件。注意，如果你把 user.zip 下载到了其他目录，这里请进入到你自己的存放 user.zip 的目录。</p>
+<p>下面需要把 user.zip 进行解压缩，我们需要首先建立一个用于运行本案例的目录 bigdatacase，请执行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local</span><br><span class="line"></span><br><span class="line">sudo mkdir bigdatacase</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下面给 muyoukule 用户赋予针对 bigdatacase 目录的各种操作权限</span></span><br><span class="line">sudo chown -R muyoukule:muyoukule ./bigdatacase</span><br><span class="line"></span><br><span class="line">cd bigdatacase</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下面创建一个dataset目录，用于保存数据集</span></span><br><span class="line">mkdir dataset</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下面就可以解压缩user.zip文件</span></span><br><span class="line">sudo unzip /user.zip -d /usr/local/bigdatacase/dataset</span><br><span class="line"></span><br><span class="line">cd /usr/local/bigdatacase/dataset</span><br><span class="line"></span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
+
+<p>现在你就可以看到在dataset目录下有两个文件：<code>raw_user.csv</code> 和 <code>small_user.csv</code></p>
+<p>我们执行下面命令取出前面 5 条记录看一下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head -5 raw_user.csv</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，前 5 行记录如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">user_id,item_id,behavior_type,user_geohash,item_category,time</span><br><span class="line">10001082,285259775,1,97lk14c,4076,2014-12-08 18</span><br><span class="line">10001082,4368907,1,,5503,2014-12-12 12</span><br><span class="line">10001082,4368907,1,,5503,2014-12-12 12</span><br><span class="line">10001082,53616768,1,,9762,2014-12-02 15</span><br></pre></td></tr></table></figure>
+
+<p>可以看出，每行记录都包含 5 个字段，数据集中的字段及其含义如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">user_id(用户id)</span><br><span class="line">item_id(商品id)</span><br><span class="line">behaviour_type(包括浏览、收藏、加购物车、购买，对应取值分别是1、2、3、4)</span><br><span class="line">user_geohash(用户地理位置哈希值，有些记录中没有这个字段值，所以后面我们会用脚本做数据预处理时把这个字段全部删除)</span><br><span class="line">item_category(商品分类)</span><br><span class="line">time(该记录产生时间)</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-数据集的预处理"><a href="#2-数据集的预处理" class="headerlink" title="2. 数据集的预处理"></a>2. 数据集的预处理</h1><h2 id="2-1-删除文件第一行记录，即字段名称"><a href="#2-1-删除文件第一行记录，即字段名称" class="headerlink" title="2.1 删除文件第一行记录，即字段名称"></a>2.1 删除文件第一行记录，即字段名称</h2><p><code>raw_user</code> 和 <code>small_user</code> 中的第一行都是字段名称，我们在文件中的数据导入到数据仓库 Hive 中时，不需要第一行字段名称。因此，这里在做数据预处理时，删除第一行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/bigdatacase/dataset</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下面删除raw_user中的第1行</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1d表示删除第1行，同理，3d表示删除第3行，nd表示删除第n行</span></span><br><span class="line">sed -i &#x27;1d&#x27; raw_user.csv </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下面删除small_user中的第1行</span></span><br><span class="line">sed -i &#x27;1d&#x27; small_user.csv </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下面再用<span class="built_in">head</span>命令去查看文件的前5行记录，就看不到字段名称这一行了</span></span><br><span class="line">head -5 raw_user.csv</span><br><span class="line">head -5 small_user.csv</span><br></pre></td></tr></table></figure>
+
+<p>接下来的操作中，我们都是用 <code>small_user.csv</code> 这个小数据集进行操作，这样可以节省时间。等所有流程都跑通以后，你就可以使用大数据集 <code>raw_user.csv</code> 去测试一遍了。</p>
+<h2 id="2-2-对字段进行预处理"><a href="#2-2-对字段进行预处理" class="headerlink" title="2.2 对字段进行预处理"></a>2.2 对字段进行预处理</h2><p>下面对数据集进行一些预处理，包括为每行记录增加一个 <code>id</code> 字段(让记录具有唯一性)、增加一个省份字段(用来后续进行可视化分析)，并且丢弃 <code>user_geohash</code> 字段(后面分析不需要这个字段)。</p>
+<p>下面我们要建一个脚本文件 <code>pre_deal.sh</code>，请把这个脚本文件放在 <code>dataset</code> 目录下，和数据集 <code>small_user.csv</code> 放在同一个目录下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/bigdatacase/dataset</span><br><span class="line">vim pre_deal.sh</span><br></pre></td></tr></table></figure>
+
+<p>上面使用 vim 编辑器新建了一个 <code>pre_deal.sh</code> 脚本文件，请在这个脚本文件中加入下面代码：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">下面设置输入文件，把用户执行pre_deal.sh命令时提供的第一个参数作为输入文件名称</span></span><br><span class="line">infile=$1</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">下面设置输出文件，把用户执行pre_deal.sh命令时提供的第二个参数作为输出文件名称</span></span><br><span class="line">outfile=$2</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">注意！！最后的<span class="variable">$infile</span> &gt; <span class="variable">$outfile</span>必须跟在&#125;’这两个字符的后面</span></span><br><span class="line">awk -F &quot;,&quot; &#x27;BEGIN&#123;</span><br><span class="line">        srand();</span><br><span class="line">        id=0;</span><br><span class="line">        Province[0]=&quot;山东&quot;;Province[1]=&quot;山西&quot;;Province[2]=&quot;河南&quot;;Province[3]=&quot;河北&quot;;Province[4]=&quot;陕西&quot;;Province[5]=&quot;内蒙古&quot;;Province[6]=&quot;上海市&quot;;</span><br><span class="line">        Province[7]=&quot;北京市&quot;;Province[8]=&quot;重庆市&quot;;Province[9]=&quot;天津市&quot;;Province[10]=&quot;福建&quot;;Province[11]=&quot;广东&quot;;Province[12]=&quot;广西&quot;;Province[13]=&quot;云南&quot;; </span><br><span class="line">        Province[14]=&quot;浙江&quot;;Province[15]=&quot;贵州&quot;;Province[16]=&quot;新疆&quot;;Province[17]=&quot;西藏&quot;;Province[18]=&quot;江西&quot;;Province[19]=&quot;湖南&quot;;Province[20]=&quot;湖北&quot;;</span><br><span class="line">        Province[21]=&quot;黑龙江&quot;;Province[22]=&quot;吉林&quot;;Province[23]=&quot;辽宁&quot;; Province[24]=&quot;江苏&quot;;Province[25]=&quot;甘肃&quot;;Province[26]=&quot;青海&quot;;Province[27]=&quot;四川&quot;;</span><br><span class="line">        Province[28]=&quot;安徽&quot;; Province[29]=&quot;宁夏&quot;;Province[30]=&quot;海南&quot;;Province[31]=&quot;香港&quot;;Province[32]=&quot;澳门&quot;;Province[33]=&quot;台湾&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    &#123;</span><br><span class="line">        id=id+1;</span><br><span class="line">        value=int(rand()*34);       </span><br><span class="line">        print id&quot;\t&quot;$1&quot;\t&quot;$2&quot;\t&quot;$3&quot;\t&quot;$5&quot;\t&quot;substr($6,1,10)&quot;\t&quot;Province[value]</span><br><span class="line">    &#125;&#x27; $infile &gt; $outfile</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码的基本形式是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F &quot;,&quot; &#x27;处理逻辑&#x27; $infile &gt; $outfile</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>awk</code> 可以逐行读取输入文件，并对逐行进行相应操作。其中，<code>-F</code> 参数用于指出每行记录的不同字段之间用什么字符进行分割，这里是用逗号进行分割。处理逻辑代码需要用两个英文单引号引起来。  <code>$infile</code> 是输入文件的名称，我们这里会输入 <code>raw_user.csv</code>，<code>$outfile</code>  表示处理结束后输出的文件名称，我们后面会使用 <code>user_table.txt</code> 作为输出文件名称。</p>
+<p>在上面的 <code>pre_deal.sh</code> 代码的处理逻辑部分，<code>srand()</code> 用于生成随机数的种子，<code>id</code> 是我们为数据集新增的一个字段，它是一个自增类型，每条记录增加 1，这样可以保证每条记录具有唯一性。我们会为数据集新增一个省份字段，用来进行后面的数据可视化分析，为了给每条记录增加一个省份字段的值，这里，我们首先用 <code>Province[]</code> 数组用来保存全国各个省份信息，然后，在遍历数据集 <code>raw_user.csv</code> 的时候，每当遍历到其中一条记录，使用 <code>value=int(rand()*34</code>) 语句随机生成一个 0-33 的整数，作为 Province 省份值，然后从 <code>Province[]</code> 数组当中获取省份名称，增加到该条记录中。</p>
+<p><code>substr ($6,1,10)</code> 这个语句是为了截取时间字段 <code>time</code> 的年月日，方便后续存储为 <code>date</code> 格式。<code>awk</code> 每次遍历到一条记录时，每条记录包含了6个字段，其中，第6个字段是时间字段，<code>substr($6,1,10)</code> 语句就表示获取第 6 个字段的值，截取前 10 个字符，第 6 个字段是类似 <code>2014-12-08 18</code> 这样的字符串(也就是表示 2014年12月8日18时)，<code>substr($6,1,10)</code>截取后，就丢弃了小时，只保留了年月日。</p>
+<p>另外，在 <code>print id&quot;\t&quot;$1&quot;\t&quot;$2&quot;\t&quot;$3&quot;\t&quot;$5&quot;\t&quot;substr($6,1,10)&quot;\t&quot;Province[value]</code> 这行语句中，我们丢弃了每行记录的第4个字段，所以，没有出现 <code>$4</code>。我们生成后的文件是 <code>\t</code> 进行分割，这样，后续我们去查看数据的时候，效果让人看上去更舒服，每个字段在排版的时候会对齐显示，如果用逗号分隔，显示效果就比较乱。</p>
+<p>最后，保存 <code>pre_deal.sh</code> 代码文件，退出 vim 编辑器。</p>
+<p>下面就可以执行 <code>pre_deal.sh</code> 脚本文件，来对 <code>small_user.csv</code> 进行数据预处理，命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/bigdatacase/dataset</span><br><span class="line">bash ./pre_deal.sh small_user.csv user_table.txt  </span><br></pre></td></tr></table></figure>
+
+<p>可以使用 head 命令查看生成的 <code>user_table.txt</code>，不要直接打开，文件过大，会出错，下面查看前 10 行数据：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head -10 user_table.txt</span><br></pre></td></tr></table></figure>
+
+<p>可以得到如下结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1       10001082        285259775       1       4076    2014-12-08      吉林</span><br><span class="line">2       10001082        4368907 1       5503    2014-12-12      贵州</span><br><span class="line">3       10001082        4368907 1       5503    2014-12-12      西藏</span><br><span class="line">4       10001082        53616768        1       9762    2014-12-02      江苏</span><br><span class="line">5       10001082        151466952       1       5232    2014-12-12      青海</span><br><span class="line">6       10001082        53616768        4       9762    2014-12-02      广西</span><br><span class="line">7       10001082        290088061       1       5503    2014-12-12      台湾</span><br><span class="line">8       10001082        298397524       1       10894   2014-12-12      辽宁</span><br><span class="line">9       10001082        32104252        1       6513    2014-12-12      内蒙古</span><br><span class="line">10      10001082        323339743       1       10894   2014-12-12      四川</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3-导入数据库"><a href="#2-3-导入数据库" class="headerlink" title="2.3 导入数据库"></a>2.3 导入数据库</h2><p>下面要把 <code>user_table.txt</code> 中的数据最终导入到数据仓库 Hive 中。为了完成这个操作，我们会首先把 <code>user_table.txt</code> 上传到分布式文件系统 HDFS 中，然后，在 Hive 中创建一个外部表，完成数据的导入。</p>
+<p>1、启动HDFS</p>
+<p>请执行下面命令启动 Hadoop(如果你已经启动了 Hadoop 就不用再次启动了)：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动 Hadoop</span></span><br><span class="line">start-all.sh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看当前运行的进程</span></span><br><span class="line">jps</span><br></pre></td></tr></table></figure>
+
+<p>如果出现下面这些进程，说明 Hadoop 启动成功了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NameNode</span><br><span class="line">DataNode</span><br><span class="line">NodeManager</span><br><span class="line">SecondaryNameNode</span><br><span class="line">ResourceManager</span><br><span class="line">Jps</span><br></pre></td></tr></table></figure>
+
+<p>2、把 user_table.txt 上传到 HDFS 中</p>
+<p>现在，我们要把 Linux 本地文件系统中的 <code>user_table.txt</code> 上传到分布式文件系统 HDFS 中，存放在 HDFS 中的 <code>/bigdatacase/dataset</code> 目录下。</p>
+<p>首先，请执行下面命令，在 HDFS 的根目录下面创建一个新的目录 bigdatacase，并在这个目录下创建一个子目录 dataset，如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/hadoop-3.1.3</span><br><span class="line"></span><br><span class="line">hdfs dfs -mkdir -p /bigdatacase/dataset</span><br></pre></td></tr></table></figure>
+
+<p>然后，把 Linux 本地文件系统中的 <code>user_table.txt</code> 上传到分布式文件系统 HDFS 的 <code>/bigdatacase/dataset</code> 目录下，命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -put /usr/local/bigdatacase/dataset/user_table.txt /bigdatacase/dataset</span><br></pre></td></tr></table></figure>
+
+<p>下面可以查看一下 HDFS 中的 <code>user_table.txt</code> 的前 10 条记录，命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -cat /bigdatacase/dataset/user_table.txt | head -10</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1       10001082        285259775       1       4076    2014-12-08      吉林</span><br><span class="line">2       10001082        4368907 1       5503    2014-12-12      贵州</span><br><span class="line">3       10001082        4368907 1       5503    2014-12-12      西藏</span><br><span class="line">4       10001082        53616768        1       9762    2014-12-02      江苏</span><br><span class="line">5       10001082        151466952       1       5232    2014-12-12      青海</span><br><span class="line">6       10001082        53616768        4       9762    2014-12-02      广西</span><br><span class="line">7       10001082        290088061       1       5503    2014-12-12      台湾</span><br><span class="line">8       10001082        298397524       1       10894   2014-12-12      辽宁</span><br><span class="line">9       10001082        32104252        1       6513    2014-12-12      内蒙古</span><br><span class="line">10      10001082        323339743       1       10894   2014-12-12      四川</span><br></pre></td></tr></table></figure>
+
+<p>3、在 Hive 上创建数据库</p>
+<p>启动 MySQL 数据库：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看 MySQL 状态</span></span><br><span class="line">systemctl status mysqld</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动 MySQL</span></span><br><span class="line">sudo systemctl start mysqld</span><br></pre></td></tr></table></figure>
+
+<p>由于 Hive 是基于 Hadoop 的数据仓库，使用 HiveQL 语言撰写的查询语句，最终都会被 Hive 自动解析成 MapReduce 任务由 Hadoop去具体执行，因此，需要启动 Hadoop，然后再启动 Hive。由于前面我们已经启动了 Hadoop，所以，这里不需要再次启动 Hadoop。下面，在这个新的终端中执行下面命令进入 Hive：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动Hive</span></span><br><span class="line">hive</span><br></pre></td></tr></table></figure>
+
+<p>启动成功以后，就进入了 <code>hive&gt;</code> 命令提示符状态，可以输入类似 SQL 语句的 HiveQL 语句。</p>
+<p>下面，我们要在 Hive 中创建一个数据库 dblab，命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create database dblab;</span><br><span class="line"></span><br><span class="line">use dblab;</span><br></pre></td></tr></table></figure>
+
+<p>4、创建外部表</p>
+<p>在数据库 dblab 中创建一个外部表 <code>bigdata_user</code>，它包含字段 <code>id, uid, item_id, behavior_type, item_category, date, province</code> ，请在 hive 命令提示符下输入如下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE EXTERNAL TABLE dblab.bigdata_user(id INT,uid STRING,item_id STRING,behavior_type INT,item_category STRING,visit_date DATE,province STRING) COMMENT &#x27;Welcome to xmu dblab!&#x27; ROW FORMAT DELIMITED FIELDS TERMINATED BY &#x27;\t&#x27; STORED AS TEXTFILE LOCATION &#x27;/bigdatacase/dataset&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>5、查询数据</p>
+<p>上面已经成功把 HDFS 中的 <code>/bigdatacase/dataset</code> 目录下的数据加载到了数据仓库 Hive 中，我们现在可以使用下面命令查询一下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from bigdata_user limit 10;</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">OK</span><br><span class="line">1       10001082        285259775       1       4076    2014-12-08      吉林</span><br><span class="line">2       10001082        4368907 1       5503    2014-12-12      贵州</span><br><span class="line">3       10001082        4368907 1       5503    2014-12-12      西藏</span><br><span class="line">4       10001082        53616768        1       9762    2014-12-02      江苏</span><br><span class="line">5       10001082        151466952       1       5232    2014-12-12      青海</span><br><span class="line">6       10001082        53616768        4       9762    2014-12-02      广西</span><br><span class="line">7       10001082        290088061       1       5503    2014-12-12      台湾</span><br><span class="line">8       10001082        298397524       1       10894   2014-12-12      辽宁</span><br><span class="line">9       10001082        32104252        1       6513    2014-12-12      内蒙古</span><br><span class="line">10      10001082        323339743       1       10894   2014-12-12      四川</span><br><span class="line">Time taken: 0.959 seconds, Fetched: 10 row(s)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select behavior_type from bigdata_user limit 10;</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">OK</span><br><span class="line">1</span><br><span class="line">1</span><br><span class="line">1</span><br><span class="line">1</span><br><span class="line">1</span><br><span class="line">4</span><br><span class="line">1</span><br><span class="line">1</span><br><span class="line">1</span><br><span class="line">1</span><br><span class="line">Time taken: 0.113 seconds, Fetched: 10 row(s)</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zz.muyoukule.cn">木又枯了</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zz.muyoukule.cn/posts/19926/">https://zz.muyoukule.cn/posts/19926/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zz.muyoukule.cn" target="_blank">muyoukule</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Hadoop/">Hadoop</a><a class="post-meta__tags" href="/tags/Hive/">Hive</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/62103/" title="【步骤零】实验环境准备"><img class="cover" src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/Source/CoverIMG/cover8.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【步骤零】实验环境准备</div></div></a></div><div class="next-post pull-right"><a href="/posts/18969/" title="【步骤二】Hive数据分析"><img class="cover" src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/Source/CoverIMG/cover7.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【步骤二】Hive数据分析</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/62103/" title="【步骤零】实验环境准备"><img class="cover" src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/Source/CoverIMG/cover8.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-24</div><div class="title">【步骤零】实验环境准备</div></div></a></div><div><a href="/posts/53835/" title="【步骤三】Hive、MySQL、HBase数据互导"><img class="cover" src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/Source/CoverIMG/cover6.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-24</div><div class="title">【步骤三】Hive、MySQL、HBase数据互导</div></div></a></div><div><a href="/posts/18969/" title="【步骤二】Hive数据分析"><img class="cover" src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/Source/CoverIMG/cover7.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-24</div><div class="title">【步骤二】Hive数据分析</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="card-info-avatar"><div class="avatar-img"><img src="/img/avatar_muyoukule.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-status-box"><div class="author-status"><g-emoji class="g-emoji" alias="palm_tree" fallback-src="https://lskypro.acozycotage.net/LightPicture/2022/12/fe1dc0402e623096.jpg">🍺</g-emoji><span>度假休息中</span></div></div></div><div class="author-info__name">木又枯了</div><div class="author-info__description">莫道桑榆晚，为霞尚满天</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">39</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" href="mailto:muyoukule@gmail.com"><i class="far fa-envelope"></i><span>Follow Me</span></a></div><div class="card-widget" id="card-tuijian"><div id="tj-box"><div id="tj-box1"><div id="tj-left"><p>扫一扫</p>
+<span>快速打开移动端➤</span></div><div id="tj-right"><div id="tj-img-box"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACG0lEQVR42u3bUVLDMAwFwN7/0nAApuZJdmKn3XwxNIA3zEjuk/v6+ejrhYeHh4eHh4eHh4eHh4eHh4eHh/fFvFd8vfvZv79n/Oq7O3trwMPDw9vF+6fsBrxkoeNH01sDHh4e3l7euHDnJT5vHr014OHh4T2Xl5DGMDw8PLxv4yUxQbWd4OHh4T2L13sEebm/IhDBw8PD28XLh0/XfX3EfA8PDw8v4FWv6kCrGkw0V4WHh4d3Iy8v0ElTSV6dOXCAh4eHdwIvjxiqcW0eK1SjDTw8PLy9vHz41IsS8mB3ZquNh4eHdycvL/Hj71RbwkycgYeHh3cCrxoWzG/Q57fmeHh4eCfwxm1gXKaTlpBs2S/PWvDw8PCW5pz54nqkvAFcMt/Dw8PDW8qrNoa80FfHYM1/AB4eHt6NvGVBalz6Vx1BwMPDw9vFW3XgvjoGm/kIFh4eHt45vDxmzQ9dVRm9R4+Hh4e3lzezUa6GvNU78fDw8E7jJa0iKeJXxMHL3jHg4eHhTfN6oUP1z+cRbf6BKzw8PLxdvGqI0FtoPhJrPjI8PDy823lrm0G+ja5u8fHw8PBO4+XDql7c0Asjbprv4eHh4V3My7fI1bZRjY/x8PDwnsLrHUjNA4hqJIGHh4e3i1e9JwkOekdRqxtrPDw8vPt51QP61RChXOh3zffw8PDwAt5nXHh4eHh4eHh4eHh4eHh4eHh4eHhfwPsFb1nSbehfyQUAAAAASUVORK5CYII="/></div></div></div><div id="tj-box2"><div id="tj-left"><p>扫一扫</p>
+<span>快速打开移动端➤</span></div><div id="tj-right"><div id="tj-img-box"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACG0lEQVR42u3bUVLDMAwFwN7/0nAApuZJdmKn3XwxNIA3zEjuk/v6+ejrhYeHh4eHh4eHh4eHh4eHh4eHh/fFvFd8vfvZv79n/Oq7O3trwMPDw9vF+6fsBrxkoeNH01sDHh4e3l7euHDnJT5vHr014OHh4T2Xl5DGMDw8PLxv4yUxQbWd4OHh4T2L13sEebm/IhDBw8PD28XLh0/XfX3EfA8PDw8v4FWv6kCrGkw0V4WHh4d3Iy8v0ElTSV6dOXCAh4eHdwIvjxiqcW0eK1SjDTw8PLy9vHz41IsS8mB3ZquNh4eHdycvL/Hj71RbwkycgYeHh3cCrxoWzG/Q57fmeHh4eCfwxm1gXKaTlpBs2S/PWvDw8PCW5pz54nqkvAFcMt/Dw8PDW8qrNoa80FfHYM1/AB4eHt6NvGVBalz6Vx1BwMPDw9vFW3XgvjoGm/kIFh4eHt45vDxmzQ9dVRm9R4+Hh4e3lzezUa6GvNU78fDw8E7jJa0iKeJXxMHL3jHg4eHhTfN6oUP1z+cRbf6BKzw8PLxdvGqI0FtoPhJrPjI8PDy823lrm0G+ja5u8fHw8PBO4+XDql7c0Asjbprv4eHh4V3My7fI1bZRjY/x8PDwnsLrHUjNA4hqJIGHh4e3i1e9JwkOekdRqxtrPDw8vPt51QP61RChXOh3zffw8PDwAt5nXHh4eHh4eHh4eHh4eHh4eHh4eHhfwPsFb1nSbehfyQUAAAAASUVORK5CYII="/></div></div></div></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><center>菜就多练</center></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%AE%9E%E9%AA%8C%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E4%B8%8B%E8%BD%BD"><span class="toc-text">1. 实验数据集的下载</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-text">2. 数据集的预处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E7%AC%AC%E4%B8%80%E8%A1%8C%E8%AE%B0%E5%BD%95%EF%BC%8C%E5%8D%B3%E5%AD%97%E6%AE%B5%E5%90%8D%E7%A7%B0"><span class="toc-text">2.1 删除文件第一行记录，即字段名称</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E5%AF%B9%E5%AD%97%E6%AE%B5%E8%BF%9B%E8%A1%8C%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-text">2.2 对字段进行预处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">2.3 导入数据库</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/62439/" title="Java生成二维码">Java生成二维码</a><time datetime="2024-05-02T10:03:00.000Z" title="发表于 2024-05-02 18:03:00">2024-05-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/50631/" title="Axios备忘录">Axios备忘录</a><time datetime="2024-05-02T03:50:00.000Z" title="发表于 2024-05-02 11:50:00">2024-05-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/55591/" title="Redis基础篇">Redis基础篇</a><time datetime="2024-05-01T16:56:00.000Z" title="发表于 2024-05-02 00:56:00">2024-05-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/34539/" title="Redis安装">Redis安装</a><time datetime="2024-05-01T16:55:00.000Z" title="发表于 2024-05-02 00:55:00">2024-05-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/36186/" title="TypeScript极速梳理">TypeScript极速梳理</a><time datetime="2024-04-29T04:14:00.000Z" title="发表于 2024-04-29 12:14:00">2024-04-29</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright"><span><b>&copy;2024</b></span><span><b>&nbsp;&nbsp;By 木又枯了</b></span></div><div class="footer_custom_text">【The future of the past is now】</div><div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" title="博客框架为Hexo"><img src="https://img.shields.io/badge/Frame-Hexo-blue?logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" title="主题为Butterfly"><img src="https://img.shields.io/badge/Frame-Butterfly-%237957D5?logo=buefy&amp;logoColor=white" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" title="本站托管于Vercel"><img src="https://img.shields.io/badge/Hosted-Vercel-green?logo=vercel&amp;logoColor=white" alt=""/></a><a class="github-badge" target="_blank" href="https://www.aliyun.com/" style="margin-inline:5px" title="本网站由阿里云提供对象存储服务"><img src="https://img.shields.io/badge/Bucket-阿里云oss-F0AC11?logo=automattic&amp;logoColor=white" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" title="本网站源码由Github提供存储仓库"><img src="https://img.shields.io/badge/Source-Github-%23CC2ED1?logo=github" alt=""/></a></p></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button class="darkmode" type="button" title="切换模式" onclick="darkmode()"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="share" type="button" title="分享链接" onclick="share()"><i class="fas fa-share-nodes"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button><button id="go-down" type="button" title="直达底部" onclick="btf.scrollToDest(document.body.scrollHeight, 500)"><i class="fas fa-arrow-down"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><script async src="https://cdn1.tianli0.top/npm/vue@2.6.14/dist/vue.min.js"></script><script async src="https://cdn1.tianli0.top/npm/element-ui@2.15.6/lib/index.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script><script async src="/js/muyoukule.js"></script><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-show-text.min.js" data-mobile="true" data-text="mu,you,ku,le" data-fontsize="18px" data-random="true" async="async"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="docsearch-wrap"><div id="docsearch" style="display:none"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.5.2/dist/style.min.css"/><script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3.5.2/dist/umd/index.min.js"></script><script>(() => {
+  docsearch(Object.assign({
+    appId: '8Y220YX5OM',
+    apiKey: 'e8862f5d2e0ebdce05962b4b98dad983',
+    indexName: 'zz-muyoukule',
+    container: '#docsearch',
+  }, {"placeholder":"Please enter search keywords"}))
+
+  const handleClick = () => {
+    document.querySelector('.DocSearch-Button').click()
+  }
+
+  const searchClickFn = () => {
+    btf.addEventListenerPjax(document.querySelector('#search-button > .search'), 'click', handleClick)
+  }
+
+  searchClickFn()
+  window.addEventListener('pjax:complete', searchClickFn)
+})()</script></div></div><!-- hexo injector body_end start --><div class="js-pjax"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '300ms');
+    arr[i].setAttribute('data-wow-delay', '300ms');
+    arr[i].setAttribute('data-wow-offset', '50');
+    arr[i].setAttribute('data-wow-iteration', '1');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer src="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow.min.js"></script><script defer src="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow_init.js"></script><!-- hexo injector body_end end --></body></html>
