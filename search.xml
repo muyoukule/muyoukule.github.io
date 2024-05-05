@@ -6066,7 +6066,61 @@
 <p><strong>repo</strong> ：maven的pom配置自动补全repository</p>
 <img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/ToolsIMG/IDEA/%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF-repo.gif" alt="代码模板-repo" style="zoom:67%;">
 
-<h1 id="4-一些奇奇怪怪的问题"><a href="#4-一些奇奇怪怪的问题" class="headerlink" title="4. 一些奇奇怪怪的问题"></a>4. 一些奇奇怪怪的问题</h1><blockquote>
+<h1 id="4-源码阅读利器"><a href="#4-源码阅读利器" class="headerlink" title="4. 源码阅读利器"></a>4. 源码阅读利器</h1><p>平时在阅读源码的时候都会使用到 IDEA 的 Diagram，它可以使得结果一目了然，简直好用到炸裂👍。但是每次阅读的时候都因为对它不够熟悉而不得不去百度，及其浪费时间<del>阅读五分钟，百度半小时</del>😵，为了省去每次使用都去百度的时间，所以在此记下一些常用操作。</p>
+<h2 id="4-1-查看图形形式的继承链"><a href="#4-1-查看图形形式的继承链" class="headerlink" title="4.1 查看图形形式的继承链"></a>4.1 查看图形形式的继承链</h2><p><strong>光标定位在你想查看的类上</strong> 或 <strong>选中在你想查看的类的标签页内</strong>，点击右键，选择 <code>Diagrams</code>，其中有 <code>Show Diagram...</code> 和 <code>Show Diagram Popup...</code>，前者新建在标签页内，后者以浮窗的形式展示：</p>
+<img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/ToolsIMG/IDEA/%E9%80%89%E6%8B%A9Diagrams.png" alt="选择Diagrams" style="zoom: 40%;">
+
+<p>提示选择查看到类型，选择 <code>Java Classes</code>：</p>
+<p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/ToolsIMG/IDEA/%E9%80%89%E6%8B%A9Java-Classes.png" alt="选择Java-Classes"></p>
+<p>然后你就会得到如下图所示的继承关系图形，以刚刚选中的 <code>DefaultSingletonBeanRegistry</code> 为例：</p>
+<img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/ToolsIMG/IDEA/DefaultSingletonBeanRegistry%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB%E5%9B%BE%E5%BD%A2.png" alt="DefaultSingletonBeanRegistry继承关系图形" style="zoom:67%;">
+
+<p><strong>关系查看</strong></p>
+<ul>
+<li>蓝色实线箭头是指继承关系</li>
+<li>绿色虚线箭头是指接口实现关系</li>
+</ul>
+<p><strong>去掉不关心的类</strong></p>
+<ul>
+<li>点击选择你想要删除的类，然后直接使用键盘上的 <code>delete</code></li>
+</ul>
+<h2 id="4-2-面板操作"><a href="#4-2-面板操作" class="headerlink" title="4.2 面板操作"></a>4.2 面板操作</h2><h3 id="4-2-1-调整面板布局Layout"><a href="#4-2-1-调整面板布局Layout" class="headerlink" title="4.2.1 调整面板布局Layout"></a>4.2.1 调整面板布局Layout</h3><p>在类图上点击右键，选择 <code>Layout</code> —&gt; <code>Orthogonal</code> ，在子菜单中可以调整排列效果，如下图：</p>
+<img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/ToolsIMG/IDEA/%E8%B0%83%E6%95%B4%E9%9D%A2%E6%9D%BF%E5%B8%83%E5%B1%80Layout.png" alt="调整面板布局Layout" style="zoom: 50%;">
+
+<h3 id="4-2-2-查看子类父类"><a href="#4-2-2-查看子类父类" class="headerlink" title="4.2.2 查看子类父类"></a>4.2.2 查看子类父类</h3><p>选中其中的某一个类或者接口，点击右键出现上下文选择菜单：</p>
+<p><code>Show Implementations</code> 显示子类，快捷键 <code>Ctrl+Alt+B</code> ；<code>Show Parents</code> 显示父类，快捷键 <code>Ctrl+Alt+P</code></p>
+<img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/ToolsIMG/IDEA/%E6%9F%A5%E7%9C%8B%E5%AD%90%E7%B1%BB%E7%88%B6%E7%B1%BB.png" alt="查看子类父类" style="zoom:50%;">
+
+<p>当然也可以选中某个类，然后 <code>Ctrl + H</code>，调出类层级关系。如图，选择这个按钮，显示所有子接口和实现类。</p>
+<img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/ToolsIMG/IDEA/%E8%B0%83%E5%87%BA%E7%B1%BB%E5%B1%82%E7%BA%A7%E5%85%B3%E7%B3%BB.png" alt="调出类层级关系" style="zoom:67%;">
+
+<h3 id="4-2-3-展示类的详细信息"><a href="#4-2-3-展示类的详细信息" class="headerlink" title="4.2.3 展示类的详细信息"></a>4.2.3 展示类的详细信息</h3><p>想看继承下来的方法？简单。</p>
+<p>在页面点击右键，选择 <code>Content</code> —&gt; <code>show categories</code>，根据需要可以展开类中的属性、方法、构造方法等等。也可以直接使用上面的工具栏：</p>
+<img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/ToolsIMG/IDEA/%E5%B1%95%E7%A4%BA%E7%B1%BB%E7%9A%84%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF.png" alt="展示类的详细信息" style="zoom: 50%;">
+
+<ul>
+<li><code>Fields</code> - 字段，<code>Constructors</code> - 构造函数，<code>Methods</code> - 方法，<code>Properties</code> - 属性，Inner <code>Classes</code> - 内部类</li>
+</ul>
+<p>例如点击 <code>Methods</code> ，然后你就会得到：</p>
+<img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/ToolsIMG/IDEA/%E6%98%BE%E7%A4%BAMethods.png" alt="显示Methods" style="zoom: 33%;">
+
+<p>方法里还可以进行筛选，比如说想看 protected 权限及以上范围的？简单，右键选择 <code>Content</code> —&gt; <code>Change Visibility Level</code>，根据需要调整即可，或者可以点击左上角的图标。</p>
+<img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/ToolsIMG/IDEA/%E7%AD%9B%E9%80%89%E6%9F%A5%E7%9C%8B%E6%9D%83%E9%99%90.png" alt="筛选查看权限" style="zoom: 50%;">
+
+<p><strong>PS：什么，你嫌图形太小你看不清<del>我也看不清😅</del>？IDEA 也可以满足你，试试看按住键盘的 <code>Alt</code> 键，会有惊喜哦🎉🎉！！！</strong></p>
+<h3 id="4-2-4-加入其他类到关系中"><a href="#4-2-4-加入其他类到关系中" class="headerlink" title="4.2.4 加入其他类到关系中"></a>4.2.4 加入其他类到关系中</h3><p>当我们还需要查看其他类和当前类是否有继承上的关系的时候，我们可以选择加其加入到当前的继承关系图形中来。</p>
+<p>在页面点击右键，选择 <code>Add Class to Diagram</code> 或者直接 <code>敲空格</code>，然后输入你想加入的类就可以了：</p>
+<img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/ToolsIMG/IDEA/%E5%8A%A0%E5%85%A5%E5%85%B6%E4%BB%96%E7%B1%BB%E5%88%B0%E5%85%B3%E7%B3%BB%E4%B8%AD.png" alt="加入其他类到关系中" style="zoom: 40%;">
+
+<h3 id="4-2-5-进入源码查看"><a href="#4-2-5-进入源码查看" class="headerlink" title="4.2.5 进入源码查看"></a>4.2.5 进入源码查看</h3><p>如果你想查看某个类中，比如某个方法的具体源码，当然不可能再给你展现在图形上了，已经看不清了😂。但是可以利用图形，或者配合 IDEA 的 structure 方便快捷地进入某个类的源码进行查看。</p>
+<p>选中某个类后，下方会出现这个类的名称，点击名称后会出现这个类所有的 <code>字段</code> 和 <code>方法</code>，直接点击想看的内容即可跳转到源码：</p>
+<img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/ToolsIMG/IDEA/%E8%BF%9B%E5%85%A5%E6%BA%90%E7%A0%81%E6%9F%A5%E7%9C%8B.png" alt="进入源码查看" style="zoom: 50%;">
+
+<p>在进入某个类后，如果还想快速地查看该类的其他方法，还可以利用 IDEA 提供的 structure 功能：</p>
+<p>选择左侧栏的 <code>structure</code> 之后，如下图左侧会展示该类中的所有方法，直接点击想看的内容即可跳转到源码。</p>
+<img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/ToolsIMG/IDEA/structure%E5%8A%9F%E8%83%BD.png" alt="structure功能" style="zoom: 40%;">
+
+<h1 id="99-一些奇奇怪怪的问题"><a href="#99-一些奇奇怪怪的问题" class="headerlink" title="99. 一些奇奇怪怪的问题"></a>99. 一些奇奇怪怪的问题</h1><blockquote>
 <p>在添加web支持的时候webapp目录没有小蓝点怎么办？</p>
 </blockquote>
 <p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/ToolsIMG/IDEA/webapp%E7%9B%AE%E5%BD%95%E6%B2%A1%E6%9C%89%E5%B0%8F%E8%93%9D%E7%82%B9.png" alt="webapp目录没有小蓝点"></p>
@@ -9474,31 +9528,31 @@
 <td align="center">1</td>
 <td align="center">Jone</td>
 <td align="center">18</td>
-<td align="center"><a href="mailto:&#116;&#101;&#115;&#x74;&#x31;&#x40;&#x62;&#x61;&#x6f;&#x6d;&#x69;&#x64;&#111;&#x75;&#46;&#99;&#111;&#109;">&#116;&#101;&#115;&#x74;&#x31;&#x40;&#x62;&#x61;&#x6f;&#x6d;&#x69;&#x64;&#111;&#x75;&#46;&#99;&#111;&#109;</a></td>
+<td align="center"><a href="mailto:&#116;&#101;&#115;&#116;&#x31;&#x40;&#98;&#x61;&#x6f;&#x6d;&#105;&#x64;&#111;&#x75;&#x2e;&#x63;&#x6f;&#x6d;">&#116;&#101;&#115;&#116;&#x31;&#x40;&#98;&#x61;&#x6f;&#x6d;&#105;&#x64;&#111;&#x75;&#x2e;&#x63;&#x6f;&#x6d;</a></td>
 </tr>
 <tr>
 <td align="center">2</td>
 <td align="center">Jack</td>
 <td align="center">20</td>
-<td align="center"><a href="mailto:&#x74;&#x65;&#x73;&#116;&#50;&#64;&#98;&#x61;&#x6f;&#109;&#x69;&#x64;&#111;&#117;&#x2e;&#99;&#x6f;&#x6d;">&#x74;&#x65;&#x73;&#116;&#50;&#64;&#98;&#x61;&#x6f;&#109;&#x69;&#x64;&#111;&#117;&#x2e;&#99;&#x6f;&#x6d;</a></td>
+<td align="center"><a href="mailto:&#116;&#x65;&#x73;&#116;&#x32;&#x40;&#98;&#97;&#111;&#x6d;&#x69;&#x64;&#x6f;&#117;&#46;&#x63;&#111;&#109;">&#116;&#x65;&#x73;&#116;&#x32;&#x40;&#98;&#97;&#111;&#x6d;&#x69;&#x64;&#x6f;&#117;&#46;&#x63;&#111;&#109;</a></td>
 </tr>
 <tr>
 <td align="center">3</td>
 <td align="center">Tom</td>
 <td align="center">28</td>
-<td align="center"><a href="mailto:&#116;&#101;&#x73;&#116;&#51;&#64;&#x62;&#97;&#111;&#109;&#105;&#x64;&#x6f;&#117;&#x2e;&#99;&#x6f;&#109;">&#116;&#101;&#x73;&#116;&#51;&#64;&#x62;&#97;&#111;&#109;&#105;&#x64;&#x6f;&#117;&#x2e;&#99;&#x6f;&#109;</a></td>
+<td align="center"><a href="mailto:&#116;&#x65;&#115;&#x74;&#51;&#x40;&#98;&#x61;&#111;&#109;&#x69;&#100;&#x6f;&#x75;&#x2e;&#x63;&#111;&#109;">&#116;&#x65;&#115;&#x74;&#51;&#x40;&#98;&#x61;&#111;&#109;&#x69;&#100;&#x6f;&#x75;&#x2e;&#x63;&#111;&#109;</a></td>
 </tr>
 <tr>
 <td align="center">4</td>
 <td align="center">Sandy</td>
 <td align="center">21</td>
-<td align="center"><a href="mailto:&#x74;&#x65;&#x73;&#x74;&#52;&#x40;&#x62;&#x61;&#x6f;&#x6d;&#x69;&#x64;&#x6f;&#117;&#x2e;&#x63;&#x6f;&#109;">&#x74;&#x65;&#x73;&#x74;&#52;&#x40;&#x62;&#x61;&#x6f;&#x6d;&#x69;&#x64;&#x6f;&#117;&#x2e;&#x63;&#x6f;&#109;</a></td>
+<td align="center"><a href="mailto:&#x74;&#101;&#115;&#116;&#x34;&#x40;&#98;&#97;&#x6f;&#x6d;&#x69;&#100;&#x6f;&#x75;&#46;&#x63;&#111;&#x6d;">&#x74;&#101;&#115;&#116;&#x34;&#x40;&#98;&#97;&#x6f;&#x6d;&#x69;&#100;&#x6f;&#x75;&#46;&#x63;&#111;&#x6d;</a></td>
 </tr>
 <tr>
 <td align="center">5</td>
 <td align="center">Billie</td>
 <td align="center">24</td>
-<td align="center"><a href="mailto:&#116;&#x65;&#115;&#x74;&#53;&#x40;&#x62;&#x61;&#111;&#x6d;&#105;&#x64;&#x6f;&#117;&#x2e;&#99;&#x6f;&#109;">&#116;&#x65;&#115;&#x74;&#53;&#x40;&#x62;&#x61;&#111;&#x6d;&#105;&#x64;&#x6f;&#117;&#x2e;&#99;&#x6f;&#109;</a></td>
+<td align="center"><a href="mailto:&#116;&#101;&#x73;&#x74;&#53;&#64;&#x62;&#x61;&#111;&#x6d;&#x69;&#x64;&#111;&#117;&#46;&#x63;&#x6f;&#109;">&#116;&#101;&#x73;&#x74;&#53;&#64;&#x62;&#x61;&#111;&#x6d;&#x69;&#x64;&#111;&#117;&#46;&#x63;&#x6f;&#109;</a></td>
 </tr>
 </tbody></table>
 <blockquote>
@@ -15901,7 +15955,7 @@
 <p>安装完 Git 后首先要做的事情是设置用户名和 email 地址。这非常重要，因为每次 Git 提交都会使用该信息，它被永远的嵌入到了提交中。<font color="red"><strong>所以！！！是一定要配置的！！！</strong></font></p>
 <p>否则就会出现如下提示：</p>
 <p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/ToolsIMG/Git/Git%E6%9C%AA%E8%AE%BE%E7%BD%AE%E5%90%8D%E7%A7%B0%E5%92%8C%E9%82%AE%E7%AE%B1.png"></p>
-<p>此时需要按照下面两个命令来设置用户名🏃和邮箱📧( muyoukule 是我的用户名，<a href="mailto:&#x79;&#x6f;&#x75;&#114;&#x5f;&#x65;&#109;&#97;&#x69;&#108;&#64;&#101;&#120;&#x61;&#109;&#x70;&#x6c;&#x65;&#46;&#99;&#x6f;&#x6d;">&#x79;&#x6f;&#x75;&#114;&#x5f;&#x65;&#109;&#97;&#x69;&#108;&#64;&#101;&#120;&#x61;&#109;&#x70;&#x6c;&#x65;&#46;&#99;&#x6f;&#x6d;</a> 是邮箱，你需要设置属于你自己的用户名和邮箱)。</p>
+<p>此时需要按照下面两个命令来设置用户名🏃和邮箱📧( muyoukule 是我的用户名，<a href="mailto:&#121;&#111;&#x75;&#x72;&#x5f;&#x65;&#x6d;&#97;&#x69;&#108;&#64;&#101;&#x78;&#x61;&#109;&#112;&#108;&#101;&#46;&#x63;&#111;&#x6d;">&#121;&#111;&#x75;&#x72;&#x5f;&#x65;&#x6d;&#97;&#x69;&#108;&#64;&#101;&#x78;&#x61;&#109;&#112;&#108;&#101;&#46;&#x63;&#111;&#x6d;</a> 是邮箱，你需要设置属于你自己的用户名和邮箱)。</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global user.name muyoukule</span><br><span class="line">git config --global user.email your_email@example.com</span><br></pre></td></tr></table></figure>
 
 <p>如果使用了 <code>--global</code> 选项，表示设置了全局的用户名和邮箱。如果希望在一个特定的项目中使用不同的用户名和邮箱，可以在该项目中运行该命令而不添加 –global 选项。总之 <code>--global</code> 为全局配置，不加为某个项目的特定配置。</p>
