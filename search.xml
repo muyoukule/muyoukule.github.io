@@ -17,7 +17,7 @@
 <li>IDEA（ 2023.3.6 社区版）</li>
 </ul>
 <p><font color="red"><strong>PS：Hadoop 与 HBase、Hive 版本一定要兼容！！！版本一定要兼容！！！这很重要！！！</strong></font>😃😃😃其他软件随意。</p>
-<p>2、本文章所有<strong>下载</strong>的所有软件均在 <code>/</code> 目录下。所有<strong>安装</strong>的所有软件均在 <code>/usr/local/</code> 目录下以 <code>软件名-版本号</code> 方式命名。在进行每个软件的安装操作之前请先<strong>整体阅读</strong>整个软件安装流程的文章有个整体思路，<strong>了解到安装此软件需要做哪些设置再进行操作</strong>，这样可以避免很多不必要的麻烦。</p>
+<p>2、所有<strong>下载</strong>的安装包均在 <code>/</code> 目录下。所有<strong>安装</strong>的软件均在 <code>/usr/local/</code> 目录下以 <code>软件名-版本号</code> 方式命名。在进行每个软件的安装操作之前请先<strong>整体阅读</strong>整个软件安装流程的文章有个整体思路，<strong>了解到安装此软件需要做哪些设置再进行操作</strong>，这样可以避免很多不必要的麻烦。</p>
 <p>3、<font color="red"><strong>此案例分为五个步骤，请按照步骤顺序进行阅读！！</strong>🙂🙂</font></p>
 <h1 id="1-安装-Linux-系统"><a href="#1-安装-Linux-系统" class="headerlink" title="1. 安装 Linux 系统"></a>1. 安装 Linux 系统</h1><h2 id="1-1-Linux-的选择"><a href="#1-1-Linux-的选择" class="headerlink" title="1.1 Linux 的选择"></a>1.1 Linux 的选择</h2><p>在 Linux 系统各个发行版中，CentOS 系统和 Ubuntu 系统在服务端和桌面端使用占比最高，选择 Ubuntu 还是 CentOS 主要取决于你的具体需求和使用场景。</p>
 <p><strong>适用场景</strong>：</p>
@@ -7508,7 +7508,7 @@
   </entry>
   <entry>
     <title>【第12章】 手写SpringMVC</title>
-    <url>/posts/5625/</url>
+    <url>/posts/53150/</url>
     <content><![CDATA[<p>参考视频：<a href="https://www.bilibili.com/video/BV1sC411L76f/">SpringMVC教程，SpringMVC从零到精通，老杜SpringMVC，动力节点SpringMVC</a></p>
 <div class="note blue icon-padding flat"><i class="note-icon fas fa-bullhorn"></i><p>本部分大多涉及源码，直接配合 <a href="https://github.com/muyoukule/myspringmvc.git">代码 </a>观看对应视频学习效果更佳！！</p>
 </div>
@@ -9528,31 +9528,31 @@
 <td align="center">1</td>
 <td align="center">Jone</td>
 <td align="center">18</td>
-<td align="center"><a href="mailto:&#116;&#101;&#115;&#116;&#x31;&#x40;&#98;&#x61;&#x6f;&#x6d;&#105;&#x64;&#111;&#x75;&#x2e;&#x63;&#x6f;&#x6d;">&#116;&#101;&#115;&#116;&#x31;&#x40;&#98;&#x61;&#x6f;&#x6d;&#105;&#x64;&#111;&#x75;&#x2e;&#x63;&#x6f;&#x6d;</a></td>
+<td align="center"><a href="mailto:&#116;&#x65;&#x73;&#x74;&#x31;&#x40;&#98;&#97;&#x6f;&#x6d;&#105;&#x64;&#111;&#x75;&#x2e;&#99;&#111;&#109;">&#116;&#x65;&#x73;&#x74;&#x31;&#x40;&#98;&#97;&#x6f;&#x6d;&#105;&#x64;&#111;&#x75;&#x2e;&#99;&#111;&#109;</a></td>
 </tr>
 <tr>
 <td align="center">2</td>
 <td align="center">Jack</td>
 <td align="center">20</td>
-<td align="center"><a href="mailto:&#116;&#x65;&#x73;&#116;&#x32;&#x40;&#98;&#97;&#111;&#x6d;&#x69;&#x64;&#x6f;&#117;&#46;&#x63;&#111;&#109;">&#116;&#x65;&#x73;&#116;&#x32;&#x40;&#98;&#97;&#111;&#x6d;&#x69;&#x64;&#x6f;&#117;&#46;&#x63;&#111;&#109;</a></td>
+<td align="center"><a href="mailto:&#116;&#101;&#x73;&#x74;&#50;&#64;&#x62;&#x61;&#x6f;&#109;&#105;&#x64;&#111;&#x75;&#x2e;&#99;&#x6f;&#109;">&#116;&#101;&#x73;&#x74;&#50;&#64;&#x62;&#x61;&#x6f;&#109;&#105;&#x64;&#111;&#x75;&#x2e;&#99;&#x6f;&#109;</a></td>
 </tr>
 <tr>
 <td align="center">3</td>
 <td align="center">Tom</td>
 <td align="center">28</td>
-<td align="center"><a href="mailto:&#116;&#x65;&#115;&#x74;&#51;&#x40;&#98;&#x61;&#111;&#109;&#x69;&#100;&#x6f;&#x75;&#x2e;&#x63;&#111;&#109;">&#116;&#x65;&#115;&#x74;&#51;&#x40;&#98;&#x61;&#111;&#109;&#x69;&#100;&#x6f;&#x75;&#x2e;&#x63;&#111;&#109;</a></td>
+<td align="center"><a href="mailto:&#x74;&#101;&#115;&#x74;&#51;&#64;&#98;&#97;&#x6f;&#109;&#x69;&#x64;&#111;&#117;&#x2e;&#99;&#111;&#x6d;">&#x74;&#101;&#115;&#x74;&#51;&#64;&#98;&#97;&#x6f;&#109;&#x69;&#x64;&#111;&#117;&#x2e;&#99;&#111;&#x6d;</a></td>
 </tr>
 <tr>
 <td align="center">4</td>
 <td align="center">Sandy</td>
 <td align="center">21</td>
-<td align="center"><a href="mailto:&#x74;&#101;&#115;&#116;&#x34;&#x40;&#98;&#97;&#x6f;&#x6d;&#x69;&#100;&#x6f;&#x75;&#46;&#x63;&#111;&#x6d;">&#x74;&#101;&#115;&#116;&#x34;&#x40;&#98;&#97;&#x6f;&#x6d;&#x69;&#100;&#x6f;&#x75;&#46;&#x63;&#111;&#x6d;</a></td>
+<td align="center"><a href="mailto:&#x74;&#x65;&#x73;&#x74;&#x34;&#64;&#x62;&#97;&#111;&#x6d;&#x69;&#100;&#x6f;&#x75;&#46;&#99;&#111;&#x6d;">&#x74;&#x65;&#x73;&#x74;&#x34;&#64;&#x62;&#97;&#111;&#x6d;&#x69;&#100;&#x6f;&#x75;&#46;&#99;&#111;&#x6d;</a></td>
 </tr>
 <tr>
 <td align="center">5</td>
 <td align="center">Billie</td>
 <td align="center">24</td>
-<td align="center"><a href="mailto:&#116;&#101;&#x73;&#x74;&#53;&#64;&#x62;&#x61;&#111;&#x6d;&#x69;&#x64;&#111;&#117;&#46;&#x63;&#x6f;&#109;">&#116;&#101;&#x73;&#x74;&#53;&#64;&#x62;&#x61;&#111;&#x6d;&#x69;&#x64;&#111;&#117;&#46;&#x63;&#x6f;&#109;</a></td>
+<td align="center"><a href="mailto:&#116;&#x65;&#x73;&#x74;&#53;&#64;&#x62;&#97;&#111;&#x6d;&#x69;&#x64;&#111;&#117;&#46;&#x63;&#x6f;&#109;">&#116;&#x65;&#x73;&#x74;&#53;&#64;&#x62;&#97;&#111;&#x6d;&#x69;&#x64;&#111;&#117;&#46;&#x63;&#x6f;&#109;</a></td>
 </tr>
 </tbody></table>
 <blockquote>
@@ -12412,7 +12412,7 @@
 <li>IDEA（ 2023.3.6 社区版）</li>
 </ul>
 <p><font color="red"><strong>PS：Hadoop 与 HBase、Hive 版本一定要兼容！！！版本一定要兼容！！！这很重要！！！</strong></font>😃😃😃其他软件随意。</p>
-<p>2、本文章所有<strong>下载</strong>的所有软件均在 <code>/</code> 目录下。所有<strong>安装</strong>的所有软件均在 <code>/usr/local/</code> 目录下以 <code>软件名-版本号</code> 方式命名。在进行每个软件的安装操作之前请先<strong>整体阅读</strong>整个软件安装流程的文章有个整体思路，<strong>了解到安装此软件需要做哪些设置再进行操作</strong>，这样可以避免很多不必要的麻烦。</p>
+<p>2、所有<strong>下载</strong>的安装包均在 <code>/</code> 目录下。所有<strong>安装</strong>的软件均在 <code>/usr/local/</code> 目录下以 <code>软件名-版本号</code> 方式命名。在进行每个软件的安装操作之前请先<strong>整体阅读</strong>整个软件安装流程的文章有个整体思路，<strong>了解到安装此软件需要做哪些设置再进行操作</strong>，这样可以避免很多不必要的麻烦。</p>
 <p>3、<font color="red"><strong>此案例分为五个步骤，请按照步骤顺序进行阅读！！</strong>🙂🙂</font></p>
 <h1 id="1-环境"><a href="#1-环境" class="headerlink" title="1. 环境"></a>1. 环境</h1><p>1、由于官方仓库中没有 R 的软件包所以需要先安装 epel-release 软件包</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 先安装epel-release软件包</span></span><br><span class="line">sudo yum install -y epel-release</span><br></pre></td></tr></table></figure>
@@ -12572,7 +12572,7 @@
 <li>IDEA（ 2023.3.6 社区版）</li>
 </ul>
 <p><font color="red"><strong>PS：Hadoop 与 HBase、Hive 版本一定要兼容！！！版本一定要兼容！！！这很重要！！！</strong></font>😃😃😃其他软件随意。</p>
-<p>2、本文章所有<strong>下载</strong>的所有软件均在 <code>/</code> 目录下。所有<strong>安装</strong>的所有软件均在 <code>/usr/local/</code> 目录下以 <code>软件名-版本号</code> 方式命名。在进行每个软件的安装操作之前请先<strong>整体阅读</strong>整个软件安装流程的文章有个整体思路，<strong>了解到安装此软件需要做哪些设置再进行操作</strong>，这样可以避免很多不必要的麻烦。</p>
+<p>2、所有<strong>下载</strong>的安装包均在 <code>/</code> 目录下。所有<strong>安装</strong>的软件均在 <code>/usr/local/</code> 目录下以 <code>软件名-版本号</code> 方式命名。在进行每个软件的安装操作之前请先<strong>整体阅读</strong>整个软件安装流程的文章有个整体思路，<strong>了解到安装此软件需要做哪些设置再进行操作</strong>，这样可以避免很多不必要的麻烦。</p>
 <p>3、<font color="red"><strong>此案例分为五个步骤，请按照步骤顺序进行阅读！！</strong>🙂🙂</font></p>
 <h1 id="1-Hive预操作"><a href="#1-Hive预操作" class="headerlink" title="1. Hive预操作"></a>1. Hive预操作</h1><p>1、启动 MySQL 数据库</p>
 <p>因为需要借助于 MySQL 保存 Hive 的元数据，所以，请首先启动 MySQL 数据库，请在终端中输入下面命令：</p>
@@ -12806,7 +12806,7 @@
 <li>IDEA（ 2023.3.6 社区版）</li>
 </ul>
 <p><font color="red"><strong>PS：Hadoop 与 HBase、Hive 版本一定要兼容！！！版本一定要兼容！！！这很重要！！！</strong></font>😃😃😃其他软件随意。</p>
-<p>2、本文章所有<strong>下载</strong>的所有软件均在 <code>/</code> 目录下。所有<strong>安装</strong>的所有软件均在 <code>/usr/local/</code> 目录下以 <code>软件名-版本号</code> 方式命名。在进行每个软件的安装操作之前请先<strong>整体阅读</strong>整个软件安装流程的文章有个整体思路，<strong>了解到安装此软件需要做哪些设置再进行操作</strong>，这样可以避免很多不必要的麻烦。</p>
+<p>2、所有<strong>下载</strong>的安装包均在 <code>/</code> 目录下。所有<strong>安装</strong>的软件均在 <code>/usr/local/</code> 目录下以 <code>软件名-版本号</code> 方式命名。在进行每个软件的安装操作之前请先<strong>整体阅读</strong>整个软件安装流程的文章有个整体思路，<strong>了解到安装此软件需要做哪些设置再进行操作</strong>，这样可以避免很多不必要的麻烦。</p>
 <p>3、<font color="red"><strong>此案例分为五个步骤，请按照步骤顺序进行阅读！！</strong>🙂🙂</font></p>
 <h1 id="1-操作Hive"><a href="#1-操作Hive" class="headerlink" title="1. 操作Hive"></a>1. 操作Hive</h1><p>1、启动 MySQL 数据库</p>
 <p>因为需要借助于 MySQL 保存 Hive 的元数据，所以，请首先启动 MySQL 数据库，请在终端中输入下面命令：</p>
@@ -12980,7 +12980,7 @@
 <li>IDEA（ 2023.3.6 社区版）</li>
 </ul>
 <p><font color="red"><strong>PS：Hadoop 与 HBase、Hive 版本一定要兼容！！！版本一定要兼容！！！这很重要！！！</strong></font>😃😃😃其他软件随意。</p>
-<p>2、本文章所有<strong>下载</strong>的所有软件均在 <code>/</code> 目录下。所有<strong>安装</strong>的所有软件均在 <code>/usr/local/</code> 目录下以 <code>软件名-版本号</code> 方式命名。在进行每个软件的安装操作之前请先<strong>整体阅读</strong>整个软件安装流程的文章有个整体思路，<strong>了解到安装此软件需要做哪些设置再进行操作</strong>，这样可以避免很多不必要的麻烦。</p>
+<p>2、所有<strong>下载</strong>的安装包均在 <code>/</code> 目录下。所有<strong>安装</strong>的软件均在 <code>/usr/local/</code> 目录下以 <code>软件名-版本号</code> 方式命名。在进行每个软件的安装操作之前请先<strong>整体阅读</strong>整个软件安装流程的文章有个整体思路，<strong>了解到安装此软件需要做哪些设置再进行操作</strong>，这样可以避免很多不必要的麻烦。</p>
 <p>3、<font color="red"><strong>此案例分为五个步骤，请按照步骤顺序进行阅读！！</strong>🙂🙂</font></p>
 <h1 id="1-实验数据集的下载"><a href="#1-实验数据集的下载" class="headerlink" title="1. 实验数据集的下载"></a>1. 实验数据集的下载</h1><p>本案例采用的数据集为 <code>user.zip</code>，包含了一个大规模数据集 <code>raw_user.csv</code> (包含2000万条记录)，和一个小数据集 <code>small_user.csv</code>(只包含30万条记录)。小数据集 <code>small_user.csv</code> 是从大规模数据集 <code>raw_user.csv</code> 中抽取的一小部分数据。之所以抽取出一少部分记录单独构成一个小数据集，是因为，在第一遍跑通整个实验流程时，会遇到各种错误，各种问题，先用小数据集测试，可以大量节约程序运行时间。等到第一次完整实验流程都顺利跑通以后，就可以最后用大规模数据集进行最后的测试。</p>
 <p>下面，请在本机先下载 <a href="http://pan.baidu.com/s/1nuOSo7B">user.zip数据集</a> ，然后上传到自己的 Linux 系统。或者直接在虚拟机的浏览器打开下载。</p>
@@ -15955,7 +15955,7 @@
 <p>安装完 Git 后首先要做的事情是设置用户名和 email 地址。这非常重要，因为每次 Git 提交都会使用该信息，它被永远的嵌入到了提交中。<font color="red"><strong>所以！！！是一定要配置的！！！</strong></font></p>
 <p>否则就会出现如下提示：</p>
 <p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/ToolsIMG/Git/Git%E6%9C%AA%E8%AE%BE%E7%BD%AE%E5%90%8D%E7%A7%B0%E5%92%8C%E9%82%AE%E7%AE%B1.png"></p>
-<p>此时需要按照下面两个命令来设置用户名🏃和邮箱📧( muyoukule 是我的用户名，<a href="mailto:&#121;&#111;&#x75;&#x72;&#x5f;&#x65;&#x6d;&#97;&#x69;&#108;&#64;&#101;&#x78;&#x61;&#109;&#112;&#108;&#101;&#46;&#x63;&#111;&#x6d;">&#121;&#111;&#x75;&#x72;&#x5f;&#x65;&#x6d;&#97;&#x69;&#108;&#64;&#101;&#x78;&#x61;&#109;&#112;&#108;&#101;&#46;&#x63;&#111;&#x6d;</a> 是邮箱，你需要设置属于你自己的用户名和邮箱)。</p>
+<p>此时需要按照下面两个命令来设置用户名🏃和邮箱📧( muyoukule 是我的用户名，<a href="mailto:&#x79;&#x6f;&#x75;&#114;&#95;&#x65;&#109;&#97;&#105;&#108;&#64;&#101;&#x78;&#97;&#109;&#x70;&#x6c;&#x65;&#46;&#x63;&#111;&#109;">&#x79;&#x6f;&#x75;&#114;&#95;&#x65;&#109;&#97;&#105;&#108;&#64;&#101;&#x78;&#97;&#109;&#x70;&#x6c;&#x65;&#46;&#x63;&#111;&#109;</a> 是邮箱，你需要设置属于你自己的用户名和邮箱)。</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global user.name muyoukule</span><br><span class="line">git config --global user.email your_email@example.com</span><br></pre></td></tr></table></figure>
 
 <p>如果使用了 <code>--global</code> 选项，表示设置了全局的用户名和邮箱。如果希望在一个特定的项目中使用不同的用户名和邮箱，可以在该项目中运行该命令而不添加 –global 选项。总之 <code>--global</code> 为全局配置，不加为某个项目的特定配置。</p>
