@@ -1636,7 +1636,7 @@
 <p>redis的key允许有多个单词形成层级结构，多个单词之间用 <code>:</code> 隔开，格式如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">项目名:业务名:类型:id</span><br></pre></td></tr></table></figure>
 
-<p>这个格式并非固定，也可以根据自己的需求来删除或添加词条。这样以来，我们就可以把不同类型的数据区分开了。从而避免了key的冲突问题。</p>
+<p>这个格式并非固定，也可以根据自己的需求来删除或添加词条。这样一来，我们就可以把不同类型的数据区分开了。从而避免了key的冲突问题。</p>
 <p>例如我们的项目名称叫 heima，有user和product两种不同类型的数据，我们可以这样定义key：</p>
 <ul>
 <li><p>user相关的key：<strong>heima:user:1</strong></p>
@@ -2037,7 +2037,7 @@
 <figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 监听的端口</span></span><br><span class="line"><span class="attr">port</span> <span class="string">6379</span></span><br><span class="line"><span class="comment"># 工作目录，默认是当前目录，也就是运行redis-server时的命令，日志、持久化等文件会保存在这个目录</span></span><br><span class="line"><span class="attr">dir</span> <span class="string">.</span></span><br><span class="line"><span class="comment"># 数据库数量，设置为1，代表只使用1个库，默认有16个库，编号0~15</span></span><br><span class="line"><span class="attr">databases</span> <span class="string">1</span></span><br><span class="line"><span class="comment"># 设置redis能够使用的最大内存</span></span><br><span class="line"><span class="attr">maxmemory</span> <span class="string">512mb</span></span><br><span class="line"><span class="comment"># 日志文件，默认为空，不记录日志，可以指定日志文件名</span></span><br><span class="line"><span class="attr">logfile</span> <span class="string">&quot;redis.log&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>3、启动redis：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入redis安装目录</span> </span><br><span class="line">cd /usr/local/redis-7.0.15</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动</span></span><br><span class="line">redis-server redis.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入redis安装目录</span> </span><br><span class="line">cd /usr/local/redis-7.0.15</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动时指定配置文件所在路径</span></span><br><span class="line">redis-server redis.conf</span><br></pre></td></tr></table></figure>
 
 <p>4、查看redis进程是否运行：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ps -ef | grep redis</span><br></pre></td></tr></table></figure>
@@ -2085,7 +2085,7 @@
 </ul>
 <p>其中的commonds就是redis的操作命令，例如：</p>
 <ul>
-<li><code>ping</code>：与redis服务端做心跳测试，服务端正常会返回 <code>PONG</code></li>
+<li><code>ping</code>：与redis服务端做心跳测试，服务端正常会返回 <code>pong</code></li>
 </ul>
 <p>不指定commond时，会进入<code>redis-cli</code> 的交互控制台。</p>
 <p>PS：设置了密码但在进入控制台之前未使用 <code>-a</code> 指定密码，进入控制台之后操作命令行客户端会失败，可以使用 <code>auth</code> 命令指定密码：</p>
@@ -9528,31 +9528,31 @@
 <td align="center">1</td>
 <td align="center">Jone</td>
 <td align="center">18</td>
-<td align="center"><a href="mailto:&#116;&#101;&#115;&#x74;&#x31;&#x40;&#x62;&#x61;&#x6f;&#x6d;&#x69;&#100;&#111;&#x75;&#46;&#x63;&#111;&#109;">&#116;&#101;&#115;&#x74;&#x31;&#x40;&#x62;&#x61;&#x6f;&#x6d;&#x69;&#100;&#111;&#x75;&#46;&#x63;&#111;&#109;</a></td>
+<td align="center"><a href="mailto:&#116;&#101;&#115;&#116;&#x31;&#64;&#x62;&#x61;&#x6f;&#x6d;&#105;&#100;&#111;&#117;&#46;&#99;&#x6f;&#109;">&#116;&#101;&#115;&#116;&#x31;&#64;&#x62;&#x61;&#x6f;&#x6d;&#105;&#100;&#111;&#117;&#46;&#99;&#x6f;&#109;</a></td>
 </tr>
 <tr>
 <td align="center">2</td>
 <td align="center">Jack</td>
 <td align="center">20</td>
-<td align="center"><a href="mailto:&#116;&#101;&#x73;&#116;&#50;&#x40;&#98;&#x61;&#x6f;&#109;&#x69;&#100;&#111;&#x75;&#46;&#x63;&#x6f;&#109;">&#116;&#101;&#x73;&#116;&#50;&#x40;&#98;&#x61;&#x6f;&#109;&#x69;&#100;&#111;&#x75;&#46;&#x63;&#x6f;&#109;</a></td>
+<td align="center"><a href="mailto:&#116;&#101;&#115;&#116;&#50;&#64;&#98;&#97;&#x6f;&#x6d;&#105;&#x64;&#x6f;&#117;&#x2e;&#99;&#x6f;&#109;">&#116;&#101;&#115;&#116;&#50;&#64;&#98;&#97;&#x6f;&#x6d;&#105;&#x64;&#x6f;&#117;&#x2e;&#99;&#x6f;&#109;</a></td>
 </tr>
 <tr>
 <td align="center">3</td>
 <td align="center">Tom</td>
 <td align="center">28</td>
-<td align="center"><a href="mailto:&#116;&#x65;&#x73;&#x74;&#x33;&#x40;&#98;&#97;&#x6f;&#109;&#105;&#x64;&#x6f;&#117;&#46;&#99;&#111;&#109;">&#116;&#x65;&#x73;&#x74;&#x33;&#x40;&#98;&#97;&#x6f;&#109;&#105;&#x64;&#x6f;&#117;&#46;&#99;&#111;&#109;</a></td>
+<td align="center"><a href="mailto:&#116;&#x65;&#115;&#116;&#51;&#64;&#98;&#97;&#111;&#109;&#105;&#x64;&#111;&#x75;&#x2e;&#x63;&#111;&#x6d;">&#116;&#x65;&#115;&#116;&#51;&#64;&#98;&#97;&#111;&#109;&#105;&#x64;&#111;&#x75;&#x2e;&#x63;&#111;&#x6d;</a></td>
 </tr>
 <tr>
 <td align="center">4</td>
 <td align="center">Sandy</td>
 <td align="center">21</td>
-<td align="center"><a href="mailto:&#x74;&#x65;&#x73;&#116;&#x34;&#64;&#98;&#97;&#x6f;&#x6d;&#105;&#100;&#111;&#117;&#x2e;&#99;&#111;&#109;">&#x74;&#x65;&#x73;&#116;&#x34;&#64;&#98;&#97;&#x6f;&#x6d;&#105;&#100;&#111;&#117;&#x2e;&#99;&#111;&#109;</a></td>
+<td align="center"><a href="mailto:&#116;&#101;&#115;&#116;&#52;&#64;&#x62;&#97;&#111;&#109;&#x69;&#x64;&#111;&#x75;&#46;&#x63;&#111;&#109;">&#116;&#101;&#115;&#116;&#52;&#64;&#x62;&#97;&#111;&#109;&#x69;&#x64;&#111;&#x75;&#46;&#x63;&#111;&#109;</a></td>
 </tr>
 <tr>
 <td align="center">5</td>
 <td align="center">Billie</td>
 <td align="center">24</td>
-<td align="center"><a href="mailto:&#116;&#101;&#115;&#x74;&#x35;&#64;&#x62;&#x61;&#x6f;&#109;&#105;&#x64;&#x6f;&#x75;&#46;&#x63;&#x6f;&#x6d;">&#116;&#101;&#115;&#x74;&#x35;&#64;&#x62;&#x61;&#x6f;&#109;&#105;&#x64;&#x6f;&#x75;&#46;&#x63;&#x6f;&#x6d;</a></td>
+<td align="center"><a href="mailto:&#x74;&#101;&#115;&#116;&#53;&#x40;&#x62;&#97;&#x6f;&#109;&#105;&#x64;&#111;&#x75;&#x2e;&#x63;&#111;&#109;">&#x74;&#101;&#115;&#116;&#53;&#x40;&#x62;&#97;&#x6f;&#109;&#105;&#x64;&#111;&#x75;&#x2e;&#x63;&#111;&#109;</a></td>
 </tr>
 </tbody></table>
 <blockquote>
@@ -15955,7 +15955,7 @@
 <p>安装完 Git 后首先要做的事情是设置用户名和 email 地址。这非常重要，因为每次 Git 提交都会使用该信息，它被永远的嵌入到了提交中。<font color="red"><strong>所以！！！是一定要配置的！！！</strong></font></p>
 <p>否则就会出现如下提示：</p>
 <p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/ToolsIMG/Git/Git%E6%9C%AA%E8%AE%BE%E7%BD%AE%E5%90%8D%E7%A7%B0%E5%92%8C%E9%82%AE%E7%AE%B1.png"></p>
-<p>此时需要按照下面两个命令来设置用户名🏃和邮箱📧( muyoukule 是我的用户名，<a href="mailto:&#121;&#x6f;&#117;&#x72;&#x5f;&#x65;&#x6d;&#x61;&#105;&#108;&#x40;&#101;&#120;&#x61;&#109;&#112;&#108;&#x65;&#x2e;&#99;&#111;&#109;">&#121;&#x6f;&#117;&#x72;&#x5f;&#x65;&#x6d;&#x61;&#105;&#108;&#x40;&#101;&#120;&#x61;&#109;&#112;&#108;&#x65;&#x2e;&#99;&#111;&#109;</a> 是邮箱，你需要设置属于你自己的用户名和邮箱)。</p>
+<p>此时需要按照下面两个命令来设置用户名🏃和邮箱📧( muyoukule 是我的用户名，<a href="mailto:&#x79;&#111;&#x75;&#x72;&#95;&#101;&#109;&#97;&#x69;&#x6c;&#x40;&#101;&#120;&#x61;&#x6d;&#x70;&#x6c;&#101;&#x2e;&#99;&#111;&#x6d;">&#x79;&#111;&#x75;&#x72;&#95;&#101;&#109;&#97;&#x69;&#x6c;&#x40;&#101;&#120;&#x61;&#x6d;&#x70;&#x6c;&#101;&#x2e;&#99;&#111;&#x6d;</a> 是邮箱，你需要设置属于你自己的用户名和邮箱)。</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global user.name muyoukule</span><br><span class="line">git config --global user.email your_email@example.com</span><br></pre></td></tr></table></figure>
 
 <p>如果使用了 <code>--global</code> 选项，表示设置了全局的用户名和邮箱。如果希望在一个特定的项目中使用不同的用户名和邮箱，可以在该项目中运行该命令而不添加 –global 选项。总之 <code>--global</code> 为全局配置，不加为某个项目的特定配置。</p>

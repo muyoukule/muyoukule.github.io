@@ -776,139 +776,53 @@ h6::before {
 } */
 
 
-
-
-
-
-
-
-
-
 :root {
-  --bywind-white: #fff;
-  --bywind-white-op: rgba(255, 255, 255, 0.2);
-  --bywind-black: #000;
-  --bywind-black-op: rgba(0, 0, 0, 0.2);
-  --bywind-none: #00000000;
-  --bywind-gray: #999999;
-  --bywind-gray-op: #9999992b;
-  --bywind-vip: #e5a80d;
-  --bywind-main: var(--bywind-theme);
-  --bywind-main-op: var(--bywind-theme-op);
-  --bywind-main-op-deep: var(--bywind-theme-op-deep);
-  --bywind-main-none: var(--bywind-theme-none);
-  --bywind-shadow-theme: 0 8px 12px -3px var(--bywind-theme-op);
-  --bywind-shadow-blackdeep: 0 2px 16px -3px rgba(0, 0, 0, .15);
-  --bywind-shadow-main: 0 8px 12px -3px var(--bywind-main-op);
-  --bywind-shadow-blue: 0 8px 12px -3px rgba(40, 109, 234, .20);
-  --bywind-shadow-white: 0 8px 12px -3px rgba(255, 255, 255, .20);
-  --bywind-shadow-black: 0 0 12px 4px rgba(0, 0, 0, .05);
-  --bywind-shadow-yellow: 0px 38px 77px -26px rgba(255, 201, 62, .12);
-  --bywind-shadow-red: 0 8px 12px -3px #ee7d7936;
-  --bywind-shadow-green: 0 8px 12px -3px #87ee7936;
-  --bywind-logo-color: linear-gradient(215deg, #4584ff 0%, #cf0db9 100%);
-  --bywind-snackbar-time: 2s;
+  --muyoukule-white: #fff;
+  --muyoukule-white-op: rgba(255, 255, 255, 0.2);
+  --muyoukule-black: #000;
+  --muyoukule-black-op: rgba(0, 0, 0, 0.2);
+  --muyoukule-gray: #999999;
+  --muyoukule-gray-op: #9999992b;
+  --muyoukule-main: var(--muyoukule-theme);
 }
 
-
-
 [data-theme=light] {
-  --bywind-theme: #425AEF;
-  --bywind-theme-op: rgba(66, 89, 239, 0.137);
-  --bywind-theme-op-deep: #4259efdd;
-  --bywind-theme-none: #4259ef01;
-  --bywind-blue: #425AEF;
-  --bywind-red: #f04a63;
-  --bywind-pink: #FF7C7C;
-  --bywind-green: #57bd6a;
-  --bywind-yellow: #c28b00;
-  --bywind-yellow-op: #d99c001a;
-  --bywind-orange: #e38100;
-  --bywind-purple: #7a60d2;
-  --bywind-fontcolor: #363636;
-  --bywind-background: #f7f9fe;
-  --bywind-reverse: #000;
-  --bywind-maskbg: rgba(255, 255, 255, 0.6);
-  --bywind-maskbgdeep: rgba(255, 255, 255, 0.85);
-  --bywind-hovertext: var(--bywind-main);
-  --bywind-ahoverbg: #F7F7FA;
-  --bywind-lighttext: var(--bywind-main);
-  --bywind-secondtext: rgba(60, 60, 67, 0.8);
-  --bywind-scrollbar: rgba(60, 60, 67, 0.4);
-  --bywind-card-btn-bg: #edf0f7;
-  --bywind-post-blockquote-bg: #fafcff;
-  --bywind-post-tabs-bg: #f2f5f8;
-  --bywind-secondbg: #f1f3f8;
-  --bywind-shadow-nav: 0 5px 12px -5px rgba(102, 68, 68, 0.05);
-  --bywind-card-bg: #fff;
-  --bywind-card-bg-op: var(--bywind-black-op);
-  --bywind-card-bg-none: rgba(255, 255, 255, 0);
-  --bywind-shadow-lightblack: 0 5px 12px -5px rgba(102, 68, 68, 0.00);
-  --bywind-shadow-light2black: 0 5px 12px -5px rgba(102, 68, 68, 0.00);
-  --bywind-card-border: #e3e8f7;
-  --bywind-shadow-border: 0 8px 16px -4px #2c2d300c;
-  --style-border: 1px solid var(--bywind-card-border);
-  --style-border-always: 1px solid var(--bywind-card-border);
-  --style-border-hover: 1px solid var(--bywind-main);
-  --style-border-hover-always: 1px solid var(--bywind-main);
-  --style-border-dashed: 1px dashed var(--bywind-theme-op);
-  --style-border-forever: 2px solid var(--bywind-main);
+  --muyoukule-theme: #425AEF;
+  --muyoukule-theme-op: rgba(66, 89, 239, 0.137);
+  --muyoukule-fontcolor: #363636;
+  --muyoukule-maskbg: rgba(255, 255, 255, 0.6);
+  --muyoukule-hovertext: var(--muyoukule-main);
+  --muyoukule-lighttext: var(--muyoukule-main);
+  --muyoukule-secondtext: rgba(60, 60, 67, 0.8);
+  --muyoukule-secondbg: #f1f3f8;
+  --muyoukule-card-bg: #fff;
+  --muyoukule-card-border: #e3e8f7;
+  --muyoukule-shadow-border: 0 8px 16px -4px #2c2d300c;
+  --style-border: 1px solid var(--muyoukule-card-border);
+  --style-border-always: 1px solid var(--muyoukule-card-border);
+  --style-border-hover: 1px solid var(--muyoukule-main);
 }
 
 [data-theme=dark] {
-  --bywind-theme: #f2b94b;
-  --bywind-theme-op: #f2b94b23;
-  --bywind-theme-op-deep: #f2b94bdd;
-  --bywind-theme-none: #f2b94b00;
-  --bywind-blue: #0084FF;
-  --bywind-red: #FF3842;
-  --bywind-pink: #d44040;
-  --bywind-green: #3e9f50;
-  --bywind-purple: #7a60d2;
-  --bywind-yellow: #ffc93e;
-  --bywind-yellow-op: #ffc93e30;
-  --bywind-orange: #ff953e;
-  --bywind-fontcolor: #F7F7FA;
-  --bywind-background: #18171d;
-  --bywind-reverse: #fff;
-  --bywind-maskbg: rgba(0, 0, 0, 0.6);
-  --bywind-maskbgdeep: rgba(0, 0, 0, 0.85);
-  --bywind-hovertext: #0A84FF;
-  --bywind-ahoverbg: #fff;
-  --bywind-lighttext: var(--bywind-theme);
-  --bywind-secondtext: #a1a2b8;
-  --bywind-scrollbar: rgba(200, 200, 223, 0.4);
-  --bywind-card-btn-bg: #30343f;
-  --bywind-post-blockquote-bg: #000;
-  --bywind-post-tabs-bg: #121212;
-  --bywind-secondbg: #30343f;
-  --bywind-shadow-nav: 0 5px 20px 0px rgba(28, 28, 28, 0.4);
-  --bywind-card-bg: #1d1e22;
-  --bywind-card-bg-op: var(--bywind-white-op);
-  --bywind-card-bg-none: #1d1b2600;
-  --bywind-shadow-lightblack: 0 5px 12px -5px rgba(102, 68, 68, 0.0);
-  --bywind-shadow-light2black: 0 5px 12px -5px rgba(102, 68, 68, 0.0);
-  --bywind-card-border: #3d3d3f;
-  --bywind-shadow-border: 0 8px 16px -4px #00000050;
-  --style-border: 1px solid var(--bywind-card-border);
-  --style-border-always: 1px solid var(--bywind-card-border);
-  --style-border-hover: 1px solid var(--bywind-theme);
-  --style-border-hover-always: 1px solid var(--bywind-theme);
-  --style-border-dashed: 1px dashed var(--bywind-theme-op);
-  --style-border-forever: 2px solid var(--bywind-lighttext);
+  --muyoukule-theme: #f2b94b;
+  --muyoukule-theme-op: #f2b94b23;
+  --muyoukule-fontcolor: #F7F7FA;
+  --muyoukule-maskbg: rgba(0, 0, 0, 0.6);
+  --muyoukule-hovertext: #0A84FF;
+  --muyoukule-lighttext: var(--muyoukule-theme);
+  --muyoukule-secondtext: #a1a2b8;
+  --muyoukule-secondbg: #30343f;
+  --muyoukule-card-bg: #1d1e22;
+  --muyoukule-card-border: #3d3d3f;
+  --muyoukule-shadow-border: 0 8px 16px -4px #00000050;
+  --style-border: 1px solid var(--muyoukule-card-border);
+  --style-border-always: 1px solid var(--muyoukule-card-border);
+  --style-border-hover: 1px solid var(--muyoukule-theme);
 }
-
-
-
-
-
 
 .page-title {
   display: none;
 }
-
-
-
 
 /* bb哔哔 */
 /* bb样式 */
@@ -934,8 +848,8 @@ h6::before {
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: flex-start;
-  background: var(--bywind-card-bg);
-  box-shadow: var(--bywind-shadow-border);
+  background: var(--muyoukule-card-bg);
+  box-shadow: var(--muyoukule-shadow-border);
   margin-right: 2%;
 }
 
@@ -943,7 +857,7 @@ h6::before {
   display: flex;
   position: relative;
   margin: 8px 0;
-  border: 1px dashed var(--bywind-theme-op);
+  border: 1px dashed var(--muyoukule-theme-op);
   width: 100%;
 }
 
@@ -971,14 +885,12 @@ h6::before {
   align-items: flex-start;
 }
 
-
 @media screen and (max-width: 1300px) {
   #bber .timeline ul li.item {
     width: 49%;
     margin-right: 1%;
   }
 }
-
 
 @media screen and (max-width: 768px) {
   #bber .timeline ul li.item {
@@ -1003,14 +915,14 @@ h6::before {
   display: inline;
   float: right;
   line-height: 1;
-  color: var(--bywind-secondtext);
+  color: var(--muyoukule-secondtext);
   margin-left: auto;
   margin-bottom: 1rem;
   margin-right: 0.5rem;
 }
 
 .bb-info:hover {
-  color: var(--bywind-hovertext);
+  color: var(--muyoukule-hovertext);
 }
 
 #bber {
@@ -1044,8 +956,8 @@ h6::before {
 #bber .bber-content-link {
   display: flex;
   margin-left: 0.5rem;
-  color: var(--bywind-secondtext);
-  font-size: 0.7rem;
+  color: var(--muyoukule-secondtext);
+  font-size: 0.9rem;
   align-items: center;
   background-color: rgba(245, 108, 108, 0.13);
   color: #f56c6c;
@@ -1054,8 +966,8 @@ h6::before {
 }
 
 #bber .bber-content-link:hover {
-  background-color: var(--bywind-main);
-  color: var(--bywind-white);
+  background-color: var(--muyoukule-main);
+  color: var(--muyoukule-white);
 }
 
 #bber .bber-content-link i {
@@ -1076,7 +988,7 @@ h6::before {
 }
 
 #bber .count {
-  color: var(--bywind-secondtext);
+  color: var(--muyoukule-secondtext);
   font-size: 0.8rem;
 }
 
@@ -1096,7 +1008,7 @@ h6::before {
   border-radius: 8px;
   /* overflow: hidden; */
   border: var(--style-border-always);
-  background: var(--bywind-secondbg);
+  background: var(--muyoukule-secondbg);
 }
 
 #bber .aplayer {
@@ -1107,7 +1019,7 @@ h6::before {
   font-size: 0.8rem;
   font-weight: bold;
   margin: 0;
-  color: var(--bywind-black);
+  color: var(--muyoukule-black);
 }
 
 #bber .aplayer.aplayer-withlrc .aplayer-pic {
@@ -1126,7 +1038,7 @@ h6::before {
 }
 
 #bber .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar {
-  background: var(--bywind-gray);
+  background: var(--muyoukule-gray);
   height: 8px;
   border-radius: 12px;
   transition: 0.3s;
@@ -1194,9 +1106,9 @@ h6::before {
 
 /* 时间 */
 #bber>section>ul>li>div .bber-info-time {
-  color: var(--bywind-fontcolor);
-  font-size: 0.7rem;
-  background-color: var(--bywind-gray-op);
+  color: var(--muyoukule-fontcolor);
+  font-size: 0.9rem;
+  background-color: var(--muyoukule-gray-op);
   padding: 0 8px;
   border-radius: 20px;
   cursor: default;
@@ -1214,7 +1126,7 @@ h6::before {
   order: 0;
   font-size: 1rem;
   font-weight: bold;
-  color: var(--bywind-fontcolor);
+  color: var(--muyoukule-fontcolor);
   width: 100%;
   line-height: 1.38;
   border-radius: 12px;
@@ -1245,9 +1157,9 @@ h6::before {
 .author-content-item {
   width: 49%;
   border-radius: 24px;
-  background: var(--bywind-card-bg);
+  background: var(--muyoukule-card-bg);
   border: var(--style-border-always);
-  box-shadow: var(--bywind-shadow-border);
+  box-shadow: var(--muyoukule-shadow-border);
   position: relative;
   padding: 1rem 2rem;
   overflow: hidden;
@@ -1333,8 +1245,8 @@ h6::before {
   width: 118px;
   border-radius: 20px;
   justify-content: center;
-  background: var(--bywind-black-op);
-  color: var(--bywind-white);
+  background: var(--muyoukule-black-op);
+  color: var(--muyoukule-white);
   display: flex;
   align-items: center;
   z-index: 1;
@@ -1346,8 +1258,8 @@ h6::before {
 }
 
 .author-content-item .card-content .banner-button-group .banner-button:hover {
-  background: var(--bywind-main);
-  color: var(--bywind-white);
+  background: var(--muyoukule-main);
+  color: var(--muyoukule-white);
 }
 
 .author-content-item .card-content .banner-button-group .banner-button i {
@@ -1363,7 +1275,7 @@ h6::before {
 
   .author-content-item .card-content .banner-button-group .banner-button {
     background: none;
-    color: var(--bywind-white);
+    color: var(--muyoukule-white);
     padding: 0;
     width: fit-content;
   }
@@ -1382,9 +1294,9 @@ h6::before {
 /* 即刻短文 */
 .author-content.author-content-item.essayPage {
   height: 19rem;
-  background: url(https://cloud-image-host.oss-cn-beijing.aliyuncs.com/page/essayPage.png) no-repeat bottom;
+  background: url(https://i.postimg.cc/KYbxDBGf/essay-Page.png) no-repeat bottom;
   background-size: cover;
-  color: var(--bywind-white);
+  color: var(--muyoukule-white);
   overflow: hidden;
   margin-top: 0;
 }

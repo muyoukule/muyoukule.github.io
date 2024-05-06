@@ -126,13 +126,34 @@ setInterval(() => {
 }, 1000);
 
 
-if (document.querySelector('#bber-talk')) {
-    var swiper = new Swiper('.swiper-container', {
-        direction: 'vertical',
-        loop: true,
-        autoplay: {
-            delay: 3000,
-            pauseOnMouseEnter: true
-        },
+function formatISODateTime(isoDate) {
+    const date = new Date(isoDate);
+
+    const year = date.getUTCFullYear();
+    const month = (date.getUTCMonth() + 1).toString().padStart(2, '0'); // 月份是从0开始的
+    const day = date.getUTCDate().toString().padStart(2, '0');
+    const hours = date.getUTCHours().toString().padStart(2, '0');
+    const minutes = date.getUTCMinutes().toString().padStart(2, '0');
+    const seconds = date.getUTCSeconds().toString().padStart(2, '0');
+
+    return `${year}/${month}/${day}  ${hours}:${minutes}:${seconds}`;
+}
+
+const changeTimeInEssay = () => {
+    document.querySelector("#bber") && document.querySelectorAll("#bber time").forEach((e) => {
+        const o = e.getAttribute("datetime");
+        if (o) {
+            e.innerText = formatISODateTime(o); // 使用新的formatISODateTime函数  
+            e.style.display = "inline";
+        }
     });
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    changeTimeInEssay()
+    window.refreshFn = function () {
+        if (!GLOBAL_CONFIG_SITE.isPost) {
+            changeTimeInEssay()
+        }
+    }
+})
