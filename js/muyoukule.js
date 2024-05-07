@@ -149,11 +149,13 @@ const changeTimeInEssay = () => {
     });
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    changeTimeInEssay()
-    window.refreshFn = function () {
-        if (!GLOBAL_CONFIG_SITE.isPost) {
-            changeTimeInEssay()
-        }
-    }
-})
+// document.addEventListener('DOMContentLoaded', function () {
+//     changeTimeInEssay()
+//     window.refreshFn = function () {
+//         if (!GLOBAL_CONFIG_SITE.isPost) {
+//             changeTimeInEssay()
+//         }
+//     }
+// })
+
+

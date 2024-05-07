@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const menusWidth = getAllWidth(document.getElementById('menus').children)
       headerContentWidth = blogInfoWidth + menusWidth
       $nav = document.getElementById('nav')
+      changeTimeInEssay()
     }
 
     const hideMenuIndex = window.innerWidth <= 768 || headerContentWidth > $nav.offsetWidth - 120
