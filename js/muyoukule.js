@@ -137,14 +137,14 @@ function formatISODateTime(isoDate) {
     const seconds = date.getUTCSeconds().toString().padStart(2, '0');
 
     return `${year}/${month}/${day}  ${hours}:${minutes}:${seconds}`;
-}
+  }
 
-const changeTimeInEssay = () => {
+  const changeTimeInEssay = () => {
     document.querySelector("#bber") && document.querySelectorAll("#bber time").forEach((e) => {
-        const o = e.getAttribute("datetime");
-        if (o) {
-            e.innerText = formatISODateTime(o); // 使用新的formatISODateTime函数  
-            e.style.display = "inline";
-        }
+      const o = e.getAttribute("datetime");
+      if (o) {
+        e.innerText = formatISODateTime(o); // 使用新的formatISODateTime函数  
+        e.style.display = "inline";
+      }
     });
-}
+  }
