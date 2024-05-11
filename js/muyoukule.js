@@ -115,8 +115,8 @@ function createtime() {
     let currentTimeHtml = "";
     (currentTimeHtml =
         hnum < 18 && hnum >= 9
-            ? `<div style="font-size:13px;font-weight:bold">👻 本站已苟活 ${dnum} 天 ${hnum} 小时 ${mnum} 分 ${snum} 秒 👻</div>`
-            : `<div style="font-size:13px;font-weight:bold">👻 本站已苟活 ${dnum} 天 ${hnum} 小时 ${mnum} 分 ${snum} 秒 👻</div>`),
+            ? `<div style="font-size:13px;font-weight:bold">本站已苟活 ${dnum} 天 ${hnum} 小时 ${mnum} 分 ${snum} 秒</div>`
+            : `<div style="font-size:13px;font-weight:bold">本站已苟活 ${dnum} 天 ${hnum} 小时 ${mnum} 分 ${snum} 秒</div>`),
         document.getElementById("workboard") &&
         (document.getElementById("workboard").innerHTML = currentTimeHtml);
 }
