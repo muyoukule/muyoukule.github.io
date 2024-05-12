@@ -1,37 +1,37 @@
 // 固定卡片点击动作
-function FixedCardWidget(type,name,index){
+function FixedCardWidget(type, name, index) {
   // 根据id或class选择元素
-  if (type === "id"){
+  if (type === "id") {
     var tempcard = document.getElementById(name);
   }
-  else{
+  else {
     var tempcard = document.getElementsByClassName(name)[index];
   }
   // 若元素存在
   if (tempcard) {
-      // 首先判断是否存在fixed-card-widget类
-      if (tempcard.className.indexOf('fixed-card-widget') > -1){
-        // 存在则移除
-        RemoveFixedCardWidget();
-      }
-      else{
-        // 不存在则先初始化防止卡片叠加
-        RemoveFixedCardWidget();
-        //新建退出蒙版
-        CreateQuitBox();
-        // 再添加固定卡片样式
-        tempcard.classList.add('fixed-card-widget');
-      }
+    // 首先判断是否存在fixed-card-widget类
+    if (tempcard.className.indexOf('fixed-card-widget') > -1) {
+      // 存在则移除
+      RemoveFixedCardWidget();
+    }
+    else {
+      // 不存在则先初始化防止卡片叠加
+      RemoveFixedCardWidget();
+      //新建退出蒙版
+      CreateQuitBox();
+      // 再添加固定卡片样式
+      tempcard.classList.add('fixed-card-widget');
+    }
   }
 }
 //创建一个蒙版，作为退出键使用
-function CreateQuitBox(){
-  var quitBox = `<div id="quit-box" onclick="RemoveFixedCardWidget()"></div>`
-  var asideContent = document.getElementById('aside-content');
-  asideContent.insertAdjacentHTML("beforebegin",quitBox)
+function CreateQuitBox() {
+  document
+    .getElementById('aside-content')
+    .insertAdjacentHTML("beforebegin", `<div id="quit-box" onclick="RemoveFixedCardWidget()"></div>`)
 }
 // 移除卡片方法
-function RemoveFixedCardWidget(){
+function RemoveFixedCardWidget() {
   var activedItems = document.querySelectorAll('.fixed-card-widget');
   if (activedItems) {
     for (i = 0; i < activedItems.length; i++) {
