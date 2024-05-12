@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const initAdjust = () => {
     adjustMenu(true)
     $nav.classList.add('show')
+    changeTimeInEssay()
   }
 
   // sidebar menus
@@ -844,7 +845,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   window.refreshFn = function () {
     initAdjust()
-    changeTimeInEssay()
 
     if (GLOBAL_CONFIG_SITE.isPost) {
       GLOBAL_CONFIG.noticeOutdate !== undefined && addPostOutdateNotice()

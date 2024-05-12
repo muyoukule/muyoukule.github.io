@@ -210,6 +210,19 @@
   }
 }
 
+#recent-posts>.recent-post-item>.recent-post-info>.content {
+  opacity: 0;
+  line-height: .7;
+  transition: all .3s;
+  bottom: 0
+}
+
+#recent-posts>.recent-post-item:hover .recent-post-info .content {
+  opacity: 1;
+  line-height: 1.5;
+  transition: all .3s
+}
+
 :root {
   --trans-light: rgb(255 255 255 / 95%);
   --trans-dark: rgba(25 25 25 / 95%);
