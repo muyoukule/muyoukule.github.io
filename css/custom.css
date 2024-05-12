@@ -677,6 +677,7 @@ h6::before {
 
 #bber .timeline #waterfall.show {
   opacity: 1;
+  padding-left: 0px;
 }
 
 #bber .timeline ul li.item {
@@ -694,8 +695,6 @@ h6::before {
   align-items: flex-start;
   background: var(--muyoukule-card-bg);
   box-shadow: var(--muyoukule-shadow-border);
-  margin-right: 2%;
-  margin-left: -20px;
 }
 
 #bber .timeline ul li.item hr {
