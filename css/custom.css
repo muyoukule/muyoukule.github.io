@@ -844,11 +844,6 @@ h6::before {
   font-size: 16px;
 }
 
-#bber .bber-reply {
-  cursor: pointer;
-  margin: 0 4px;
-}
-
 #bber .bber-bottom {
   display: flex;
   justify-content: space-between;
