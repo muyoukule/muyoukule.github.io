@@ -3501,7 +3501,7 @@ h1.page-title + .tag-cloud-list {
   max-width: 300px;
   max-height: 500px;
   width: auto;
-  height: auto;
+  height: fit-content;
   overflow-y: scroll;
   z-index: 999;
   -webkit-animation: rotateX 0.5s ease;
