@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="hide-aside" lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>RabbitMQ基础 | muyoukule</title><meta name="author" content="木又枯了"><meta name="copyright" content="木又枯了"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="本文主要讲述RabbitMQ的基础使用。">
+<!DOCTYPE html><html class="hide-aside" lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>RabbitMQ基础 | muyoukule</title><meta name="author" content="木又枯了"><meta name="copyright" content="木又枯了"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本文主要讲述RabbitMQ的基础使用。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RabbitMQ基础">
 <meta property="og:url" content="https://zz.muyoukule.cn/posts/33842/index.html">
@@ -603,7 +603,7 @@ document.addEventListener('pjax:send', () => {
 <li>接收 publisher 发送的消息</li>
 <li>将消息按照规则路由到与之绑定的队列</li>
 <li>不能缓存消息，路由失败，消息丢失</li>
-<li>FanoutExchange 的会将消息路由到每个绑定的队列</li>
+<li>FanoutExchange 会将消息路由到每个绑定的队列</li>
 </ul>
 <h2 id="3-6-Direct交换机"><a href="#3-6-Direct交换机" class="headerlink" title="3.6 Direct交换机"></a>3.6 Direct交换机</h2><p>在 Fanout 模式中，一条消息，会被所有订阅的队列都消费。但是，在某些场景下，我们希望不同的消息被不同的队列消费。这时就要用到 Direct 类型的 Exchange。</p>
 <p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/MQIMG/RabbitMQ/Direct%E4%BA%A4%E6%8D%A2%E6%9C%BA.png" alt="Direct交换机"></p>

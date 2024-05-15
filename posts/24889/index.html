@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="hide-aside" lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Docker教程 | muyoukule</title><meta name="author" content="木又枯了"><meta name="copyright" content="木又枯了"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="本文主要讲述Docker的基础操作和项目部署。">
+<!DOCTYPE html><html class="hide-aside" lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Docker教程 | muyoukule</title><meta name="author" content="木又枯了"><meta name="copyright" content="木又枯了"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本文主要讲述Docker的基础操作和项目部署。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker教程">
 <meta property="og:url" content="https://zz.muyoukule.cn/posts/24889/index.html">
@@ -532,7 +532,7 @@ document.addEventListener('pjax:send', () => {
 <p>容器内没有 vi 命令，无法直接修改，我们用下面的命令来修改：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i -e <span class="string">&#x27;s#Welcome to nginx#木又枯了#g&#x27;</span> -e <span class="string">&#x27;s#&lt;head&gt;#&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;#g&#x27;</span> index.html</span><br></pre></td></tr></table></figure>
 
-<p>在浏览器访问自己的虚拟机地址，例如我的是：<a href="http://192.168.88.132，即可看到结果：">http://192.168.88.132，即可看到结果：</a></p>
+<p>在浏览器访问自己的虚拟机地址，例如我的是：<code>http://192.168.88.132</code>，即可看到结果：</p>
 <p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/ToolsIMG/Docker/%E4%BF%AE%E6%94%B9%E5%90%8E%E7%9A%84nginx%E9%A1%B5%E9%9D%A2.png"></p>
 <p>8、删除容器</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">删除容器</span></span><br><span class="line">docker rm nginx</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">发现无法删除，因为容器运行中，强制删除容器</span></span><br><span class="line">docker rm -f nginx</span><br></pre></td></tr></table></figure>
