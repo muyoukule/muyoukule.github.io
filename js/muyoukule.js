@@ -29,7 +29,7 @@ function share_() {
         // 截取标题
         var title = document.title;
         var subTitle = title.endsWith("| muyoukule") ? title.substring(0, title.length - 12) : title;
-        navigator.clipboard.writeText('木又枯了的站内分享\n标题：' + subTitle + '\n链接：' + url + '\n🎉欢迎来访哦(*^_^*)🎉');
+        navigator.clipboard.writeText('标题：' + subTitle + '\n链接：' + url);
         new Vue({
             data: function () {
                 this.$notify({
@@ -62,7 +62,7 @@ function darkmode_() {
         new Vue({
             data: function () {
                 this.$notify({
-                    title: "切换成功📢",
+                    title: "切换成功！",
                     message: "当前已成功切换至深色模式！",
                     position: "top-left",
                     offset: 50,
@@ -78,7 +78,7 @@ function darkmode_() {
         new Vue({
             data: function () {
                 this.$notify({
-                    title: "切换成功📢",
+                    title: "切换成功！",
                     message: "当前已成功切换至浅色模式！",
                     position: "top-left",
                     offset: 50,
@@ -137,14 +137,14 @@ function formatISODateTime(isoDate) {
     const seconds = date.getUTCSeconds().toString().padStart(2, '0');
 
     return `${year}/${month}/${day}  ${hours}:${minutes}:${seconds}`;
-  }
+}
 
-  const changeTimeInEssay = () => {
+const changeTimeInEssay = () => {
     document.querySelector("#bber") && document.querySelectorAll("#bber time").forEach((e) => {
-      const o = e.getAttribute("datetime");
-      if (o) {
-        e.innerText = formatISODateTime(o); // 使用新的formatISODateTime函数  
-        e.style.display = "inline";
-      }
+        const o = e.getAttribute("datetime");
+        if (o) {
+            e.innerText = formatISODateTime(o); // 使用新的formatISODateTime函数  
+            e.style.display = "inline";
+        }
     });
-  }
+}
