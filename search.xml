@@ -1256,6 +1256,191 @@
       </tags>
   </entry>
   <entry>
+    <title>二分查找</title>
+    <url>/posts/62106/</url>
+    <content><![CDATA[<p>参考链接：</p>
+<ul>
+<li><a href="https://www.programmercarl.com/0704.%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.html#%E7%AE%97%E6%B3%95%E5%85%AC%E5%BC%80%E8%AF%BE">代码随想录 - 二分查找</a></li>
+<li><a href="https://leetcode.cn/circle/discuss/ooxfo8/">二分查找从入门到入睡</a></li>
+</ul>
+<h1 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h1><p>二分查找（Binary Search）是一种在有序数组中查找某一特定元素的搜索算法。搜索过程从数组的中间元素开始，如果中间元素正好是要查找的元素，则搜索过程结束；如果某一特定元素大于或者小于中间元素，则在数组大于或小于中间元素的那一半中查找，而且跟开始一样从中间元素开始比较。如果在某一步骤数组为空，则代表找不到。这种搜索算法每一次比较都使搜索范围缩小一半。</p>
+<p>二分查找的基本步骤（基础版）：</p>
+<ol>
+<li><strong>确定搜索范围</strong>：初始化两个指针，确定整个有序数组的搜索范围，即左边界和右边界。通常初始时左边界为数组的第一个元素索引<code>（left = 0）</code>，右边界为数组的最后一个元素索引 <code>（right = len(array) - 1）</code>。</li>
+<li><strong>检查基本条件</strong>：如果 <code>left &gt; right</code>，说明搜索范围为空，元素不存在于数组中，直接返回。</li>
+<li><strong>计算中间索引</strong>：使用 <code>mid = (left  + right) &gt;&gt;&gt; 1</code> 来避免整数溢出，并确定中间元素的索引。</li>
+<li><strong>比较中间元素</strong>：如果中间元素正好是要查找的元素，则返回中间元素的索引。</li>
+<li><strong>缩小搜索范围</strong>：如果中间元素大于要查找的元素，说明要查找的元素（如果存在）一定在左半部分，因此更新 <code>right = mid - 1</code>。如果中间元素小于要查找的元素，说明要查找的元素（如果存在）一定在右半部分，因此更新 <code>left  = mid + 1</code>。</li>
+<li><strong>重复步骤2-5</strong>：直到找到元素或搜索范围为空。</li>
+</ol>
+<img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/DataStructureIMG/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E5%9F%BA%E7%A1%80%E7%89%88.png" alt="二分查找基础版" style="zoom:33%;">
+
+<p>二分查找法的关键之处在于每一步都将搜索范围减半，因此它的时间复杂度为 <code>O(log n)</code>，其中 n 是数组中元素的数量。相较于线性搜索的 <code>O(n)</code> 时间复杂度，二分查找法在大型有序数组中能够显著提高搜索效率。</p>
+<p>二分查找法有一定的前提条件：<strong>数组为有序数组</strong>，同时题目还强调 <strong>数组中无重复元素</strong>。如果数组无序，需要先进行排序操作，这会增加额外的时间复杂度。一旦有重复元素，使用二分查找法返回的元素下标可能不是唯一的。另外，在特定情况下，二分查找法可能不如其他算法高效，例如对于小规模数据或者频繁插入&#x2F;删除元素的数据结构。</p>
+<p>大家写二分法经常写乱，主要是因为<strong>对区间的定义没有想清楚，区间的定义就是不变量</strong>。要在二分查找的过程中，保持不变量，就是在while寻找中每一次边界的处理都要坚持根据区间的定义来操作，这就是<strong>循环不变量</strong>规则。</p>
+<p>写二分法，区间的定义一般为两种，<strong>左闭右闭</strong>即 <code>[i, j]</code>，或者<strong>左闭右开</strong>即 <code>[i, j)</code> 。由此也衍生出许多其他版本。</p>
+<h2 id="基础版"><a href="#基础版" class="headerlink" title="基础版"></a>基础版</h2><p>第一种写法，我们定义 target 是在一个在 <strong>左闭右闭</strong> 的区间里，<strong>也就是 [i, j] 。</strong></p>
+<p>区间的定义这就决定了二分法的代码应该如何写，<strong>因为定义 target 在 [i, j] 区间，所以有如下两点：</strong></p>
+<ul>
+<li><p><code>while (i&lt;= j)</code> 要使用 <code>&lt;=</code> ，而不是 <code>i &lt; j</code> ，因为 <code>i == j</code> 是有意义的。</p>
+<ul>
+<li><code>i == j</code> 意味着 i，j 它们指向的元素也会参与比较。</li>
+<li><code>i &lt; j</code> 只意味着 m 指向的元素参与比较。</li>
+</ul>
+</li>
+<li><p><code>if (a[m] &gt; target)</code> ，j 要赋值为 <code>m - 1</code>，因为当前这个 <code>a[m]</code> 一定不是target，那么接下来要查找的左区间结束下标位置就是 <code>m - 1</code> 。</p>
+</li>
+</ul>
+<p>例如在下列数组中查找元素9，如图所示：</p>
+<p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/DataStructureIMG/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E5%9F%BA%E7%A1%80%E7%89%88.gif" alt="二分查找基础版"></p>
+<p>java代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">binarySearchBasic</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>, j = a.length - <span class="number">1</span>;            <span class="comment">// 设置指针和初值，定义target在左闭右闭的区间里[i, j]</span></span><br><span class="line">    <span class="comment">// L 次  元素在最左边 L 次，  元素在最右边 2*L 次</span></span><br><span class="line">    <span class="keyword">while</span> (i &lt;= j) &#123;                        <span class="comment">// 当i==j，区间[i, j]依然有效，所以用 &lt;=</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> (i + j) &gt;&gt;&gt; <span class="number">1</span>;              <span class="comment">// 防止溢出 等同于(i + j)/2</span></span><br><span class="line">        <span class="keyword">if</span> (target &lt; a[m]) &#123;</span><br><span class="line">            j = m - <span class="number">1</span>;                      <span class="comment">// target 在左区间，所以[j, m - 1]</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (a[m] &lt; target) &#123;</span><br><span class="line">            i = m + <span class="number">1</span>;                      <span class="comment">// target 在右区间，所以[m + 1, j]</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> m;                       <span class="comment">// 数组中找到目标值，直接返回下标</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 未找到目标值</span></span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>求中间值下标的语句，采用 <code>int m = (l + r) &gt;&gt;&gt; 1</code> 的写法而不用 <code>int m = (l + r) / 2</code> 是为了防止溢出。详见文末 <strong>提前溢出</strong> 。</p>
+<h2 id="改动版"><a href="#改动版" class="headerlink" title="改动版"></a>改动版</h2><p>如果说定义 target 是在一个在 <strong>左闭右开</strong> 的区间里，也就是 <code>[i, j)</code> ，那么二分法的边界处理方式则截然不同。</p>
+<p>有如下两点：</p>
+<ul>
+<li><p><code>while (i&lt; j)</code>，这里使用 &lt; ，因为 <code>i == j</code> 在区间 <code>[i, j)</code> 是没有意义的</p>
+<ul>
+<li><code>i == j</code>，在 <code>[i, j)</code> 是无效的空间，所以使用 &lt; 。</li>
+</ul>
+</li>
+<li><p><code>if (a[m] &gt; target)</code> ，j 更新为 m，因为当前 a[m] 不等于target，去左区间继续寻找，而寻找区间是左闭右开区间，所以 j 更新为m，即：下一个查询区间不会去比较 <code>a[m]</code> 。</p>
+</li>
+</ul>
+<p>例如在下列数组中查找元素16，如图所示：</p>
+<p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/DataStructureIMG/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%94%B9%E5%8A%A8%E7%89%88.gif" alt="二分查找改动版"></p>
+<p>java代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">binarySearchAlternative</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>, j = a.length;     <span class="comment">// 第一处，定义target在左闭右开的区间里，即：[i, j)</span></span><br><span class="line">    <span class="keyword">while</span> (i &lt; j) &#123;              <span class="comment">// 第二处，i == j，在[i, j)是无效的空间，所以使用 &lt;</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> (i + j) &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (target &lt; a[m]) &#123;</span><br><span class="line">            j = m;               <span class="comment">// 第三处，target 在左区间，在[i, j)中</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (a[m] &lt; target) &#123;</span><br><span class="line">            i = m + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> m;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="平衡版"><a href="#平衡版" class="headerlink" title="平衡版"></a>平衡版</h2><p>思想：</p>
+<ol>
+<li><strong>左闭右开</strong>的区间，也就是 <code>[i, j)</code> ，i 指向的可能是目标，而 j 指向的不是目标。</li>
+<li>不奢望循环内通过 m 找出目标，缩小区间直至剩 1 个，剩下的这个可能就是要找的（通过 i ）。<ul>
+<li><code>j - i &gt; 1</code> 的含义是，在范围内待比较的元素个数 &gt; 1 。</li>
+</ul>
+</li>
+<li>改变 i 边界时，它指向的可能是目标，因此不能 m+1 。</li>
+<li>循环内的平均比较次数减少了。</li>
+<li>时间复杂度 O(log(n)) 。</li>
+</ol>
+<p>例如在下列数组中查找元素18，如图所示：</p>
+<p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/DataStructureIMG/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E5%B9%B3%E8%A1%A1%E7%89%88.gif" alt="二分查找平衡版"></p>
+<p>java代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">binarySearchBalance</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>, j = a.length;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span> &lt; j - i) &#123;         <span class="comment">// 范围内待查找的元素个数 &gt; 1 时</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> (i + j) &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (target &lt; a[m]) &#123;    <span class="comment">// 目标在左边</span></span><br><span class="line">            j = m;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;                <span class="comment">// 目标在 m 或右边</span></span><br><span class="line">            i = m;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (target == a[i]) ? i : -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Java-源码版"><a href="#Java-源码版" class="headerlink" title="Java 源码版"></a>Java 源码版</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">binarySearch0</span><span class="params">(<span class="type">long</span>[] a, <span class="type">int</span> fromIndex, <span class="type">int</span> toIndex,</span></span><br><span class="line"><span class="params">                                     <span class="type">long</span> key)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">low</span> <span class="operator">=</span> fromIndex;</span><br><span class="line">    <span class="type">int</span> <span class="variable">high</span> <span class="operator">=</span> toIndex - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (low &lt;= high) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> (low + high) &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="type">long</span> <span class="variable">midVal</span> <span class="operator">=</span> a[mid];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (midVal &lt; key)</span><br><span class="line">            low = mid + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (midVal &gt; key)</span><br><span class="line">            high = mid - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> mid; <span class="comment">// key found</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -(low + <span class="number">1</span>);  <span class="comment">// key not found.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>例如 [1,3,5,6] 要插入 2 ，那么就是找到一个位置，这个位置左侧元素都比它小。<ul>
+<li>等循环结束，若没找到，low 左侧元素肯定都比 target 小，因此 low 即插入点。</li>
+</ul>
+</li>
+<li>插入点取负是为了与找到情况区分。</li>
+<li><code>-1</code> 是为了把索引 0 位置的插入点与找到的情况进行区分。</li>
+</ul>
+<h2 id="Leftmost-与-Rightmost"><a href="#Leftmost-与-Rightmost" class="headerlink" title="Leftmost 与 Rightmost"></a>Leftmost 与 Rightmost</h2><p>有时我们希望返回的是最左侧的<strong>重复元素</strong>，如果用 Basic 二分查找：</p>
+<ul>
+<li><p>对于数组 [1, 2, 3, 4, 4, 5, 6, 7]，查找元素4，结果是索引3 。</p>
+</li>
+<li><p>对于数组 [1, 2, 4, 4, 4, 5, 6, 7]，查找元素4，结果也是索引3，并不是最左侧的元素。</p>
+</li>
+</ul>
+<p>使用 Leftmost 查找：</p>
+<ul>
+<li>找到目标点后，记录点为候选位置。</li>
+<li>然后向左缩小查找范围，查看是否有更靠左的目标点。</li>
+<li>没有更靠左的目标点，候选位置即为最左侧的<strong>重复元素</strong>。</li>
+</ul>
+<p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/DataStructureIMG/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BELeftmost.gif" alt="二分查找Leftmost"></p>
+<p>java代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">binarySearchLeftmost1</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>, j = a.length - <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">candidate</span> <span class="operator">=</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt;= j) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> (i + j) &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (target &lt; a[m]) &#123;</span><br><span class="line">            j = m - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (a[m] &lt; target) &#123;</span><br><span class="line">            i = m + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            candidate = m; <span class="comment">// 记录候选位置</span></span><br><span class="line">            j = m - <span class="number">1</span>;     <span class="comment">// 继续向左</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> candidate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果希望返回的是最右侧元素：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">binarySearchRightmost1</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>, j = a.length - <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">candidate</span> <span class="operator">=</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt;= j) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> (i + j) &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (target &lt; a[m]) &#123;</span><br><span class="line">            j = m - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (a[m] &lt; target) &#123;</span><br><span class="line">            i = m + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            candidate = m; <span class="comment">// 记录候选位置</span></span><br><span class="line">            i = m + <span class="number">1</span>;	   <span class="comment">// 继续向右</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> candidate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>应用</p>
+</blockquote>
+<p>对于 Leftmost 与 Rightmost，可以返回一个比 <code>-1</code> 更有用的值。</p>
+<p>Leftmost 返回的 <code>i</code> 代表 <code>&gt;= target</code> 的最靠左索引：</p>
+<ul>
+<li>target 存在：返回值代表 <code>= target</code> 的最靠左索引。</li>
+<li>target 不存在：返回值代表 <code>&gt; target</code> 的最靠左索引。</li>
+</ul>
+<p>例：查找 4（存在），返回值 <code>i = 2</code>，对应 4 的最靠左索引</p>
+<p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/DataStructureIMG/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BELeftmost2target%E5%AD%98%E5%9C%A8.gif" alt="二分查找Leftmost2 target存在"></p>
+<p>例：查找 5（不存在），返回值 <code>i = 5</code>，对应 <code>&gt; 4</code> 的最靠左索引（7 的索引）</p>
+<p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/DataStructureIMG/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BELeftmost2target%E4%B8%8D%E5%AD%98%E5%9C%A8.gif" alt="二分查找Leftmost2 target不存在"></p>
+<p>java代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">binarySearchLeftmost</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>, j = a.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt;= j) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> (i + j) &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (target &lt;= a[m]) &#123;</span><br><span class="line">            j = m - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            i = m + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> i; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>leftmost 返回值 <code>i</code> 的另一层含义 <code>&lt; target</code> 的元素个数。</li>
+<li>小于等于中间值，都要向左找。</li>
+</ul>
+<p>Rightmost 返回的 <code>i - 1</code> 代表 <code>&lt;= target</code> 的最靠右索引：</p>
+<ul>
+<li>target 存在：返回值代表 <code>= target</code> 的最靠右索引。</li>
+<li>target 不存在：返回值代表 <code>&lt; target</code> 的最靠右索引。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">binarySearchRightmost</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>, j = a.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt;= j) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> (i + j) &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (target &lt; a[m]) &#123;</span><br><span class="line">            j = m - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            i = m + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> i - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>大于等于中间值，都要向右找。</li>
+</ul>
+<blockquote>
+<p>几个名词</p>
+</blockquote>
+<p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/DataStructureIMG/%E5%87%A0%E4%B8%AA%E5%90%8D%E8%AF%8D.png" alt="几个名词"></p>
+<p><strong>范围查询</strong>：</p>
+<ul>
+<li>查询 x &lt; 4，0 .. leftmost(4) - 1</li>
+<li>查询 x &lt;&#x3D; 4，0 .. rightmost(4)</li>
+<li>查询 4 &lt; x，rightmost(4) + 1 .. ∞ </li>
+<li>查询 4 &lt;&#x3D; x， leftmost(4) .. ∞</li>
+<li>查询 4 &lt;&#x3D; x &lt;&#x3D; 7，leftmost(4) .. rightmost(7)</li>
+<li>查询 4 &lt; x &lt; 7，rightmost(4) + 1 .. leftmost(7) -1</li>
+</ul>
+<p><strong>求排名</strong>：leftmost(target) + 1</p>
+<ul>
+<li>target 可以不存在，如：leftmost(5) + 1 &#x3D; 6</li>
+<li>target 也可以存在，如：leftmost(4) + 1 &#x3D; 3</li>
+</ul>
+<p><strong>求前任（predecessor）</strong>：leftmost(target) - 1</p>
+<ul>
+<li>leftmost(3) - 1 &#x3D; 1，前任 a - 1 &#x3D; 2</li>
+<li>leftmost(4) - 1 &#x3D; 1，前任 a - 1 &#x3D; 2</li>
+</ul>
+<p><strong>求后任（successor）</strong>：rightmost(target)+1</p>
+<ul>
+<li>rightmost(5) + 1 &#x3D; 5，后任 a - 5 &#x3D; 7</li>
+<li>rightmost(4) + 1 &#x3D; 5，后任 a - 5 &#x3D; 7</li>
+</ul>
+<p><strong>求最近邻居</strong>：</p>
+<ul>
+<li>前任和后任距离更近者</li>
+</ul>
+<h1 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h1><h2 id="提前溢出"><a href="#提前溢出" class="headerlink" title="提前溢出"></a>提前溢出</h2><p>关于求中间值坐标的写法。</p>
+<ul>
+<li>最简单的写法是 <code>m=(i+j)/2</code>，但直接相加会使得 i+j 大于 2^31^−1(2147483647) 时（提前）溢出，例如 i&#x3D;1，j&#x3D;2^31^−1，计算 m 时，i+j&#x3D;2^31^(2147483648) 导致溢出。但原本应该有 m&#x3D;1073741824，i，j，m 都不应该溢出，只是因为 i+j 导致了（提前）溢出。</li>
+<li>可以写成先减后加的形式 <code>m=i+(j−i)/2</code>。这是较常见的形式。</li>
+<li>用 <code>&gt;&gt;</code> 代替除法，写成 <code>m=i+((j−i)&gt;&gt;1)</code> 也是可以的。</li>
+<li>这里采用 JDK 中采用的 <code>m=(i+j)&gt;&gt;&gt;1</code> 写法。<ul>
+<li><code>&gt;&gt;&gt; </code> 是无符号右移运算符 (<a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op3.html">Unsigned right shift operator</a>) ，与 <code>&gt;&gt;</code> 的区别在于右移的时不考虑符号位，总是从左侧补 0，i + j 不溢出的时候符号位本来就是0，与 <code>&gt;&gt;</code> 效果相同。 i+j 溢出时最高位符号位从 0 进位成了 1，经过 <code>&gt;&gt;&gt;</code> 的移位，最高位又变回了 0，这是一种利用位运算的 trick，可以参考<a href="https://stackoverflow.com/questions/13785210/why-in-java-high-low-2-is-wrong-but-high-low-1-is-not">这里</a>。</li>
+<li>需要注意的是若采用此种写法，<strong>要保证 (i+j) 为非负整数</strong> 。因为若 (i+j) 为负数，经过高位补 0 后将得到错误的正数。通常情况下，i 与 j 代表下标，不会出现负数情况，但有的题目要在包含正负数的范围内，对这些 <strong>「数值」（而非下标）</strong> 进行二分查找， i 和 j 表示可能为正也可能为负的「数值」，此时就不用能 <code>&gt;&gt;&gt;</code> 的写法。例如 <a href="https://leetcode.cn/problems/minimum-moves-to-equal-array-elements-ii/">462. 最少移动次数使数组元素相等 II</a> 题就不能采用 <code>&gt;&gt;&gt;</code> 写法。</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>DataStructure</category>
+      </categories>
+      <tags>
+        <tag>BinarySearch</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Redis实战篇</title>
     <url>/posts/55592/</url>
     <content><![CDATA[<p>课程完整源码：<a href="https://github.com/muyoukule/hm-dianping">https://github.com/muyoukule/hm-dianping</a></p>
@@ -3533,7 +3718,6 @@
 ]]></content>
       <categories>
         <category>Front-End</category>
-        <category>Axios</category>
       </categories>
       <tags>
         <tag>Axios</tag>
@@ -4440,7 +4624,6 @@
 <figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Demo</span> &#123;</span><br><span class="line">    <span class="attr">length</span>: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 泛型T必须是MyInter的⼦类，即：必须拥有length属性</span></span><br><span class="line"><span class="keyword">function</span> test&lt;T <span class="keyword">extends</span> <span class="title class_">Demo</span>&gt;(<span class="attr">arg</span>: T): <span class="built_in">number</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> arg.<span class="property">length</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">test</span>(<span class="number">10</span>) <span class="comment">// 类型“number”的参数不能赋给类型“Demo”的参数</span></span><br><span class="line"><span class="title function_">test</span>(&#123; <span class="attr">name</span>: <span class="string">&#x27;张三&#x27;</span> &#125;) <span class="comment">// 类型“&#123; name: string; &#125;”的参数不能赋给类型“Demo”的参数</span></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;123&#x27;</span>)</span><br><span class="line"><span class="title function_">test</span>(&#123; <span class="attr">name</span>: <span class="string">&#x27;张三&#x27;</span>, <span class="attr">length</span>: <span class="number">10</span> &#125;)</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Front-End</category>
-        <category>TypeScript</category>
       </categories>
       <tags>
         <tag>TypeScript</tag>
@@ -5309,7 +5492,6 @@
 ]]></content>
       <categories>
         <category>Front-End</category>
-        <category>Vue</category>
       </categories>
       <tags>
         <tag>Vue.js</tag>
@@ -11559,31 +11741,31 @@
 <td align="center">1</td>
 <td align="center">Jone</td>
 <td align="center">18</td>
-<td align="center"><a href="mailto:&#x74;&#101;&#x73;&#x74;&#49;&#x40;&#x62;&#x61;&#x6f;&#109;&#x69;&#x64;&#x6f;&#x75;&#46;&#99;&#111;&#x6d;">&#x74;&#101;&#x73;&#x74;&#49;&#x40;&#x62;&#x61;&#x6f;&#109;&#x69;&#x64;&#x6f;&#x75;&#46;&#99;&#111;&#x6d;</a></td>
+<td align="center"><a href="mailto:&#116;&#101;&#115;&#116;&#x31;&#64;&#98;&#97;&#x6f;&#x6d;&#105;&#100;&#111;&#117;&#x2e;&#99;&#111;&#109;">&#116;&#101;&#115;&#116;&#x31;&#64;&#98;&#97;&#x6f;&#x6d;&#105;&#100;&#111;&#117;&#x2e;&#99;&#111;&#109;</a></td>
 </tr>
 <tr>
 <td align="center">2</td>
 <td align="center">Jack</td>
 <td align="center">20</td>
-<td align="center"><a href="mailto:&#x74;&#101;&#x73;&#x74;&#50;&#64;&#98;&#97;&#111;&#109;&#x69;&#100;&#111;&#x75;&#x2e;&#99;&#111;&#x6d;">&#x74;&#101;&#x73;&#x74;&#50;&#64;&#98;&#97;&#111;&#109;&#x69;&#100;&#111;&#x75;&#x2e;&#99;&#111;&#x6d;</a></td>
+<td align="center"><a href="mailto:&#116;&#101;&#x73;&#x74;&#50;&#x40;&#98;&#97;&#111;&#109;&#x69;&#x64;&#x6f;&#117;&#x2e;&#x63;&#x6f;&#x6d;">&#116;&#101;&#x73;&#x74;&#50;&#x40;&#98;&#97;&#111;&#109;&#x69;&#x64;&#x6f;&#117;&#x2e;&#x63;&#x6f;&#x6d;</a></td>
 </tr>
 <tr>
 <td align="center">3</td>
 <td align="center">Tom</td>
 <td align="center">28</td>
-<td align="center"><a href="mailto:&#116;&#x65;&#x73;&#116;&#x33;&#64;&#98;&#97;&#x6f;&#109;&#x69;&#100;&#x6f;&#x75;&#46;&#x63;&#111;&#x6d;">&#116;&#x65;&#x73;&#116;&#x33;&#64;&#98;&#97;&#x6f;&#109;&#x69;&#100;&#x6f;&#x75;&#46;&#x63;&#111;&#x6d;</a></td>
+<td align="center"><a href="mailto:&#116;&#101;&#x73;&#x74;&#51;&#x40;&#x62;&#x61;&#x6f;&#x6d;&#105;&#x64;&#111;&#x75;&#46;&#x63;&#111;&#x6d;">&#116;&#101;&#x73;&#x74;&#51;&#x40;&#x62;&#x61;&#x6f;&#x6d;&#105;&#x64;&#111;&#x75;&#46;&#x63;&#111;&#x6d;</a></td>
 </tr>
 <tr>
 <td align="center">4</td>
 <td align="center">Sandy</td>
 <td align="center">21</td>
-<td align="center"><a href="mailto:&#116;&#x65;&#x73;&#x74;&#52;&#x40;&#98;&#97;&#x6f;&#109;&#x69;&#100;&#111;&#117;&#x2e;&#x63;&#111;&#x6d;">&#116;&#x65;&#x73;&#x74;&#52;&#x40;&#98;&#97;&#x6f;&#109;&#x69;&#100;&#111;&#117;&#x2e;&#x63;&#111;&#x6d;</a></td>
+<td align="center"><a href="mailto:&#116;&#101;&#x73;&#x74;&#52;&#x40;&#x62;&#97;&#111;&#x6d;&#x69;&#x64;&#111;&#x75;&#46;&#99;&#x6f;&#109;">&#116;&#101;&#x73;&#x74;&#52;&#x40;&#x62;&#97;&#111;&#x6d;&#x69;&#x64;&#111;&#x75;&#46;&#99;&#x6f;&#109;</a></td>
 </tr>
 <tr>
 <td align="center">5</td>
 <td align="center">Billie</td>
 <td align="center">24</td>
-<td align="center"><a href="mailto:&#x74;&#101;&#115;&#x74;&#x35;&#x40;&#x62;&#97;&#111;&#x6d;&#x69;&#x64;&#x6f;&#117;&#46;&#99;&#111;&#x6d;">&#x74;&#101;&#115;&#x74;&#x35;&#x40;&#x62;&#97;&#111;&#x6d;&#x69;&#x64;&#x6f;&#117;&#46;&#99;&#111;&#x6d;</a></td>
+<td align="center"><a href="mailto:&#x74;&#101;&#115;&#116;&#53;&#x40;&#98;&#97;&#111;&#x6d;&#x69;&#100;&#111;&#x75;&#46;&#x63;&#111;&#x6d;">&#x74;&#101;&#115;&#116;&#53;&#x40;&#98;&#97;&#111;&#x6d;&#x69;&#100;&#111;&#x75;&#46;&#x63;&#111;&#x6d;</a></td>
 </tr>
 </tbody></table>
 <blockquote>
@@ -17989,7 +18171,7 @@
 <p>安装完 Git 后首先要做的事情是设置用户名和 email 地址。这非常重要，因为每次 Git 提交都会使用该信息，它被永远的嵌入到了提交中。<font color="red"><strong>所以！！！是一定要配置的！！！</strong></font></p>
 <p>否则就会出现如下提示：</p>
 <p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/ToolsIMG/Git/Git%E6%9C%AA%E8%AE%BE%E7%BD%AE%E5%90%8D%E7%A7%B0%E5%92%8C%E9%82%AE%E7%AE%B1.png"></p>
-<p>此时需要按照下面两个命令来设置用户名🏃和邮箱📧( muyoukule 是我的用户名，<a href="mailto:&#x79;&#x6f;&#x75;&#114;&#95;&#x65;&#109;&#97;&#105;&#x6c;&#x40;&#x65;&#120;&#x61;&#x6d;&#112;&#108;&#x65;&#46;&#99;&#x6f;&#x6d;">&#x79;&#x6f;&#x75;&#114;&#95;&#x65;&#109;&#97;&#105;&#x6c;&#x40;&#x65;&#120;&#x61;&#x6d;&#112;&#108;&#x65;&#46;&#99;&#x6f;&#x6d;</a> 是邮箱，你需要设置属于你自己的用户名和邮箱)。</p>
+<p>此时需要按照下面两个命令来设置用户名🏃和邮箱📧( muyoukule 是我的用户名，<a href="mailto:&#x79;&#x6f;&#117;&#x72;&#95;&#101;&#109;&#x61;&#x69;&#x6c;&#64;&#101;&#x78;&#97;&#109;&#x70;&#x6c;&#x65;&#x2e;&#x63;&#x6f;&#109;">&#x79;&#x6f;&#117;&#x72;&#95;&#101;&#109;&#x61;&#x69;&#x6c;&#64;&#101;&#x78;&#97;&#109;&#x70;&#x6c;&#x65;&#x2e;&#x63;&#x6f;&#109;</a> 是邮箱，你需要设置属于你自己的用户名和邮箱)。</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global user.name muyoukule</span><br><span class="line">git config --global user.email your_email@example.com</span><br></pre></td></tr></table></figure>
 
 <p>如果使用了 <code>--global</code> 选项，表示设置了全局的用户名和邮箱。如果希望在一个特定的项目中使用不同的用户名和邮箱，可以在该项目中运行该命令而不添加 –global 选项。总之 <code>--global</code> 为全局配置，不加为某个项目的特定配置。</p>
