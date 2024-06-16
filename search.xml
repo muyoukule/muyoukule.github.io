@@ -11741,31 +11741,31 @@
 <td align="center">1</td>
 <td align="center">Jone</td>
 <td align="center">18</td>
-<td align="center"><a href="mailto:&#116;&#x65;&#115;&#x74;&#49;&#x40;&#x62;&#97;&#x6f;&#x6d;&#105;&#100;&#111;&#x75;&#x2e;&#99;&#111;&#109;">&#116;&#x65;&#115;&#x74;&#49;&#x40;&#x62;&#97;&#x6f;&#x6d;&#105;&#100;&#111;&#x75;&#x2e;&#99;&#111;&#109;</a></td>
+<td align="center"><a href="mailto:&#x74;&#101;&#x73;&#116;&#49;&#64;&#98;&#97;&#111;&#109;&#x69;&#100;&#111;&#117;&#x2e;&#99;&#x6f;&#x6d;">&#x74;&#101;&#x73;&#116;&#49;&#64;&#98;&#97;&#111;&#109;&#x69;&#100;&#111;&#117;&#x2e;&#99;&#x6f;&#x6d;</a></td>
 </tr>
 <tr>
 <td align="center">2</td>
 <td align="center">Jack</td>
 <td align="center">20</td>
-<td align="center"><a href="mailto:&#116;&#101;&#x73;&#x74;&#x32;&#64;&#98;&#x61;&#x6f;&#x6d;&#105;&#100;&#111;&#117;&#x2e;&#x63;&#111;&#x6d;">&#116;&#101;&#x73;&#x74;&#x32;&#64;&#98;&#x61;&#x6f;&#x6d;&#105;&#100;&#111;&#117;&#x2e;&#x63;&#111;&#x6d;</a></td>
+<td align="center"><a href="mailto:&#x74;&#x65;&#x73;&#x74;&#x32;&#64;&#98;&#x61;&#x6f;&#109;&#x69;&#x64;&#111;&#x75;&#46;&#99;&#x6f;&#x6d;">&#x74;&#x65;&#x73;&#x74;&#x32;&#64;&#98;&#x61;&#x6f;&#109;&#x69;&#x64;&#111;&#x75;&#46;&#99;&#x6f;&#x6d;</a></td>
 </tr>
 <tr>
 <td align="center">3</td>
 <td align="center">Tom</td>
 <td align="center">28</td>
-<td align="center"><a href="mailto:&#116;&#101;&#115;&#116;&#x33;&#x40;&#98;&#x61;&#111;&#109;&#x69;&#x64;&#x6f;&#x75;&#x2e;&#x63;&#111;&#x6d;">&#116;&#101;&#115;&#116;&#x33;&#x40;&#98;&#x61;&#111;&#109;&#x69;&#x64;&#x6f;&#x75;&#x2e;&#x63;&#111;&#x6d;</a></td>
+<td align="center"><a href="mailto:&#116;&#x65;&#115;&#116;&#51;&#64;&#x62;&#x61;&#111;&#x6d;&#x69;&#100;&#111;&#x75;&#46;&#x63;&#111;&#x6d;">&#116;&#x65;&#115;&#116;&#51;&#64;&#x62;&#x61;&#111;&#x6d;&#x69;&#100;&#111;&#x75;&#46;&#x63;&#111;&#x6d;</a></td>
 </tr>
 <tr>
 <td align="center">4</td>
 <td align="center">Sandy</td>
 <td align="center">21</td>
-<td align="center"><a href="mailto:&#x74;&#101;&#115;&#116;&#x34;&#x40;&#x62;&#97;&#x6f;&#109;&#105;&#x64;&#x6f;&#117;&#x2e;&#x63;&#x6f;&#109;">&#x74;&#101;&#115;&#116;&#x34;&#x40;&#x62;&#97;&#x6f;&#109;&#105;&#x64;&#x6f;&#117;&#x2e;&#x63;&#x6f;&#109;</a></td>
+<td align="center"><a href="mailto:&#116;&#x65;&#115;&#x74;&#52;&#64;&#98;&#97;&#111;&#x6d;&#105;&#x64;&#x6f;&#117;&#x2e;&#99;&#111;&#x6d;">&#116;&#x65;&#115;&#x74;&#52;&#64;&#98;&#97;&#111;&#x6d;&#105;&#x64;&#x6f;&#117;&#x2e;&#99;&#111;&#x6d;</a></td>
 </tr>
 <tr>
 <td align="center">5</td>
 <td align="center">Billie</td>
 <td align="center">24</td>
-<td align="center"><a href="mailto:&#116;&#101;&#115;&#116;&#53;&#x40;&#98;&#x61;&#111;&#109;&#x69;&#100;&#x6f;&#117;&#x2e;&#x63;&#x6f;&#x6d;">&#116;&#101;&#115;&#116;&#53;&#x40;&#98;&#x61;&#111;&#109;&#x69;&#100;&#x6f;&#117;&#x2e;&#x63;&#x6f;&#x6d;</a></td>
+<td align="center"><a href="mailto:&#116;&#101;&#x73;&#116;&#53;&#x40;&#98;&#97;&#111;&#x6d;&#105;&#x64;&#111;&#117;&#x2e;&#99;&#x6f;&#109;">&#116;&#101;&#x73;&#116;&#53;&#x40;&#98;&#97;&#111;&#x6d;&#105;&#x64;&#111;&#117;&#x2e;&#99;&#x6f;&#109;</a></td>
 </tr>
 </tbody></table>
 <blockquote>
@@ -12867,7 +12867,8 @@
 
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">girlFriend1===&gt;GirlFriend(name=小诗诗, age=18)</span><br><span class="line">girlFriend2===&gt;GirlFriend(name=小诗诗, age=18)</span><br><span class="line">false</span><br></pre></td></tr></table></figure>
 
-<h1 id="6-反序列化"><a href="#6-反序列化" class="headerlink" title="6. 反序列化"></a>6. 反序列化</h1><p>如果你有一个对象的序列化表示(例如一个文件或一个字节流)，你可以使用反序列化来重新创建该对象。这通常通过 <code>ObjectInputStream</code>类完成。</p>
+<h1 id="6-反序列化"><a href="#6-反序列化" class="headerlink" title="6. 反序列化"></a>6. 反序列化</h1><p>序列化&#x2F;反序列化？<a href="https://mp.weixin.qq.com/s?__biz=MzU4ODI1MjA3NQ==&mid=2247486849&idx=1&sn=c0a2555ba22921187a28547b66877af8&scene=21#wechat_redirect">序列化&#x2F;反序列化，我忍你很久了，淦！</a></p>
+<p>如果你有一个对象的序列化表示(例如一个文件或一个字节流)，你可以使用反序列化来重新创建该对象。这通常通过 <code>ObjectInputStream</code>类完成。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GirlFriend</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">GirlFriend</span> <span class="variable">girlFriend1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">GirlFriend</span>(<span class="string">&quot;小诗诗&quot;</span>, <span class="number">18</span>);</span><br><span class="line">        <span class="type">Path</span> <span class="variable">path</span> <span class="operator">=</span> Paths.get(<span class="string">&quot;girlFriend.txt&quot;</span>);</span><br><span class="line">        <span class="type">ObjectOutputStream</span> <span class="variable">oos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectOutputStream</span>(Files.newOutputStream(path));</span><br><span class="line">        oos.writeObject(girlFriend1);</span><br><span class="line">        oos.close();</span><br><span class="line">        <span class="type">ObjectInputStream</span> <span class="variable">ois</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(Files.newInputStream(path));</span><br><span class="line">        <span class="type">GirlFriend</span> <span class="variable">girlFriend2</span> <span class="operator">=</span> (GirlFriend) ois.readObject();</span><br><span class="line">        ois.close();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;girlFriend1===&gt;&quot;</span> + girlFriend1);</span><br><span class="line">        System.out.println(<span class="string">&quot;girlFriend2===&gt;&quot;</span> + girlFriend2);</span><br><span class="line">        System.out.println(girlFriend1 == girlFriend2); <span class="comment">//false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -12897,7 +12898,6 @@
 
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>没有对象不要彷徨、不要迷茫、不要自我怀疑。在上面的方法中精心挑选一个自己满意的方法去造对象吧！！😊</p>
 <p>记住，没有对象就自己zao，以后别再说自己没对象了，Java 程序员从不说自己没对象！！！</p>
-<p>仰起单身🐶高贵的头颅😬！！！！</p>
 ]]></content>
       <categories>
         <category>Java</category>
@@ -17549,11 +17549,11 @@
 </blockquote>
 <p>通知类型包括：</p>
 <ul>
-<li>前置通知：<code>@Before</code> 目标方法执行之前的通知</li>
-<li>后置通知：<code>@AfterReturning</code> 目标方法执行之后的通知</li>
+<li>前置通知：<code>@Before</code> 目标方法执行之前的通知。</li>
+<li>后置通知：<code>@AfterReturning</code> 目标方法执行之后的通知。</li>
 <li>环绕通知：<code>@Around</code> 目标方法之前添加通知，同时目标方法执行之后添加通知。</li>
-<li>异常通知：<code>@AfterThrowing</code> 发生异常之后执行的通知</li>
-<li>最终通知：<code>@After</code> 放在 finally 语句块中的通知</li>
+<li>异常通知：<code>@AfterThrowing</code> 发生异常之后执行的通知。</li>
+<li>最终通知：<code>@After</code> 放在 finally 语句块中的通知。</li>
 </ul>
 <p>接下来，改写程序来测试这几个通知的执行顺序</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 切面类</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyAspect</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Around(&quot;execution(* com.muyoukule.Service.OrderService.*(..))&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">aroundAdvice</span><span class="params">(ProceedingJoinPoint proceedingJoinPoint)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;环绕通知开始&quot;</span>);</span><br><span class="line">        <span class="comment">// 执行目标方法。</span></span><br><span class="line">        proceedingJoinPoint.proceed();</span><br><span class="line">        System.out.println(<span class="string">&quot;环绕通知结束&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before(&quot;execution(* com.muyoukule.Service.OrderService.*(..))&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">beforeAdvice</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;前置通知&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@AfterReturning(&quot;execution(* com.muyoukule.Service.OrderService.*(..))&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterReturningAdvice</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;后置通知&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@AfterThrowing(&quot;execution(* com.muyoukule.Service.OrderService.*(..))&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterThrowingAdvice</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;异常通知&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@After(&quot;execution(* com.muyoukule.Service.OrderService.*(..))&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterAdvice</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;最终通知&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -18171,7 +18171,7 @@
 <p>安装完 Git 后首先要做的事情是设置用户名和 email 地址。这非常重要，因为每次 Git 提交都会使用该信息，它被永远的嵌入到了提交中。<font color="red"><strong>所以！！！是一定要配置的！！！</strong></font></p>
 <p>否则就会出现如下提示：</p>
 <p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/ToolsIMG/Git/Git%E6%9C%AA%E8%AE%BE%E7%BD%AE%E5%90%8D%E7%A7%B0%E5%92%8C%E9%82%AE%E7%AE%B1.png"></p>
-<p>此时需要按照下面两个命令来设置用户名🏃和邮箱📧( muyoukule 是我的用户名，<a href="mailto:&#121;&#x6f;&#x75;&#114;&#x5f;&#x65;&#109;&#x61;&#x69;&#x6c;&#x40;&#x65;&#120;&#97;&#109;&#112;&#x6c;&#101;&#x2e;&#x63;&#111;&#109;">&#121;&#x6f;&#x75;&#114;&#x5f;&#x65;&#109;&#x61;&#x69;&#x6c;&#x40;&#x65;&#120;&#97;&#109;&#112;&#x6c;&#101;&#x2e;&#x63;&#111;&#109;</a> 是邮箱，你需要设置属于你自己的用户名和邮箱)。</p>
+<p>此时需要按照下面两个命令来设置用户名🏃和邮箱📧( muyoukule 是我的用户名，<a href="mailto:&#x79;&#x6f;&#117;&#114;&#x5f;&#101;&#x6d;&#x61;&#x69;&#x6c;&#x40;&#x65;&#120;&#x61;&#x6d;&#x70;&#x6c;&#101;&#x2e;&#x63;&#111;&#109;">&#x79;&#x6f;&#117;&#114;&#x5f;&#101;&#x6d;&#x61;&#x69;&#x6c;&#x40;&#x65;&#120;&#x61;&#x6d;&#x70;&#x6c;&#101;&#x2e;&#x63;&#111;&#109;</a> 是邮箱，你需要设置属于你自己的用户名和邮箱)。</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global user.name muyoukule</span><br><span class="line">git config --global user.email your_email@example.com</span><br></pre></td></tr></table></figure>
 
 <p>如果使用了 <code>--global</code> 选项，表示设置了全局的用户名和邮箱。如果希望在一个特定的项目中使用不同的用户名和邮箱，可以在该项目中运行该命令而不添加 –global 选项。总之 <code>--global</code> 为全局配置，不加为某个项目的特定配置。</p>
@@ -18570,6 +18570,415 @@
       </categories>
       <tags>
         <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java相关知识补充</title>
+    <url>/posts/15127/</url>
+    <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><h2 id="JDK、JRE、JVM"><a href="#JDK、JRE、JVM" class="headerlink" title="JDK、JRE、JVM"></a>JDK、JRE、JVM</h2><p>参考链接：<a href="https://zhuanlan.zhihu.com/p/655028602">JVM、JRE、JDK三者之间的关系这一篇文章就够了！！！</a></p>
+<ul>
+<li><strong>JDK</strong>：英文全称 Java Development Kit，是Java的开发工具包， JDK 是提供给Java开发人员使用的，其中包含了 <code>Java的开发工具</code> 和<code>JRE</code>。其中的开发工具包括：编译工具（javac.exe）打包工具（jar.exe）等。通俗的说就是<strong>开发用的</strong>。</li>
+<li><strong>JRE</strong>：英文全称 Java Runtime Environment，是Java运行环境 JRE包括 <code>Java虚拟机 (JVM Java Virtual Machine)</code> 和Java程序所需的 <code>核心类库</code> 等，如果想要运行一个开发好的Java程序，计算机中只需要安装JRE即可。通俗的说就是<strong>运行用的</strong>。</li>
+<li><strong>JVM</strong>：英文全称 Java Virtual Machine，是java虚拟机。 它只认识 <code>.class</code> 为后缀的文件，它能将class文件中的字节码指令进行识别并调用操作系统向上的API完成动作。JVM是java能够跨平台的核心机制。通俗的说就是<strong>跨平台用的</strong>，就是把我们写的代码，转换成class文件用的。</li>
+</ul>
+<blockquote>
+<p>关系</p>
+</blockquote>
+<ul>
+<li>JDK &#x3D; JRE + 多种Java开发工具</li>
+<li>JRE &#x3D; JVM + 各种类库</li>
+<li>这三者的关系是一层层的嵌套关系，<code>JDK &gt; JRE &gt; JVM</code></li>
+</ul>
+<h1 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h1><h2 id="标识符命名规则"><a href="#标识符命名规则" class="headerlink" title="标识符命名规则"></a>标识符命名规则</h2><p>在Java中，标识符用作给变量、类和方法命名。</p>
+<p><font color="red">硬性要求，必须要这么做，否则代码会报错：</font></p>
+<ul>
+<li>由字母、数字、美元符号($)和下划线(_)组成，但是不能以数字开头。</li>
+<li>第一个字符必须是字母、美元符号($)或下划线(_)。</li>
+<li>不能是Java关键字和保留字。</li>
+<li>大小写敏感，长度无限制。</li>
+</ul>
+<p>其他可以参考链接：<a href="https://www.php.cn/faq/646014.html">java标识符的命名规则有哪些</a></p>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><blockquote>
+<p><strong>8种基本数据类型：</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">基本类型</th>
+<th align="center">大小（字节）</th>
+<th align="center">默认值</th>
+<th align="center">封装类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">byte</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">Byte</td>
+</tr>
+<tr>
+<td align="center">short</td>
+<td align="center">2</td>
+<td align="center">0</td>
+<td align="center">Short</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">4</td>
+<td align="center">0</td>
+<td align="center"><strong>Integer</strong></td>
+</tr>
+<tr>
+<td align="center">long</td>
+<td align="center">8</td>
+<td align="center">0L</td>
+<td align="center">Long</td>
+</tr>
+<tr>
+<td align="center">float</td>
+<td align="center">4</td>
+<td align="center">0.0f</td>
+<td align="center">Float</td>
+</tr>
+<tr>
+<td align="center">double</td>
+<td align="center">8</td>
+<td align="center">0.0d</td>
+<td align="center">Double</td>
+</tr>
+<tr>
+<td align="center">char</td>
+<td align="center">2</td>
+<td align="center">\u0000(null)</td>
+<td align="center"><strong>Character</strong></td>
+</tr>
+<tr>
+<td align="center">boolean</td>
+<td align="center">-</td>
+<td align="center">false</td>
+<td align="center">Boolean</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>引用数据类型：</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">引用类型</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">类</td>
+<td align="center">class</td>
+</tr>
+<tr>
+<td align="center">接口</td>
+<td align="center">interface</td>
+</tr>
+<tr>
+<td align="center">数组</td>
+<td align="center">[]</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>Java数据类型在内存中的存储：</p>
+</blockquote>
+<ul>
+<li>基本数据类型的存储原理：所有的简单数据类型不存在“引用”的概念，基本数据类型都是直接存储在内存中的内存栈上的，数据本身的值就是存储在栈空间里面，而Java语言里面八种数据类型是这种存储模型。</li>
+<li>引用类型的存储原理:引用类型继承于Object类（也是引用类型）都是按照Java里面存储对象的内存模型来进行数据存储的，使用Java内存堆和内存栈来进行这种类型的数据存储，简单地讲，“引用”是存储在有序的内存栈上的，而对象本身的值存储在内存堆上的。</li>
+</ul>
+<p>区别：基本数据类型和引用类型的区别主要在于基本数据类型是分配在栈上的，而引用类型是分配在堆上的（需要java中的栈、堆概念）</p>
+<blockquote>
+<p>那Java中字符串string属于什么数据类型？</p>
+</blockquote>
+<p>Java中的字符串String属于引用数据类型，因为String是一个类。</p>
+<h2 id="break、continue、return"><a href="#break、continue、return" class="headerlink" title="break、continue、return"></a>break、continue、return</h2><p>参考链接：<a href="http://www.360doc.com/content/22/0728/10/10087950_1041685209.shtml">循环里continue，break，return的作用，你知道吗？</a></p>
+<ul>
+<li>break 跳出整个循环，不再执行循环(<strong>结束当前的循环体</strong>)</li>
+<li>continue 跳出本次循环，继续执行下次循环(<strong>结束正在执行的循环 进入下一个循环条件</strong>)</li>
+<li>return 程序返回，不再执行下面的代码(<strong>结束当前的方法 直接返回</strong>)</li>
+</ul>
+<h1 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h1><h2 id="this-和-super-关键字"><a href="#this-和-super-关键字" class="headerlink" title="this 和 super 关键字"></a>this 和 super 关键字</h2><p>参考链接：<a href="https://zhuanlan.zhihu.com/p/670310699">今天终于搞明白this和super关键字的作用了</a></p>
+<blockquote>
+<p>this 关键字，主要3个作用</p>
+</blockquote>
+<ul>
+<li><p><code>this.属性</code>，<code>this.方法</code>，表示当前对象的属性，当前类的方法。</p>
+</li>
+<li><p>this，表示当前对象，当前正在操作这个方法的对象就是当前对象。</p>
+</li>
+<li><p>使用this（参数若干），可以调用当前类的构造方法，如果，构造方法之间相互调用，则有要求：</p>
+<ul>
+<li><p>this（）必须放在首行。</p>
+</li>
+<li><p>至少有一个构造方法是没有调用this（参数若干）的，就是说构造之间不能循环调用。</p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>super关键字，主要3个作用</p>
+</blockquote>
+<ul>
+<li>代表对当前对象的直接父类对象的引用。</li>
+<li>可以调用父类的非 private 成员变量和方法。</li>
+<li>super(); 可以调用父类的构造方法，只限构造方法中使用，且必须是第一条语句。</li>
+</ul>
+<h2 id="static-关键字的四种用法"><a href="#static-关键字的四种用法" class="headerlink" title="static 关键字的四种用法"></a>static 关键字的四种用法</h2><p>参考链接：<a href="https://www.cnblogs.com/dotgua/p/6354151.html?utm_source=itdadao&utm_medium=referral">static关键字的四种用法</a></p>
+<blockquote>
+<p>总结</p>
+</blockquote>
+<p>static是java中非常重要的一个关键字，而且它的用法也很丰富，主要有四种用法：</p>
+<ol>
+<li>用来修饰成员变量，将其变为类的成员，从而实现所有对象对于该成员的共享。</li>
+<li>用来修饰成员方法，将其变为类方法，可以直接使用 <code>类名.方法名</code> 的方式调用，常用于工具类。</li>
+<li>静态块用法，将多个类成员放在一起初始化，使得程序更加规整，其中理解对象的初始化过程非常关键。</li>
+<li>静态导包用法，将类的方法直接导入到当前类中，从而直接使用 <strong>“方法名”</strong> 即可调用类方法，更加方便。</li>
+</ol>
+<h2 id="final-关键字的几种用法"><a href="#final-关键字的几种用法" class="headerlink" title="final 关键字的几种用法"></a>final 关键字的几种用法</h2><p>参考链接：<a href="https://www.cnblogs.com/dotgua/p/6357951.html">final关键字的几种用法</a></p>
+<blockquote>
+<p>总结</p>
+</blockquote>
+<p>final关键字是我们经常使用的关键字之一，它的用法有很多，但是并不是每一种用法都值得我们去广泛使用。它的主要用法有以下四种：</p>
+<ol>
+<li>用来修饰数据，包括成员变量和局部变量，该变量只能被赋值一次且它的值无法被改变。对于成员变量来讲，我们必须在声明时或者构造方法中对它赋值。</li>
+<li>用来修饰方法参数，表示在变量的生存期中它的值不能被改变。</li>
+<li>修饰方法，表示该方法无法被重写。</li>
+<li>修饰类，表示该类无法被继承。</li>
+</ol>
+<p>上面的四种方法中，第三种和第四种方法需要谨慎使用，因为在大多数情况下，如果是仅仅为了一点设计上的考虑，我们并不需要使用final来修饰方法和类。</p>
+<h2 id="instanceof-关键字的作用"><a href="#instanceof-关键字的作用" class="headerlink" title="instanceof 关键字的作用"></a>instanceof 关键字的作用</h2><p><code>instanceof</code> 严格来说是 Java 中的一个双目运算符，用来测试一个对象是否为一个类的实例，用法为：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">boolean</span> <span class="variable">result</span> <span class="operator">=</span> obj <span class="keyword">instanceof</span> Class</span><br></pre></td></tr></table></figure>
+
+<p>其中 obj 为一个对象，Class 表示一个类或者一个接口，当 obj 为 Class 的对象，或者是其直接或间接子类，或者是其接口的实现类，结果 result 都返回 true，否则返回 false。</p>
+<p>PS：编译器会检查 obj 是否能转换成右边的 Class 类型，如果不能转换则直接报错，如果不能确定类型，则通过编译，具体看运行时定。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">System.out.println(i <span class="keyword">instanceof</span> Integer);<span class="comment">//编译不通过 i 必须是引用类型，不能是基本类型</span></span><br><span class="line">System.out.println(i <span class="keyword">instanceof</span> Object);<span class="comment">//编译不通过</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Integer</span> <span class="variable">integer</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">System.out.println(integer <span class="keyword">instanceof</span> Integer);<span class="comment">// true</span></span><br><span class="line"><span class="comment">//在 JavaSE 规范中对 instanceof 运算符的规定就是：如果 obj 为 null，那么将返回false</span></span><br><span class="line">System.out.println(<span class="literal">null</span> <span class="keyword">instanceof</span> Object);<span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h1><h2 id="Java只有值传递"><a href="#Java只有值传递" class="headerlink" title="Java只有值传递"></a>Java只有值传递</h2><p>Java 中只有值传递，没有引用传递！在这之前你需要明白：</p>
+<ul>
+<li>基本类型与引用类型？</li>
+<li>值传递与引用传递？</li>
+</ul>
+<p>详见：<a href="https://blog.csdn.net/Yu_Mariam/article/details/135039386">Java只有值传递，没有引用传递！</a></p>
+<h2 id="Java-自动装箱与拆箱"><a href="#Java-自动装箱与拆箱" class="headerlink" title="Java 自动装箱与拆箱"></a>Java 自动装箱与拆箱</h2><blockquote>
+<p>装箱与拆箱</p>
+</blockquote>
+<p>基本类型与对应的包装类对象之间，来回转换的过程称为 ”装箱“ 与 ”拆箱“ ：</p>
+<ul>
+<li><strong>装箱</strong>：从基本类型转换为对应的包装类对象。</li>
+<li><strong>拆箱</strong>：从包装类对象转换为对应的基本类型。</li>
+</ul>
+<p><strong>以 Integer 与 int为例：</strong></p>
+<p><strong>装箱：</strong>基本数值 –&gt; 包装对象</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Integer</span> <span class="variable">i</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Integer</span>(<span class="number">4</span>);<span class="comment">//使用构造函数函数</span></span><br><span class="line"><span class="type">Integer</span> <span class="variable">iii</span> <span class="operator">=</span> Integer.valueOf(<span class="number">4</span>);<span class="comment">//使用包装类中的valueOf方法</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>拆箱：</strong>包装对象 –&gt; 基本数值</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> i.intValue();</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>自动装箱与自动拆箱</p>
+</blockquote>
+<p>由于我们经常要做基本类型与包装类之间的转换，从 <code>JDK 1.5</code> 开始，基本类型与包装类的装箱、拆箱动作可以自动完成。例如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Integer</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">4</span>;<span class="comment">//自动装箱。相当于Integer i = Integer.valueOf(4);</span></span><br><span class="line">i = i + <span class="number">5</span>;<span class="comment">//等号右边：将i对象转成基本数值(自动拆箱) i.intValue() + 5;</span></span><br><span class="line"><span class="comment">//加法运算完成后，再次装箱，把基本数值转成对象。</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>以下代码会输出什么？</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Integer</span> <span class="variable">i1</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line">        <span class="type">Integer</span> <span class="variable">i2</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line">        <span class="type">Integer</span> <span class="variable">i3</span> <span class="operator">=</span> <span class="number">200</span>;</span><br><span class="line">        <span class="type">Integer</span> <span class="variable">i4</span> <span class="operator">=</span> <span class="number">200</span>;</span><br><span class="line">        System.out.println(i1 == i2);</span><br><span class="line">        System.out.println(i3 == i4);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">true</span><br><span class="line">false</span><br></pre></td></tr></table></figure>
+
+<p>为什么会出现这样的结果？输出结果表明 i1 和 i2 指向的是同一个对象，而 i3 和 i4 指向的是不同的对象。</p>
+<p>此时只需一看源码便知究竟，下面这段代码是 Integer 的 valueof 方法的具体实现：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title function_">valueOf</span><span class="params">(<span class="type">int</span> i)</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</span><br><span class="line">		<span class="keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Integer</span>(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>IntegerCache</code> 类的实现为：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">IntegerCache</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">low</span> <span class="operator">=</span> -<span class="number">128</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> high;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> Integer cache[];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="comment">// high value may be configured by property</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">h</span> <span class="operator">=</span> <span class="number">127</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">integerCacheHighPropValue</span> <span class="operator">=</span></span><br><span class="line">                sun.misc.VM.getSavedProperty(<span class="string">&quot;java.lang.Integer.IntegerCache.high&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (integerCacheHighPropValue != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> parseInt(integerCacheHighPropValue);</span><br><span class="line">                i = Math.max(i, <span class="number">127</span>);</span><br><span class="line">                <span class="comment">// Maximum array size is Integer.MAX_VALUE</span></span><br><span class="line">                h = Math.min(i, Integer.MAX_VALUE - (-low) -<span class="number">1</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span>( NumberFormatException nfe) &#123;</span><br><span class="line">                <span class="comment">// If the property cannot be parsed into an int, ignore it.</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        high = h;</span><br><span class="line"></span><br><span class="line">        cache = <span class="keyword">new</span> <span class="title class_">Integer</span>[(high - low) + <span class="number">1</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> low;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> <span class="number">0</span>; k &lt; cache.length; k++)</span><br><span class="line">            cache[k] = <span class="keyword">new</span> <span class="title class_">Integer</span>(j++);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// range [-128, 127] must be interned (JLS7 5.1.7)</span></span><br><span class="line">        <span class="keyword">assert</span> Integer.IntegerCache.high &gt;= <span class="number">127</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">IntegerCache</span><span class="params">()</span> &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从这两段代码可以看出，在通过 <code>valueOf</code> 方法创建 Integer 对象的时候，如果数值在 <code>[-128,127]</code> 之 间， 便返回指向 <code>IntegerCache.cache</code> 中已经存在的对象的引用；否则创建一个新的 Integer 对象。 上面的代码中 i1 和 i2 的数值为 100，因此会直接从 cache 中取已经存在的对象，所以 i1 和 i2 指向的是同一个对象，而 i3 和 i4 则是分别指向不同的对象。</p>
+<blockquote>
+<p>以下代码输出什么？</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Double</span> <span class="variable">i1</span> <span class="operator">=</span> <span class="number">100.0</span>;</span><br><span class="line">        <span class="type">Double</span> <span class="variable">i2</span> <span class="operator">=</span> <span class="number">100.0</span>;</span><br><span class="line">        <span class="type">Double</span> <span class="variable">i3</span> <span class="operator">=</span> <span class="number">200.0</span>;</span><br><span class="line">        <span class="type">Double</span> <span class="variable">i4</span> <span class="operator">=</span> <span class="number">200.0</span>;</span><br><span class="line">        System.out.println(i1 == i2);</span><br><span class="line">        System.out.println(i3 == i4);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">false</span><br><span class="line">false</span><br></pre></td></tr></table></figure>
+
+<p>原因：在某个范围内的整形数值的个数是有限的，而浮点数却不是。</p>
+<h2 id="重载和重写的区别"><a href="#重载和重写的区别" class="headerlink" title="重载和重写的区别"></a>重载和重写的区别</h2><p>参考链接：<a href="https://blog.csdn.net/wintershii/article/details/80558739">Java—重写与重载的区别</a></p>
+<blockquote>
+<p>重写（Override）</p>
+</blockquote>
+<p>从字面上看，重写就是重新写一遍的意思。其实就是在子类中把父类本身有的方法重新写一遍。 子类继承了父类原有的方法，但有时子类并不想原封不动地继承父类中的某个方法，所以在方法名，参数列表，返回类型（除过子类中方法的返回值是父类中方法返回值的子类时）都相同的情况下，对方法体进行修改或重写，这就是重写。但要注意子类函数的访问修饰权限不能少于父类的。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Father</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">        <span class="type">Son</span> <span class="variable">s</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Son</span>();</span><br><span class="line">        s.sayHello();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sayHello</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Son</span> <span class="keyword">extends</span> <span class="title class_">Father</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sayHello</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">        System.out.println(<span class="string">&quot;hello by &quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>重写总结：</strong></p>
+<ul>
+<li><p>发生在父类与子类之间。</p>
+</li>
+<li><p>方法名，参数列表，返回类型（除过子类中方法的返回类型是父类中返回类型的子类）必须相同 。</p>
+</li>
+<li><p>访问修饰符的限制一定要<strong>大于</strong>被重写方法的访问修饰符 (public&gt;protected&gt;default&gt;private) 。</p>
+</li>
+<li><p>重写方法一定不能抛出新的检查异常或者比被重写方法申明更加宽泛的检查性异常。</p>
+</li>
+</ul>
+<blockquote>
+<p>重载（Overload）</p>
+</blockquote>
+<p>在一个类中，同名的方法如果有不同的参数列表（参数类型不同、参数个数不同甚至是参数顺序 不 同）则视为重载。同时，重载对返回类型没有要求，可以相同也可以不同，但不能通过返回类 型是 否相同来判断重载。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Father</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">        <span class="type">Father</span> <span class="variable">s</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Father</span>();</span><br><span class="line">        s.sayHello();</span><br><span class="line">        s.sayHello(<span class="string">&quot;muyoukule&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sayHello</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sayHello</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello&quot;</span> + <span class="string">&quot; &quot;</span> + name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>重载总结：</strong> </p>
+<ul>
+<li><p>重载 Overload 是一个类中多态性的一种表现。</p>
+</li>
+<li><p>重载要求同名方法的参数列表不同（参数类型，参数个数甚至是参数顺序）。</p>
+</li>
+<li><p>重载的时候，返回值类型可以相同也可以不相同。无法以返回类别作为重载函数的区分标准。</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>重载（Overload）和重写（Override）的区别？</strong></p>
+</blockquote>
+<p>方法的重载和重写都是实现多态的方式，区别在于前者实现的是编译时的多态性，而后者实现的是运行时的多态性。重载发生在一个类中，同名的方法如果有不同的参数列表（参数类型不同、参数个数不同或者二者都不同）则视为重载；重写发生在子类与父类之间，重写要求子类被重写方法与父类被重写方法有相同的参数列表，有兼容的返回类型，比父类被重写方法更好访问，不能比父类被重写方法声明更多的异常（里氏代换原则）。重载对返回类型没有特殊的要求，不能根据返回类型进行区分。</p>
+<h2 id="怎么理解面向对象思想？"><a href="#怎么理解面向对象思想？" class="headerlink" title="怎么理解面向对象思想？"></a>怎么理解面向对象思想？</h2><p>参考链接：<a href="https://blog.csdn.net/weixin_43117449/article/details/82991525">什么是面向对象思想？面试必答题</a></p>
+<p>面向对象是一种思想，是基于面向过程而言的，就是说面向对象是将功能等通过对象来实现，将功能封装进对象之中，让对象去实现具体的细节；这种思想是将数据作为第一位，而方法或者说是算法作为其次，这是对数据一种优化，操作起来更加的方便，简化了过程。</p>
+<p>面向对象有三大特征：<strong>封装性、继承性、多态性。</strong>其中封装性指的是隐藏了对象的属性和实现细节，仅对外提供公共的访问方式，这样就隔离了具体的变化，便于使用，提高了复用性和安全性。对于继承性，就是两种事物间存在着一定的所属关系，那么继承的类就可以从被继承的类中获得一些属性和方法；这就提高了代码的复用性。继承是作为多态的前提的。多态是说父类或接口的引用指向了子类对象，这就提高了程序的扩展性，也就是说只要实现或继承了同一个接口或类，那么就可以使用父类中相应的方法，提高程序扩展性，但是多态有一点不好之处在于：父类引用不能访问子类中的成员的特有方法和属性。</p>
+<p>举例来说：就是：比如说你要去饭店吃饭，你只需要去饭店，找到饭店的服务员，跟她说你要吃什么，然后就会给你做出来让你吃，你并不需要知道这个饭是怎么做的，你只需要面向这个服务员，告诉他你要吃什么，然后他也只需要面向你吃完收到钱就好，不需要知道你怎么对这个饭怎么吃的。</p>
+<blockquote>
+<p>特点</p>
+</blockquote>
+<ul>
+<li>将复杂的事情简单化。</li>
+<li>面向对象将以前的过程中的执行者，变成了指挥者。</li>
+<li>面向对象这种思想是符合现在人们思考习惯的一种思想。</li>
+</ul>
+<blockquote>
+<p>三大特征</p>
+</blockquote>
+<p>封装、继承、多态。</p>
+<h2 id="权限修饰符"><a href="#权限修饰符" class="headerlink" title="权限修饰符"></a>权限修饰符</h2><p>在Java中提供了四种访问权限，使用不同的访问权限修饰符修饰时，被修饰的内容会有不同的访问权限。</p>
+<ul>
+<li><p>public：公共的，所有地方都可以访问。</p>
+</li>
+<li><p>protected：本类 ，本包，其他包中的子类都可以访问。</p>
+</li>
+<li><p>默认（没有修饰符）：本类 ，本包可以访问。</p>
+<p><font color="red">PS：默认是空着不写，不是default。</font></p>
+</li>
+<li><p>private：私有的，当前类可以访问。</p>
+</li>
+</ul>
+<blockquote>
+<p>不同权限的访问能力</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>public</th>
+<th>protected</th>
+<th>默认</th>
+<th>private</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>同一类中</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>同一包中的类</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td></td>
+</tr>
+<tr>
+<td>不同包的子类</td>
+<td>√</td>
+<td>√</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>不同包中的无关类</td>
+<td>√</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>可见权限：<code>public &gt; protected &gt; 默认 &gt; private</code></p>
+<p>编写代码时，如果没有特殊的考虑，建议这样使用权限：</p>
+<ul>
+<li>成员变量使用 <code>private</code> ，隐藏细节。</li>
+<li>构造方法使用 <code> public</code> ，方便创建对象。</li>
+<li>成员方法使用 <code>public</code> ，方便调用方法。</li>
+</ul>
+<p><strong>PS：不加权限修饰符，就是默认权限。</strong></p>
+<h2 id="null-与-“”"><a href="#null-与-“”" class="headerlink" title="null 与 “”"></a>null 与 “”</h2><ul>
+<li>null是没有地址；</li>
+<li>“”是有地址但是里面的内容是空的。</li>
+</ul>
+<h2 id="equals-和"><a href="#equals-和" class="headerlink" title="equals 和 &#x3D;&#x3D;"></a>equals 和 &#x3D;&#x3D;</h2><blockquote>
+<p>&#x3D;&#x3D;</p>
+</blockquote>
+<p>比较的是变量（栈）内存中存放的对象的（堆）内存地址，用来判断<strong>两个对象的地址</strong>是否相同，即是否实指相同一个对象。比较的是真正意义上的指针操作。</p>
+<ul>
+<li><p>比较的是操作符两端的操作数是否是同一个对象。</p>
+</li>
+<li><p>两边的操作数必须是同一类型的（可以是父子类之间）才能编译通过。</p>
+</li>
+<li><p>比较的是地址，如果是具体的阿拉伯数字的比较，值相等则 为 true，如： <code>int a = 10</code> 与 <code>long b = 10L</code> 与 <code>double c = 10.0</code> 都是相同的（为 true ），因为他们都指向地址为 10 的堆。</p>
+</li>
+</ul>
+<blockquote>
+<p>equals</p>
+</blockquote>
+<p>equals 是Object类中的方法，用来比较的是<strong>两个对象的内容</strong>是否相等，由于所有的类都是继承自 <code>java.lang.Object</code> 类的， 所以适用于所有对象，<strong>如果类没有重写 <code>equals()</code> 方法，那么它将默认比较对象的内存地址</strong>。但是，像String、Integer等类重写了 equals() 方法，用来比较对象的实际内容是否相同。</p>
+<blockquote>
+<p><strong>总结</strong></p>
+</blockquote>
+<p>所有比较是否相等时，都是用 equals ，并且在对常量相比较时，<strong>把常量写在前面</strong>，因为使用 Object 的 equals， Object 可能为 <code>null</code> ，则空指针。</p>
+<h2 id="hashCode-的作用"><a href="#hashCode-的作用" class="headerlink" title="hashCode 的作用"></a>hashCode 的作用</h2><p>参考链接：<a href="https://blog.csdn.net/SEU_Calvin/article/details/52094115?utm_source=blogxgwz1">HashCode的作用原理和实例解析</a></p>
+<p>Java 的集合有两类，一类是 List，还有一类是 Set。前者有序可重复，后者无序不重复。当我们在 Set 中插入的时候怎么判断是否已经存在该元素呢，可以通过 equals 方法。但是如果元素太多， 用这样的方法就会比较慢。 </p>
+<p>于是有人发明了哈希算法来提高集合中查找元素的效率。这种方式将集合分成若干个存储区域，每个对象可以计算出一个哈希码，可以将哈希码分组，每组分别对应某个存储区域，根据一个对象的哈希码就可以确定该对象应该存储的哪个区域。</p>
+<p>hashCode 方法可以这样理解：它返回的就是根据对象的内存地址换算出的一个值。</p>
+<p>这样一来，当集合要添加新的元素时，先调用这个元素的 hashCode 方法，就一下子能定位到它应该放置的物理位置上。</p>
+<ul>
+<li>如果这个位置上没有元素，它就可以直接存储在这个位置上，不用再进行任何比较了；</li>
+<li>如果这个位置上已经有元素了，就调用它的 equals 方法与新元素进行比较，相同的话就不存了，不相同就散列其他的地址。</li>
+</ul>
+<p>这样一来实际调用 equals 方法的次数就大大降低了，几乎只需要一两次。</p>
+<blockquote>
+<p>如何理解 hashCode 的作用？</p>
+</blockquote>
+<p>从Object角度看，JVM每new一个Object，它都会将这个Object丢到一个Hash表中去，这样的话，下次做Object的比较或者取这个对象的时候（读取过程），它会根据对象的HashCode再从Hash表中取这个对象。这样做的目的是提高取对象的效率。若HashCode相同再去调用equal。</p>
+<blockquote>
+<p><strong>为什么重写equals方法时一定要重写hashCode方法？</strong></p>
+</blockquote>
+<p>参考链接：<a href="https://www.zhihu.com/question/607381556">为什么重写 equals方法时一定要重写hashCode方法？</a></p>
+<p>重写equals方法时一定要重写hashCode方法的原因是为了保证对象在使用散列集合时能够正确地进行存储和查找，在HashMap、HashTable等散列集合中，计算存储元素的位置的时候需要调用到hashCode方法来判断插入的位置而不是调用equals方法（节约性能），而一般类中都是调用equals方法来判断两个元素是否相等，如果只重写了equals方法而不重写hashCode方法，就会导致这个类可以用equals来判断是否相等，但是添加到不可重复集合中的时候无法正常工作。</p>
+<h2 id="深拷贝和浅拷贝"><a href="#深拷贝和浅拷贝" class="headerlink" title="深拷贝和浅拷贝?"></a>深拷贝和浅拷贝?</h2><p>详见：<a href="https://mp.weixin.qq.com/s?__biz=MzU4ODI1MjA3NQ==&mid=2247489983&idx=1&sn=fc1f623d49f3673e9e36510e769143ea&scene=21#wechat_redirect">一个工作三年的同事，居然还搞不清深拷贝、浅拷贝…</a></p>
+<ul>
+<li><strong>浅拷贝</strong>：仅拷贝被拷贝对象的成员变量的值，也就是基本数据类型变量的值，和引用数据类型变量的地址值，而对于引用类型变量指向的堆中的对象不会拷贝。</li>
+<li><strong>深拷贝</strong>：完全拷贝一个对象，拷贝被拷贝对象的成员变量的值，堆中的对象也会拷贝一份。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
 </search>
