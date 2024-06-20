@@ -1256,6 +1256,214 @@
       </tags>
   </entry>
   <entry>
+    <title>【设计模式】工厂模式</title>
+    <url>/posts/8343/</url>
+    <content><![CDATA[<h1 id="0-工厂模式简介"><a href="#0-工厂模式简介" class="headerlink" title="0. 工厂模式简介"></a>0. 工厂模式简介</h1><p>【工厂模式】属于创建型模式，它提供了一种创建对象的最佳方式。在工厂模式中，我们在创建对象时不会对客户端暴露创建逻辑，并且是通过使用一个共同的接口来指向新创建的对象。这样可以提高代码的可维护性和可扩展性。</p>
+<p><strong>工厂模式定义：</strong>定义了一个创建产品对象的工厂接口，将产品对象的实际创建工作推迟到具体子工厂类当中。这满足创建型模式中所要求的 “创建与使用相分离” 的特点。</p>
+<p><strong>PS：工厂模式适用于生成复杂对象的场景。如果对象较为简单，通过 new 即可完成创建，则不必使用工厂模式。使用工厂模式会引入一个工厂类，增加系统复杂度。</strong></p>
+<p>工厂模式有三种，分别是简单工厂模式（Simple Factory Pattern）、工厂方法模式（Factory Method Pattern）和抽象工程模式（Abstract Factory Pattern），本文将对其逐一进行介绍。</p>
+<h1 id="1-简单工厂模式"><a href="#1-简单工厂模式" class="headerlink" title="1. 简单工厂模式"></a>1. 简单工厂模式</h1><p>【简单工厂模式】，又叫做静态工厂模式（Static Factory Method），由一个工厂对象决定创建出哪一种产品类的实例，简单工厂模式的实质是由一个工厂类根据传入的参数，动态决定应该创建哪一个产品类。简单工厂模式属于创建型模式，<font color="red"><strong>但不属于GoF 23 种设计模式。</strong></font> </p>
+<h2 id="1-1-优缺点及应用场景"><a href="#1-1-优缺点及应用场景" class="headerlink" title="1.1 优缺点及应用场景"></a>1.1 优缺点及应用场景</h2><blockquote>
+<p>优点</p>
+</blockquote>
+<ul>
+<li><strong>封装性好：</strong>客户端不需要知道对象创建的细节，只需知道具体的工厂类和方法，降低了客户端与具体产品类的耦合度。</li>
+<li><strong>易于扩展：</strong>当需要添加新的产品时，只需要修改工厂类中的创建逻辑，而不需要修改客户端代码。</li>
+<li><strong>代码复用：</strong>如果产品之间的创建逻辑相似，可以复用工厂类中的代码，提高代码复用率。</li>
+<li><strong>隐藏了产品类的实现细节：</strong>客户端只需要知道产品的抽象接口，而不需要知道具体产品类的实现细节。</li>
+</ul>
+<blockquote>
+<p>缺点</p>
+</blockquote>
+<ul>
+<li><strong>不符合开闭原则：</strong>如果要增加新的产品，就需要修改工厂类的代码，这违反了开闭原则（对扩展开放，对修改关闭）。</li>
+<li><strong>工厂类职责过重：</strong>随着产品种类的增加，工厂类的代码会越来越复杂，这会增加代码的维护难度。</li>
+<li><strong>不易于实现产品族的扩展：</strong>简单工厂模式通常只用于创建同一类型的产品，如果要创建不同类型的产品（如产品族），就需要使用其他工厂模式，如【抽象工厂模式】。</li>
+</ul>
+<blockquote>
+<p>应用场景</p>
+</blockquote>
+<ul>
+<li><strong>创建对象较少且不经常改变时：</strong>当系统中只需要几种对象时，使用简单工厂模式可以很好地封装对象的创建过程，提高代码的复用性和可维护性。</li>
+<li><strong>客户端不关心对象的创建细节：</strong>当客户端只需要使用产品的抽象接口，而不需要知道具体产品类的实现细节时，可以使用简单工厂模式来隐藏对象的创建过程。</li>
+<li><strong>工厂类集中管理对象创建：</strong>当系统中存在多个产品类，且这些产品类的创建逻辑相似时，可以使用简单工厂模式来集中管理这些对象的创建过程，减少代码的冗余。</li>
+<li><strong>需要根据条件动态选择具体产品：</strong>在某些情况下，客户端需要根据某些条件动态地选择创建哪种具体产品。此时，可以使用简单工厂模式来封装这些条件判断逻辑，使得客户端代码更加简洁和清晰。</li>
+</ul>
+<h2 id="1-2-模式的结构"><a href="#1-2-模式的结构" class="headerlink" title="1.2 模式的结构"></a>1.2 模式的结构</h2><p>【简单工厂模式】包含以下几个主要角色：</p>
+<ul>
+<li><p>简单工厂（SimpleFactory）：是简单工厂模式的核心，负责实现创建所有实例的内部逻辑。工厂类的创建产品类的方法可以被外界直接调用，创建所需的产品对象。</p>
+</li>
+<li><p>抽象产品（Product）：是简单工厂创建的所有对象的父类，负责描述所有实例共有的公共接口。</p>
+</li>
+<li><p>具体产品（ConcreteProduct）：是简单工厂模式的创建目标。</p>
+</li>
+</ul>
+<p>【简单工厂模式】结构图：</p>
+<p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/DesignPatternIMG/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E7%BB%93%E6%9E%84%E5%9B%BE.png" alt="简单工厂模式的结构图"></p>
+<h2 id="1-3-代码实现"><a href="#1-3-代码实现" class="headerlink" title="1.3 代码实现"></a>1.3 代码实现</h2><p>首先需要一个抽象产品（一个接口）：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Product</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 商品信息展示</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>让具体的产品实现抽象产品：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConcreteProduct1</span> <span class="keyword">implements</span> <span class="title class_">Product</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是具体产品 1 号...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConcreteProduct2</span> <span class="keyword">implements</span> <span class="title class_">Product</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是具体产品 2 号...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后再编写一个简单工厂，根据不同的产品编号，生产出不同的产品：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">SimpleFactory</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 根据产品编号生产产品</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> productNum 产品编号</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 生产出的产品</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Product <span class="title function_">makeProduct</span><span class="params">(<span class="type">int</span> productNum)</span> &#123;</span><br><span class="line">        <span class="keyword">switch</span> (productNum) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ConcreteProduct1</span>();</span><br><span class="line">            <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ConcreteProduct2</span>();</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;未知的产品编号: &quot;</span> + productNum);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testSimpleFactory</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Product</span> <span class="variable">product1</span> <span class="operator">=</span> SimpleFactory.makeProduct(<span class="number">1</span>);</span><br><span class="line">    product1.show();</span><br><span class="line"></span><br><span class="line">    <span class="type">Product</span> <span class="variable">product2</span> <span class="operator">=</span> SimpleFactory.makeProduct(<span class="number">2</span>);</span><br><span class="line">    product2.show();</span><br><span class="line"></span><br><span class="line">    <span class="type">Product</span> <span class="variable">product3</span> <span class="operator">=</span> SimpleFactory.makeProduct(<span class="number">3</span>);</span><br><span class="line">    product3.show();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">我是具体产品 1 号...</span><br><span class="line">我是具体产品 2 号...</span><br><span class="line"></span><br><span class="line">java.lang.IllegalArgumentException: 未知的产品编号: 3</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-工厂方法模式"><a href="#2-工厂方法模式" class="headerlink" title="2. 工厂方法模式"></a>2. 工厂方法模式</h1><p>【简单工厂模式】违背了开闭原则，而【工厂方法模式】则是【简单工厂模式】的进一步深化，其不像【简单工厂模式】通过一个工厂来完成所有对象的创建，而是<strong>通过不同的工厂来创建不同的对象</strong>，每个对象由对应的工厂创建。即工厂方法模式在添加新产品时，只需要增加相应的具体产品类和具体工厂类，而不需要修改原有的代码，符合开闭原则。</p>
+<p><strong>定义：</strong>定义一个用于创建对象的接口，让子类决定将哪一个类实例化。工厂方法模式让一个类的实例化延迟到其子类。</p>
+<p><strong>核心思想</strong>：将对象的实例化操作延迟到子类中进行，通过定义一个创建对象的接口，由子类来决定实例化哪一个类。</p>
+<h2 id="2-1-优缺点及应用场景"><a href="#2-1-优缺点及应用场景" class="headerlink" title="2.1 优缺点及应用场景"></a>2.1 优缺点及应用场景</h2><blockquote>
+<p>优点</p>
+</blockquote>
+<ul>
+<li><strong>扩展性好</strong>：当需要添加新的产品时，只需要新增一个具体的产品类和对应的工厂类，而无需修改已有的代码，符合“开闭原则”。系统中类的个数虽然会成对增加（产品类和工厂类），但系统整体的扩展性良好。</li>
+<li><strong>降低耦合度：</strong>客户端只需要知道所使用产品的抽象接口和对应的工厂接口，而无需知道具体的产品类和工厂类的实现细节，降低了客户端与具体产品类之间的耦合度。</li>
+<li><strong>封装性好：</strong>将对象的创建过程封装在工厂类中，客户端通过工厂接口获取产品对象，而无需关心对象的创建细节。</li>
+<li><strong>多态性的应用：</strong>客户端通过调用工厂方法来创建对象，而无需关心具体的产品类，这样可以在不修改客户端代码的情况下，通过替换具体工厂类来创建不同的产品对象。</li>
+</ul>
+<blockquote>
+<p>缺点</p>
+</blockquote>
+<ul>
+<li><strong>类的个数增加：</strong>每增加一个新的产品，就需要增加一个具体的产品类和一个对应的工厂类，这在一定程度上增加了系统的复杂度。</li>
+<li><strong>引入抽象层：</strong>考虑到系统的可扩展性，需要引入抽象层，这可能会增加系统的抽象性和理解难度；在实现时可能需要用到DOM、反射等技术，增加了系统的实现难度。</li>
+<li><strong>可能增加系统开销：</strong>由于系统中类的个数增加，可能需要更多的类进行编译和运行，这可能会给系统带来一些额外的开销。</li>
+</ul>
+<blockquote>
+<p>应用场景</p>
+</blockquote>
+<ul>
+<li><strong>当一个类不知道它所必须创建的对象的类的时候</strong>：在工厂方法模式中，客户端只需要知道它需要什么样的产品，而不需要知道如何创建产品。</li>
+<li><strong>当一个类希望其子类决定在运行时创建的对象时</strong>：工厂方法允许子类决定实例化哪个类，这样就可以在运行时根据需要动态选择。</li>
+<li><strong>当系统需要产品对象的家族，但是产品的创建逻辑不固定时</strong>：通过工厂方法模式，可以在不修改已有代码的情况下，添加新的产品类和对应的工厂类。</li>
+<li><strong>当系统需要依赖抽象而不是具体类时</strong>：工厂方法模式通过使用抽象工厂和抽象产品，使得客户端与具体的产品类解耦，依赖于抽象。</li>
+</ul>
+<h2 id="2-2-模式的结构"><a href="#2-2-模式的结构" class="headerlink" title="2.2 模式的结构"></a>2.2 模式的结构</h2><p>【工厂方法模式】包含以下几个主要角色：</p>
+<ul>
+<li><p>抽象工厂（Abstract Factory）：提供了创建产品的接口，调用者通过它访问具体工厂的工厂方法 newProduct() 来创建产品。</p>
+</li>
+<li><p>具体工厂（ConcreteFactory）：主要是实现抽象工厂中的抽象方法，完成具体产品的创建。</p>
+</li>
+<li><p>抽象产品（Product）：定义了产品的规范，描述了产品的主要特性和功能。</p>
+</li>
+<li><p>具体产品（ConcreteProduct）：实现了抽象产品角色所定义的接口，由具体工厂来创建，它同具体工厂之间一一对应。</p>
+</li>
+</ul>
+<p>【工厂方法模式】结构图：</p>
+<p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/DesignPatternIMG/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F%E7%BB%93%E6%9E%84%E5%9B%BE.png" alt="工厂方法模式的结构图"></p>
+<h2 id="2-3-代码实现"><a href="#2-3-代码实现" class="headerlink" title="2.3 代码实现"></a>2.3 代码实现</h2><p>前面提到【工厂方法模式】是【简单工厂模式】的进一步深化，那我们就在【简单工厂模式】的代码实现上进一步完善。</p>
+<p>首先是引入抽象工厂（一个接口）：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">AbstractFactory</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 生产产品</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 生产出的产品</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    Product <span class="title function_">newProduct</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后针对不同的产品使用不同的工厂进行实现，我们前面有两件产品，因此需要两个具体的工厂（具体的工厂实现抽象工厂）：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConcreteFactory1</span> <span class="keyword">implements</span> <span class="title class_">AbstractFactory</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Product <span class="title function_">newProduct</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ConcreteProduct1</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConcreteFactory2</span> <span class="keyword">implements</span> <span class="title class_">AbstractFactory</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Product <span class="title function_">newProduct</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ConcreteProduct2</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testFactoryMethod</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">AbstractFactory</span> <span class="variable">factory1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ConcreteFactory1</span>();</span><br><span class="line">    <span class="type">Product</span> <span class="variable">product1</span> <span class="operator">=</span> factory1.newProduct();</span><br><span class="line">    product1.show();</span><br><span class="line"></span><br><span class="line">    <span class="type">AbstractFactory</span> <span class="variable">concreteFactory2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ConcreteFactory2</span>();</span><br><span class="line">    <span class="type">Product</span> <span class="variable">product2</span> <span class="operator">=</span> concreteFactory2.newProduct();</span><br><span class="line">    product2.show();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">我是具体产品 1 号...</span><br><span class="line">我是具体产品 2 号...</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-抽象工厂模式"><a href="#3-抽象工厂模式" class="headerlink" title="3. 抽象工厂模式"></a>3. 抽象工厂模式</h1><p>在上面使用工厂方法模式时会发现：一个抽象工厂类可以派生出多个具体工厂类，但每个具体工厂类只能创建一个具体产品类的实例，这就导致了如果产品的种类激增，那么也会使得类的数量激增。</p>
+<p>为了解决这个问题，我们可以使用【抽象工厂模式】。</p>
+<p>抽象工厂模式的定义：是一种为访问类提供一个创建一组相关或相互依赖对象的接口，且访问类无须指定所要产品的具体类就能得到同族的不同等级的产品的模式结构。</p>
+<p>可以简单理解为套娃，就是使用一个超级工厂创建其他二级工厂。在抽象工厂模式中，接口是负责创建一个相关对象的工厂，不需要显式指定它们的类。每个生成的工厂都能按照工厂方法模式提供对象。</p>
+<h2 id="3-1-产品等级与产品族"><a href="#3-1-产品等级与产品族" class="headerlink" title="3.1 产品等级与产品族"></a>3.1 产品等级与产品族</h2><p>首先我们需要弄明白两个概念：产品等级、产品族。</p>
+<p>如图：</p>
+<p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/DesignPatternIMG/%E4%BA%A7%E5%93%81%E7%AD%89%E7%BA%A7%E4%B8%8E%E4%BA%A7%E5%93%81%E6%97%8F.png" alt="产品等级与产品族"></p>
+<p>从这张图中可以看到：同一个牌子属于同一个产品族，同一个类型属于同一个产品等级。</p>
+<p>那这两个概念有啥用呢？</p>
+<p>【工厂方法模式】只考虑生产同等级的产品，而【抽象工厂模式】将考虑生产多等级的产品。</p>
+<p>也就是说，【抽象工厂模式】是【工厂方法模式】的升级版。</p>
+<p>但也并不是说直接上【抽象工厂模式】就完事了，使用【抽象工厂模式】一般需要满足以下条件： 系统的产品有多于一个的产品族，而系统只消费其中某一族的产品。</p>
+<h2 id="3-2-优缺点及应用场景"><a href="#3-2-优缺点及应用场景" class="headerlink" title="3.2 优缺点及应用场景"></a>3.2 优缺点及应用场景</h2><blockquote>
+<p>优点</p>
+</blockquote>
+<ul>
+<li><strong>封装性</strong>：抽象工厂模式隐藏了具体产品的创建细节，客户端只需要关心产品的抽象接口，无需知道具体的实现细节。</li>
+<li><strong>产品族支持</strong>：抽象工厂模式能够很方便地支持产品族（即一组相互关联或相互依赖的产品）的概念。客户端可以从同一个工厂中获取多个相关的产品对象，而不需要知道具体对象的类名。</li>
+<li><strong>扩展性</strong>：如果需要增加新的产品族，只需要增加一个新的工厂类即可，原有系统代码无需修改，符合开闭原则。</li>
+<li><strong>高内聚低耦合</strong>：将对象的创建与使用过程分离，降低了系统的耦合度，提高了系统的可维护性和可扩展性。</li>
+</ul>
+<blockquote>
+<p>缺点</p>
+</blockquote>
+<ul>
+<li><strong>系统复杂度增加</strong>：由于引入了抽象工厂层、抽象产品层、具体工厂层、具体产品层等多层结构，使得系统的复杂度增加。</li>
+<li><strong>产品族扩展困难</strong>：如果需要向产品族中添加新的产品，则可能需要修改抽象工厂接口及其所有实现类，这在一定程度上增加了系统的维护成本。</li>
+<li><strong>难以支持新种类的产品</strong>：抽象工厂模式是基于产品族来设计的，如果系统需要支持新的产品种类（即不属于任何现有产品族的产品），则需要对现有系统进行较大的修改，甚至可能需要引入新的抽象工厂接口和实现类。</li>
+</ul>
+<blockquote>
+<p>应用场景</p>
+</blockquote>
+<ul>
+<li><strong>当系统需要创建的对象存在多个产品族，并且系统一次只可能消费产品族中的某一族产品</strong>：例如，一个系统需要支持多种数据库访问方式（如MySQL、Oracle等），每种数据库访问方式都需要提供多种数据访问对象（如Connection、Statement等）。此时，可以使用抽象工厂模式来创建不同数据库访问方式下的数据访问对象。</li>
+<li><strong>系统的产品有多于一个的产品族，而系统只消费其中某一族的产品</strong>：在这种情况下，抽象工厂模式允许客户端在不知道具体实现的情况下，选择并使用一组产品。</li>
+<li><strong>同一家族中多个对象被设计在一起工作时</strong>：在这种情况下，客户端只需要关心产品的抽象接口，而不需要关心产品的具体实现和它们之间的依赖关系。抽象工厂模式可以确保客户端始终使用同一产品族中的对象，从而保证了产品之间的兼容性。</li>
+<li><strong>提供一个产品类的库，并且只显示他们的接口而不是实现</strong>：这种情况下，抽象工厂模式隐藏了产品的具体实现细节，只向客户端暴露产品的接口。</li>
+</ul>
+<h2 id="3-3-模式的结构"><a href="#3-3-模式的结构" class="headerlink" title="3.3 模式的结构"></a>3.3 模式的结构</h2><p>【抽象工厂模式】包含以下几个主要角色：</p>
+<ul>
+<li><p>抽象工厂（Abstract Factory）：声明了一组用于创建产品对象的方法，每个方法对应一种产品类型。抽象工厂可以是接口或抽象类。</p>
+</li>
+<li><p>具体工厂（Concrete Factory）：主要是实现抽象工厂中的多个抽象方法，完成具体产品的创建。</p>
+</li>
+<li><p>抽象产品（Product）：定义了产品的规范，描述了产品的主要特性和功能，抽象工厂模式有多个抽象产品。</p>
+</li>
+<li><p>具体产品（ConcreteProduct）：实现了抽象产品角色所定义的接口，由具体工厂来创建，它同具体工厂之间是多对一的关系。</p>
+</li>
+</ul>
+<p>【抽象工厂模式】结构图：</p>
+<p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/DesignPatternIMG/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E7%BB%93%E6%9E%84%E5%9B%BE.png" alt="抽象工厂模式的结构图"></p>
+<h2 id="3-4-代码实现"><a href="#3-4-代码实现" class="headerlink" title="3.4 代码实现"></a>3.4 代码实现</h2><p>根据上述的结构图，很容易完成代码的实现。首先需要两个抽象产品（表示两种产品等级、两种类型的产品）：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Product1</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 商品信息展示</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Product2</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 商品信息展示</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后针对每种抽象产品又有不同的实现，比如 <code>Product1</code> 有两种实现：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConcreteProduct11</span> <span class="keyword">implements</span> <span class="title class_">Product1</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是 Product1 类型的产品 1...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConcreteProduct12</span> <span class="keyword">implements</span> <span class="title class_">Product1</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是 Product1 类型的产品 2...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>Product2</code> 也有两种实现：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConcreteProduct21</span> <span class="keyword">implements</span> <span class="title class_">Product2</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是 Product2 类型的产品 1...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConcreteProduct22</span> <span class="keyword">implements</span> <span class="title class_">Product2</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是 Product2 类型的产品 2...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后我们需要一个抽象工厂，这个工厂可以生成不同产品等级的产品，也就是说可以生产处于同一个产品族（同一个牌子下的产品）：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">AbstractFactory</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 生产 Product1 类型的产品</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> Product1 类型的产品</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    Product1 <span class="title function_">newProduct1</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 生产 Product2 类型的产品</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> Product2 类型的产品</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    Product2 <span class="title function_">newProduct2</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>针对上述四件产品，需要两个工厂，每个工厂生产两种类型的产品，这两种产品属于同一个产品族（同一个品牌）：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConcreteFactory1</span> <span class="keyword">implements</span> <span class="title class_">AbstractFactory</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Product1 <span class="title function_">newProduct1</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ConcreteProduct11</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Product2 <span class="title function_">newProduct2</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ConcreteProduct21</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConcreteFactory2</span> <span class="keyword">implements</span> <span class="title class_">AbstractFactory</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Product1 <span class="title function_">newProduct1</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ConcreteProduct12</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Product2 <span class="title function_">newProduct2</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ConcreteProduct22</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>测试：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testAbstractFactory</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">AbstractFactory</span> <span class="variable">concreteFactory1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ConcreteFactory1</span>();</span><br><span class="line">    <span class="type">Product1</span> <span class="variable">product11</span> <span class="operator">=</span> concreteFactory1.newProduct1();</span><br><span class="line">    product11.show();</span><br><span class="line">    <span class="type">Product2</span> <span class="variable">product21</span> <span class="operator">=</span> concreteFactory1.newProduct2();</span><br><span class="line">    product21.show();</span><br><span class="line"></span><br><span class="line">    <span class="type">AbstractFactory</span> <span class="variable">concreteFactory2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ConcreteFactory2</span>();</span><br><span class="line">    <span class="type">Product1</span> <span class="variable">product12</span> <span class="operator">=</span> concreteFactory2.newProduct1();</span><br><span class="line">    product12.show();</span><br><span class="line">    <span class="type">Product2</span> <span class="variable">product22</span> <span class="operator">=</span> concreteFactory2.newProduct2();</span><br><span class="line">    product22.show();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">我是 Product1 类型的产品 1...</span><br><span class="line">我是 Product2 类型的产品 1...</span><br><span class="line">我是 Product1 类型的产品 2...</span><br><span class="line">我是 Product2 类型的产品 2...</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>DesignPattern</category>
+      </categories>
+      <tags>
+        <tag>DesignPattern</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>二分查找</title>
     <url>/posts/62106/</url>
     <content><![CDATA[<p>参考链接：</p>
@@ -11741,31 +11949,31 @@
 <td align="center">1</td>
 <td align="center">Jone</td>
 <td align="center">18</td>
-<td align="center"><a href="mailto:&#116;&#101;&#115;&#116;&#49;&#x40;&#x62;&#97;&#x6f;&#109;&#x69;&#x64;&#x6f;&#x75;&#46;&#x63;&#x6f;&#x6d;">&#116;&#101;&#115;&#116;&#49;&#x40;&#x62;&#97;&#x6f;&#109;&#x69;&#x64;&#x6f;&#x75;&#46;&#x63;&#x6f;&#x6d;</a></td>
+<td align="center"><a href="mailto:&#116;&#x65;&#x73;&#116;&#49;&#x40;&#98;&#x61;&#111;&#109;&#x69;&#x64;&#x6f;&#x75;&#x2e;&#x63;&#111;&#x6d;">&#116;&#x65;&#x73;&#116;&#49;&#x40;&#98;&#x61;&#111;&#109;&#x69;&#x64;&#x6f;&#x75;&#x2e;&#x63;&#111;&#x6d;</a></td>
 </tr>
 <tr>
 <td align="center">2</td>
 <td align="center">Jack</td>
 <td align="center">20</td>
-<td align="center"><a href="mailto:&#x74;&#x65;&#115;&#x74;&#x32;&#x40;&#98;&#97;&#x6f;&#x6d;&#x69;&#x64;&#111;&#x75;&#46;&#99;&#x6f;&#x6d;">&#x74;&#x65;&#115;&#x74;&#x32;&#x40;&#98;&#97;&#x6f;&#x6d;&#x69;&#x64;&#111;&#x75;&#46;&#99;&#x6f;&#x6d;</a></td>
+<td align="center"><a href="mailto:&#x74;&#x65;&#115;&#x74;&#50;&#x40;&#x62;&#97;&#111;&#109;&#105;&#x64;&#111;&#117;&#x2e;&#x63;&#x6f;&#x6d;">&#x74;&#x65;&#115;&#x74;&#50;&#x40;&#x62;&#97;&#111;&#109;&#105;&#x64;&#111;&#117;&#x2e;&#x63;&#x6f;&#x6d;</a></td>
 </tr>
 <tr>
 <td align="center">3</td>
 <td align="center">Tom</td>
 <td align="center">28</td>
-<td align="center"><a href="mailto:&#x74;&#101;&#x73;&#x74;&#51;&#x40;&#x62;&#x61;&#111;&#x6d;&#x69;&#x64;&#x6f;&#117;&#46;&#99;&#111;&#109;">&#x74;&#101;&#x73;&#x74;&#51;&#x40;&#x62;&#x61;&#111;&#x6d;&#x69;&#x64;&#x6f;&#117;&#46;&#99;&#111;&#109;</a></td>
+<td align="center"><a href="mailto:&#x74;&#101;&#x73;&#x74;&#51;&#x40;&#x62;&#97;&#111;&#x6d;&#105;&#x64;&#x6f;&#117;&#46;&#99;&#111;&#109;">&#x74;&#101;&#x73;&#x74;&#51;&#x40;&#x62;&#97;&#111;&#x6d;&#105;&#x64;&#x6f;&#117;&#46;&#99;&#111;&#109;</a></td>
 </tr>
 <tr>
 <td align="center">4</td>
 <td align="center">Sandy</td>
 <td align="center">21</td>
-<td align="center"><a href="mailto:&#116;&#101;&#x73;&#116;&#52;&#x40;&#98;&#97;&#x6f;&#x6d;&#105;&#x64;&#111;&#117;&#x2e;&#x63;&#111;&#x6d;">&#116;&#101;&#x73;&#116;&#52;&#x40;&#98;&#97;&#x6f;&#x6d;&#105;&#x64;&#111;&#117;&#x2e;&#x63;&#111;&#x6d;</a></td>
+<td align="center"><a href="mailto:&#116;&#101;&#x73;&#x74;&#x34;&#64;&#98;&#97;&#111;&#x6d;&#105;&#100;&#111;&#x75;&#x2e;&#99;&#x6f;&#109;">&#116;&#101;&#x73;&#x74;&#x34;&#64;&#98;&#97;&#111;&#x6d;&#105;&#100;&#111;&#x75;&#x2e;&#99;&#x6f;&#109;</a></td>
 </tr>
 <tr>
 <td align="center">5</td>
 <td align="center">Billie</td>
 <td align="center">24</td>
-<td align="center"><a href="mailto:&#116;&#x65;&#x73;&#116;&#53;&#x40;&#x62;&#97;&#x6f;&#109;&#x69;&#x64;&#111;&#x75;&#46;&#x63;&#111;&#109;">&#116;&#x65;&#x73;&#116;&#53;&#x40;&#x62;&#97;&#x6f;&#109;&#x69;&#x64;&#111;&#x75;&#46;&#x63;&#111;&#109;</a></td>
+<td align="center"><a href="mailto:&#116;&#x65;&#115;&#116;&#x35;&#x40;&#x62;&#x61;&#x6f;&#109;&#x69;&#x64;&#111;&#117;&#x2e;&#x63;&#111;&#109;">&#116;&#x65;&#115;&#116;&#x35;&#x40;&#x62;&#x61;&#x6f;&#109;&#x69;&#x64;&#111;&#117;&#x2e;&#x63;&#111;&#109;</a></td>
 </tr>
 </tbody></table>
 <blockquote>
@@ -16372,166 +16580,14 @@
 <li>websocket：一个 websocket 生命周期对应一个 Bean 。<strong>仅限于在WEB应用中使用。</strong></li>
 <li>自定义scope：很少使用。</li>
 </ul>
-<h1 id="4-GoF之工厂模式"><a href="#4-GoF之工厂模式" class="headerlink" title="4. GoF之工厂模式"></a>4. GoF之工厂模式</h1><ul>
-<li><p>设计模式：一种可以被重复利用的解决方案。</p>
-</li>
-<li><p>GoF（Gang of Four），中文名——四人组。</p>
-</li>
-<li><p>《Design Patterns: Elements of Reusable Object-Oriented Software》（即《设计模式》一书），1995年由 Erich Gamma、Richard Helm、Ralph Johnson 和 John Vlissides 合著。这几位作者常被称为”四人组（Gang of Four）”。</p>
-</li>
-<li><p>该书中描述了23种设计模式。我们平常所说的设计模式就是指这23种设计模式。</p>
-</li>
-<li><p>不过除了GoF23种设计模式之外，还有其它的设计模式，比如：JavaEE的设计模式（DAO模式、MVC模式等）。</p>
-</li>
-<li><p>GoF23种设计模式可分为三大类：</p>
-<ul>
-<li><strong>创建型</strong>（5个）：解决对象创建问题。<ul>
-<li>单例模式</li>
-<li>工厂方法模式</li>
-<li>抽象工厂模式</li>
-<li>建造者模式</li>
-<li>原型模式</li>
-</ul>
-</li>
-<li><strong>结构型</strong>（7个）：一些类或对象组合在一起的经典结构。<ul>
-<li>代理模式</li>
-<li>装饰模式</li>
-<li>适配器模式</li>
-<li>组合模式</li>
-<li>享元模式</li>
-<li>外观模式</li>
-<li>桥接模式</li>
-</ul>
-</li>
-<li><strong>行为型</strong>（11个）：解决类或对象之间的交互问题。<ul>
-<li>策略模式</li>
-<li>模板方法模式</li>
-<li>责任链模式</li>
-<li>观察者模式</li>
-<li>迭代子模式</li>
-<li>命令模式</li>
-<li>备忘录模式</li>
-<li>状态模式</li>
-<li>访问者模式</li>
-<li>中介者模式</li>
-<li>解释器模式</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>工厂模式是解决对象创建问题的，所以工厂模式属于创建型设计模式。这里为什么学习工厂模式呢？这是因为 Spring 框架底层使用了大量的工厂模式。</p>
-</li>
-</ul>
-<h2 id="4-1-工厂模式的三种形态"><a href="#4-1-工厂模式的三种形态" class="headerlink" title="4.1 工厂模式的三种形态"></a>4.1 工厂模式的三种形态</h2><p>工厂模式通常有三种形态：</p>
-<ul>
-<li>第一种：<strong>简单工厂模式（Simple Factory）：不属于23种设计模式之一。简单工厂模式又叫做：静态 工厂方法模式。简单工厂模式是工厂方法模式的一种特殊实现。</strong></li>
-<li>第二种：工厂方法模式（Factory Method）：是23种设计模式之一。</li>
-<li>第三种：抽象工厂模式（Abstract Factory）：是23种设计模式之一。</li>
-</ul>
-<h2 id="4-2-简单工厂模式"><a href="#4-2-简单工厂模式" class="headerlink" title="4.2 简单工厂模式"></a>4.2 简单工厂模式</h2><p>简单工厂模式的角色包括三个：</p>
-<ul>
-<li>抽象产品 角色</li>
-<li>具体产品 角色</li>
-<li>工厂类 角色</li>
-</ul>
-<p>简单工厂模式的代码如下：</p>
-<p>抽象产品角色：Weapon</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Weapon</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 所有的武器都有攻击行为</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">attack</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>具体产品角色：</p>
-<p>Tank</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Tank</span> <span class="keyword">extends</span> <span class="title class_">Weapon</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">attack</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;坦克开炮！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Fighter</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Fighter</span> <span class="keyword">extends</span> <span class="title class_">Weapon</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">attack</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;战斗机投下原子弹！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Dagger</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Dagger</span> <span class="keyword">extends</span> <span class="title class_">Weapon</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">attack</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;砍他丫的！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>工厂类角色：</p>
-<p>WeaponFactory</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WeaponFactory</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Weapon <span class="title function_">get</span><span class="params">(String weaponType)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (weaponType == <span class="literal">null</span> || weaponType.trim().length() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">Weapon</span> <span class="variable">weapon</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">&quot;TANK&quot;</span>.equals(weaponType)) &#123;</span><br><span class="line">            weapon = <span class="keyword">new</span> <span class="title class_">Tank</span>();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">&quot;FIGHTER&quot;</span>.equals(weaponType)) &#123;</span><br><span class="line">            weapon = <span class="keyword">new</span> <span class="title class_">Fighter</span>();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">&quot;DAGGER&quot;</span>.equals(weaponType)) &#123;</span><br><span class="line">            weapon = <span class="keyword">new</span> <span class="title class_">Dagger</span>();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;不支持该武器！&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> weapon;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>测试程序（客户端程序）：</p>
-<p>Client</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Client</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Weapon</span> <span class="variable">weapon1</span> <span class="operator">=</span> WeaponFactory.get(<span class="string">&quot;TANK&quot;</span>);</span><br><span class="line">        weapon1.attack();</span><br><span class="line"></span><br><span class="line">        <span class="type">Weapon</span> <span class="variable">weapon2</span> <span class="operator">=</span> WeaponFactory.get(<span class="string">&quot;FIGHTER&quot;</span>);</span><br><span class="line">        weapon2.attack();</span><br><span class="line"></span><br><span class="line">        <span class="type">Weapon</span> <span class="variable">weapon3</span> <span class="operator">=</span> WeaponFactory.get(<span class="string">&quot;DAGGER&quot;</span>);</span><br><span class="line">        weapon3.attack();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>执行结果</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">坦克开炮！</span><br><span class="line">战斗机投下原子弹！</span><br><span class="line">砍他丫的！</span><br></pre></td></tr></table></figure>
-
-<p>简单工厂模式的优点：</p>
-<ul>
-<li>客户端程序不需要关心对象的创建细节，需要哪个对象时，只需要向工厂索要即可，初步实现了责任的分离。客户端只负责“消费”，工厂负责“生产”。生产和消费分离。</li>
-</ul>
-<p>简单工厂模式的缺点：</p>
-<ul>
-<li>缺点1：工厂类集中了所有产品的创造逻辑，形成一个无所不知的全能类，有人把它叫做上帝类。显然工厂类非常关键，不能出问题，一旦出问题，整个系统瘫痪。</li>
-<li>缺点2：不符合OCP开闭原则，在进行系统扩展时，需要修改工厂类。</li>
-</ul>
-<p><strong>Spring中的BeanFactory就使用了简单工厂模式。</strong></p>
-<h2 id="4-3-工厂方法模式"><a href="#4-3-工厂方法模式" class="headerlink" title="4.3 工厂方法模式"></a>4.3 工厂方法模式</h2><p>工厂方法模式既保留了简单工厂模式的优点，同时又解决了简单工厂模式的缺点。</p>
-<p>工厂方法模式的角色包括：</p>
-<ul>
-<li><strong>抽象工厂角色</strong></li>
-<li><strong>具体工厂角色</strong></li>
-<li>抽象产品角色</li>
-<li>具体产品角色</li>
-</ul>
-<p>代码如下：</p>
-<p>抽象产品角色</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Weapon</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 所有武器都有攻击行为</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">attack</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>具体产品角色</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Gun</span> <span class="keyword">extends</span> <span class="title class_">Weapon</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">attack</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;开枪射击！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public class Fighter extends Weapon &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void attack() &#123;</span><br><span class="line">        System.out.println(&quot;战斗机发射核弹！&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>抽象工厂角色</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">WeaponFactory</span> &#123;</span><br><span class="line">    Weapon <span class="title function_">get</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>具体工厂角色</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GunFactory</span> <span class="keyword">implements</span> <span class="title class_">WeaponFactory</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Weapon <span class="title function_">get</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Gun</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FighterFactory</span> <span class="keyword">implements</span> <span class="title class_">WeaponFactory</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Weapon <span class="title function_">get</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Fighter</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>客户端程序</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Client</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">WeaponFactory</span> <span class="variable">factory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">GunFactory</span>();</span><br><span class="line">        <span class="type">Weapon</span> <span class="variable">weapon</span> <span class="operator">=</span> factory.get();</span><br><span class="line">        weapon.attack();</span><br><span class="line"></span><br><span class="line">        <span class="type">WeaponFactory</span> <span class="variable">factory1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FighterFactory</span>();</span><br><span class="line">        <span class="type">Weapon</span> <span class="variable">weapon1</span> <span class="operator">=</span> factory1.get();</span><br><span class="line">        weapon1.attack();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>执行客户端程序</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">开枪射击！</span><br><span class="line">战斗机发射核弹</span><br></pre></td></tr></table></figure>
-
-<p>如果想扩展一个新的产品，只要新增一个产品类，再新增一个该产品对应的工厂即可，例如新增：匕首。</p>
-<p>增加：具体产品角色</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Dagger</span> <span class="keyword">extends</span> <span class="title class_">Weapon</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">attack</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;砍丫的！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>增加：具体工厂角色</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DaggerFactory</span> <span class="keyword">implements</span> <span class="title class_">WeaponFactory</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Weapon <span class="title function_">get</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Dagger</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>客户端程序</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Client</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">WeaponFactory</span> <span class="variable">factory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">GunFactory</span>();</span><br><span class="line">        <span class="type">Weapon</span> <span class="variable">weapon</span> <span class="operator">=</span> factory.get();</span><br><span class="line">        weapon.attack();</span><br><span class="line"></span><br><span class="line">        <span class="type">WeaponFactory</span> <span class="variable">factory1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FighterFactory</span>();</span><br><span class="line">        <span class="type">Weapon</span> <span class="variable">weapon1</span> <span class="operator">=</span> factory1.get();</span><br><span class="line">        weapon1.attack();</span><br><span class="line"></span><br><span class="line">        <span class="type">WeaponFactory</span> <span class="variable">factory2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DaggerFactory</span>();</span><br><span class="line">        <span class="type">Weapon</span> <span class="variable">weapon2</span> <span class="operator">=</span> factory2.get();</span><br><span class="line">        weapon2.attack();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>执行结果如下</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">开枪射击！</span><br><span class="line">战斗机发射核弹！</span><br><span class="line">砍丫的！</span><br></pre></td></tr></table></figure>
-
-<p>我们可以看到在进行功能扩展的时候，不需要修改之前的源代码，显然工厂方法模式符合OCP原则。</p>
-<p>工厂方法模式的优点：</p>
-<ul>
-<li>一个调用者想创建一个对象，只要知道其名称就可以了。 </li>
-<li>扩展性高，如果想增加一个产品，只要扩展一个工厂类就可以。</li>
-<li>屏蔽产品的具体实现，调用者只关心产品的接口。</li>
-</ul>
-<p>工厂方法模式的缺点：</p>
-<ul>
-<li>每次增加一个产品时，都需要增加一个具体类和对象实现工厂，使得系统中类的个数成倍增加，在一定程度上增加了系统的复杂度，同时也增加了系统具体类的依赖。这并不是什么好事。</li>
-</ul>
-<h1 id="5-Bean的实例化方式"><a href="#5-Bean的实例化方式" class="headerlink" title="5. Bean的实例化方式"></a>5. Bean的实例化方式</h1><p>Spring为Bean提供了多种实例化方式，通常包括4种方式。（也就是说在 Spring 中为 Bean 对象的创建准备了多种方案，目的是：更加灵活）</p>
+<h1 id="4-Bean的实例化方式"><a href="#4-Bean的实例化方式" class="headerlink" title="4. Bean的实例化方式"></a>4. Bean的实例化方式</h1><p>Spring为Bean提供了多种实例化方式，通常包括4种方式。（也就是说在 Spring 中为 Bean 对象的创建准备了多种方案，目的是：更加灵活）</p>
 <ul>
 <li>第一种：通过构造方法实例化</li>
 <li>第二种：通过简单工厂模式实例化</li>
 <li>第三种：通过 <code>factory-bean</code> 实例化</li>
 <li>第四种：通过 <code>FactoryBean</code> 接口实例化</li>
 </ul>
-<h2 id="5-1-通过构造方法实例化"><a href="#5-1-通过构造方法实例化" class="headerlink" title="5.1 通过构造方法实例化"></a>5.1 通过构造方法实例化</h2><p>我们之前一直使用的就是这种方式。默认情况下，会调用 Bean 的无参数构造方法。</p>
+<h2 id="4-1-通过构造方法实例化"><a href="#4-1-通过构造方法实例化" class="headerlink" title="4.1 通过构造方法实例化"></a>4.1 通过构造方法实例化</h2><p>我们之前一直使用的就是这种方式。默认情况下，会调用 Bean 的无参数构造方法。</p>
 <p>a. 创建如下类</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">User</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;User类的无参数构造方法执行...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -16544,7 +16600,7 @@
 <p>d. 结果</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">User类的无参数构造方法执行...</span><br><span class="line">com.muyoukule.Bean.User@5d066c7d</span><br></pre></td></tr></table></figure>
 
-<h2 id="5-2-通过简单工厂模式实例化"><a href="#5-2-通过简单工厂模式实例化" class="headerlink" title="5.2 通过简单工厂模式实例化"></a>5.2 通过简单工厂模式实例化</h2><p>a. 创建如下类</p>
+<h2 id="4-2-通过简单工厂模式实例化"><a href="#4-2-通过简单工厂模式实例化" class="headerlink" title="4.2 通过简单工厂模式实例化"></a>4.2 通过简单工厂模式实例化</h2><p>a. 创建如下类</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Vip</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>b. 编写简单工厂模式当中的工厂类</p>
@@ -16559,7 +16615,7 @@
 <p>e. 执行结果</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">com.muyoukule.Bean.Vip@54e7df6a</span><br></pre></td></tr></table></figure>
 
-<h2 id="5-3-通过factory-bean实例化"><a href="#5-3-通过factory-bean实例化" class="headerlink" title="5.3 通过factory-bean实例化"></a>5.3 通过factory-bean实例化</h2><p>这种方式本质上是：通过工厂方法模式进行实例化。</p>
+<h2 id="4-3-通过factory-bean实例化"><a href="#4-3-通过factory-bean实例化" class="headerlink" title="4.3 通过factory-bean实例化"></a>4.3 通过factory-bean实例化</h2><p>这种方式本质上是：通过工厂方法模式进行实例化。</p>
 <p>a. 创建如下类</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Order</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -16575,7 +16631,7 @@
 <p>e. 执行结果</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">com.muyoukule.Bean.Order@32c4e8b2</span><br></pre></td></tr></table></figure>
 
-<h2 id="5-4-通过FactoryBean接口实例化"><a href="#5-4-通过FactoryBean接口实例化" class="headerlink" title="5.4 通过FactoryBean接口实例化"></a>5.4 通过FactoryBean接口实例化</h2><p>以上的第三种方式中，<code>factory-bean</code> 是我们自定义的，<code>factory-method</code> 也是我们自己定义的。</p>
+<h2 id="4-4-通过FactoryBean接口实例化"><a href="#4-4-通过FactoryBean接口实例化" class="headerlink" title="4.4 通过FactoryBean接口实例化"></a>4.4 通过FactoryBean接口实例化</h2><p>以上的第三种方式中，<code>factory-bean</code> 是我们自定义的，<code>factory-method</code> 也是我们自己定义的。</p>
 <p>在Spring中，当你编写的类直接实现 <code>FactoryBean</code> 接口之后，<code>factory-bean</code> 不需要指定了，f<code>actory-method</code> 也不需要指定了。</p>
 <p><code>factory-bean</code> 会自动指向实现 <code>FactoryBean</code> 接口的类，<code>factory-method</code> 会自动指向 <code>getObject()</code> 方法。</p>
 <p>a. 创建如下类</p>
@@ -16593,7 +16649,7 @@
 <p>e. 执行结果</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">com.muyoukule.Bean.Person@4f0100a7</span><br><span class="line">com.muyoukule.Bean.Person@4f0100a7</span><br></pre></td></tr></table></figure>
 
-<h2 id="5-5-BeanFactory和FactoryBean的区别"><a href="#5-5-BeanFactory和FactoryBean的区别" class="headerlink" title="5.5 BeanFactory和FactoryBean的区别"></a>5.5 BeanFactory和FactoryBean的区别</h2><blockquote>
+<h2 id="4-5-BeanFactory和FactoryBean的区别"><a href="#4-5-BeanFactory和FactoryBean的区别" class="headerlink" title="4.5 BeanFactory和FactoryBean的区别"></a>4.5 BeanFactory和FactoryBean的区别</h2><blockquote>
 <p>BeanFactory</p>
 </blockquote>
 <p>Spring IoC 容器的顶级对象，<code>BeanFactory</code> 被翻译为 “Bean工厂” ，在 Spring 的 IoC 容器中，“Bean工厂” 负责创建 Bean 对象。</p>
@@ -16607,7 +16663,7 @@
 <li>第一类：普通Bean</li>
 <li>第二类：工厂 Bean（记住：工厂 Bean 也是一种 Bean，只不过这种 Bean 比较特殊，它可以辅助 Spring 实例化其它 Bean 对象。）</li>
 </ul>
-<h2 id="5-6-注入自定义Date"><a href="#5-6-注入自定义Date" class="headerlink" title="5.6 注入自定义Date"></a>5.6 注入自定义Date</h2><p>我们前面说过，<code>java.util.Date</code> 在 Spring 中被当做简单类型，简单类型在注入的时候可以直接使用 value 属性或 value 标签来完成。但我们之前已经测试过了，对于Date类型来说，采用 value 属性或 value 标签赋值的时候，对日期字符串的格式要求非常严格，必须是这种格式的：Mon Oct 10 14:30:26 CST 2022。其他格式是不会被识别的。</p>
+<h2 id="4-6-注入自定义Date"><a href="#4-6-注入自定义Date" class="headerlink" title="4.6 注入自定义Date"></a>4.6 注入自定义Date</h2><p>我们前面说过，<code>java.util.Date</code> 在 Spring 中被当做简单类型，简单类型在注入的时候可以直接使用 value 属性或 value 标签来完成。但我们之前已经测试过了，对于Date类型来说，采用 value 属性或 value 标签赋值的时候，对日期字符串的格式要求非常严格，必须是这种格式的：Mon Oct 10 14:30:26 CST 2022。其他格式是不会被识别的。</p>
 <p>a. 创建如下类</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Setter</span></span><br><span class="line"><span class="meta">@ToString</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Student</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Date birth;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -16635,17 +16691,17 @@
 <p>c. 执行测试程序</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Student(birth=Mon Oct 11 00:00:00 CST 1999)</span><br></pre></td></tr></table></figure>
 
-<h1 id="6-Bean的生命周期"><a href="#6-Bean的生命周期" class="headerlink" title="6. Bean的生命周期"></a>6. Bean的生命周期</h1><h2 id="6-1-什么是Bean的生命周期"><a href="#6-1-什么是Bean的生命周期" class="headerlink" title="6.1 什么是Bean的生命周期"></a>6.1 什么是Bean的生命周期</h2><p>Spring其实就是一个管理Bean对象的工厂。它负责对象的创建，对象的销毁等。</p>
+<h1 id="5-Bean的生命周期"><a href="#5-Bean的生命周期" class="headerlink" title="5. Bean的生命周期"></a>5. Bean的生命周期</h1><h2 id="5-1-什么是Bean的生命周期"><a href="#5-1-什么是Bean的生命周期" class="headerlink" title="5.1 什么是Bean的生命周期"></a>5.1 什么是Bean的生命周期</h2><p>Spring其实就是一个管理Bean对象的工厂。它负责对象的创建，对象的销毁等。</p>
 <p>所谓的生命周期就是：对象从创建开始到最终销毁的整个过程。</p>
 <p>什么时候创建Bean对象？</p>
 <p>创建Bean对象的前后会调用什么方法？</p>
 <p>Bean对象什么时候销毁？</p>
 <p>Bean对象的销毁前后调用什么方法？</p>
-<h2 id="6-2-为什么要知道Bean的生命周期"><a href="#6-2-为什么要知道Bean的生命周期" class="headerlink" title="6.2 为什么要知道Bean的生命周期"></a>6.2 为什么要知道Bean的生命周期</h2><p>其实生命周期的本质是：在哪个时间节点上调用了哪个类的哪个方法。</p>
+<h2 id="5-2-为什么要知道Bean的生命周期"><a href="#5-2-为什么要知道Bean的生命周期" class="headerlink" title="5.2 为什么要知道Bean的生命周期"></a>5.2 为什么要知道Bean的生命周期</h2><p>其实生命周期的本质是：在哪个时间节点上调用了哪个类的哪个方法。</p>
 <p>我们需要充分的了解在这个生命线上，都有哪些特殊的时间节点。</p>
 <p>只有我们知道了特殊的时间节点都在哪，到时我们才可以确定代码写到哪。</p>
 <p>我们可能需要在某个特殊的时间点上执行一段特定的代码，这段代码就可以放到这个节点上。当生命线走到这里的时候，自然会被调用。</p>
-<h2 id="6-3-Bean的生命周期之5步"><a href="#6-3-Bean的生命周期之5步" class="headerlink" title="6.3 Bean的生命周期之5步"></a>6.3 Bean的生命周期之5步</h2><p>Bean 生命周期的管理，可以参考Spring的源码：<code>AbstractAutowireCapableBeanFactory</code> 类的 <code>doCreateBean()</code> 方法</p>
+<h2 id="5-3-Bean的生命周期之5步"><a href="#5-3-Bean的生命周期之5步" class="headerlink" title="5.3 Bean的生命周期之5步"></a>5.3 Bean的生命周期之5步</h2><p>Bean 生命周期的管理，可以参考Spring的源码：<code>AbstractAutowireCapableBeanFactory</code> 类的 <code>doCreateBean()</code> 方法</p>
 <p>Bean 生命周期可以粗略的划分为五大步：</p>
 <ul>
 <li>第一步：实例化Bean</li>
@@ -16674,7 +16730,7 @@
 <li>第二：<code>ClassPathXmlApplicationContext</code> 类才有 close() 方法。</li>
 <li>第三：配置文件中的 <code>init-method</code> 指定初始化方法。 <code>destroy-method</code> 指定销毁方法。</li>
 </ul>
-<h2 id="6-4-Bean生命周期之7步"><a href="#6-4-Bean生命周期之7步" class="headerlink" title="6.4 Bean生命周期之7步"></a>6.4 Bean生命周期之7步</h2><p>在以上的5步中，第3步是初始化 Bean ，如果你还想在初始化前和初始化后添加代码，可以加入“ Bean 后处理器”。</p>
+<h2 id="5-4-Bean生命周期之7步"><a href="#5-4-Bean生命周期之7步" class="headerlink" title="5.4 Bean生命周期之7步"></a>5.4 Bean生命周期之7步</h2><p>在以上的5步中，第3步是初始化 Bean ，如果你还想在初始化前和初始化后添加代码，可以加入“ Bean 后处理器”。</p>
 <p>a. 编写一个类实现 <code>BeanPostProcessor</code> 类，并且重写 <code>before</code> 和 <code>after</code> 方法：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LogBeanPostProcessor</span> <span class="keyword">implements</span> <span class="title class_">BeanPostProcessor</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">postProcessBeforeInitialization</span><span class="params">(Object bean, String beanName)</span> <span class="keyword">throws</span> BeansException &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Bean后处理器的before方法执行，即将开始初始化&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> bean;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">postProcessAfterInitialization</span><span class="params">(Object bean, String beanName)</span> <span class="keyword">throws</span> BeansException &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Bean后处理器的after方法执行，已完成初始化&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> bean;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -16685,7 +16741,7 @@
 <p>c. 执行测试程序</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.实例化Bean</span><br><span class="line">2.Bean属性赋值</span><br><span class="line">Bean后处理器的before方法执行，即将开始初始化</span><br><span class="line">3.初始化Bean</span><br><span class="line">Bean后处理器的after方法执行，已完成初始化</span><br><span class="line">4.使用Bean</span><br><span class="line">5.销毁Bean</span><br></pre></td></tr></table></figure>
 
-<h2 id="6-5-Bean生命周期之10步"><a href="#6-5-Bean生命周期之10步" class="headerlink" title="6.5 Bean生命周期之10步"></a>6.5 Bean生命周期之10步</h2><p>如果根据源码跟踪，可以划分更细粒度的步骤，10步：</p>
+<h2 id="5-5-Bean生命周期之10步"><a href="#5-5-Bean生命周期之10步" class="headerlink" title="5.5 Bean生命周期之10步"></a>5.5 Bean生命周期之10步</h2><p>如果根据源码跟踪，可以划分更细粒度的步骤，10步：</p>
 <p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/SSMIMG/accidence-spring/Bean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E4%B9%8B10%E6%AD%A5.png"></p>
 <p>上图中检查 Bean 是否实现了 <code>Aware</code> 的相关接口是什么意思？</p>
 <p>Aware 相关的接口包括：<code>BeanNameAware</code> 、<code>BeanClassLoaderAware</code> 、<code>BeanFactoryAware</code></p>
@@ -16719,7 +16775,7 @@
 <li><code>InitializingBean</code> 的方法早于 <code>init-method</code> 的执行。</li>
 <li><code>DisposableBean</code> 的方法早于 <code>destroy-method</code> 的执行。</li>
 </ul>
-<h2 id="6-6-Bean的作用域不同，管理方式不同"><a href="#6-6-Bean的作用域不同，管理方式不同" class="headerlink" title="6.6 Bean的作用域不同，管理方式不同"></a>6.6 Bean的作用域不同，管理方式不同</h2><p>Spring 根据 Bean 的作用域来选择管理方式。</p>
+<h2 id="5-6-Bean的作用域不同，管理方式不同"><a href="#5-6-Bean的作用域不同，管理方式不同" class="headerlink" title="5.6 Bean的作用域不同，管理方式不同"></a>5.6 Bean的作用域不同，管理方式不同</h2><p>Spring 根据 Bean 的作用域来选择管理方式。</p>
 <ul>
 <li>对于 <code>singleton</code> 作用域的 Bean，Spring 能够精确地知道该 Bean 何时被创建，何时初始化完成，以及何时被销毁；</li>
 <li>而对于 <code>prototype</code> 作用域的 Bean，Spring 只负责创建，当容器创建了 Bean 的实例后，Bean 的实例就交给客户端代码管理，Spring 容器将不再跟踪其生命周期。</li>
@@ -16731,7 +16787,7 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.实例化Bean</span><br><span class="line">2.Bean属性赋值</span><br><span class="line">3.bean名字：userBean</span><br><span class="line">3.类加载器：jdk.internal.loader.ClassLoaders$AppClassLoader@63947c6b</span><br><span class="line">3.Bean工厂：org.springframework.beans.factory.support.DefaultListableBeanFactory@1bae316d: defining beans [userBean,com.muyoukule.Bean.LogBeanPostProcessor#0]; root of factory hierarchy</span><br><span class="line">4.Bean后处理器的before方法执行，即将开始初始化</span><br><span class="line">5.afterPropertiesSet执行</span><br><span class="line">6.初始化Bean</span><br><span class="line">7.Bean后处理器的after方法执行，已完成初始化</span><br><span class="line">8.使用Bean</span><br></pre></td></tr></table></figure>
 
 <p>通过测试一目了然。只执行了前8步，第9和10都没有执行。</p>
-<h2 id="6-7-自己new的对象如何让Spring管理"><a href="#6-7-自己new的对象如何让Spring管理" class="headerlink" title="6.7 自己new的对象如何让Spring管理"></a>6.7 自己new的对象如何让Spring管理</h2><p>有些时候可能会遇到这样的需求，某个java对象是我们自己new的，然后我们希望这个对象被Spring容器管理，怎么实现？</p>
+<h2 id="5-7-自己new的对象如何让Spring管理"><a href="#5-7-自己new的对象如何让Spring管理" class="headerlink" title="5.7 自己new的对象如何让Spring管理"></a>5.7 自己new的对象如何让Spring管理</h2><p>有些时候可能会遇到这样的需求，某个java对象是我们自己new的，然后我们希望这个对象被Spring容器管理，怎么实现？</p>
 <p>a. 创建如下类</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Student</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -16741,7 +16797,7 @@
 <p>c. 结果</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">com.muyoukule.Bean.Student@6bdf28bb</span><br><span class="line">com.muyoukule.Bean.Student@6bdf28bb</span><br></pre></td></tr></table></figure>
 
-<h1 id="7-Bean的循环依赖问题"><a href="#7-Bean的循环依赖问题" class="headerlink" title="7. Bean的循环依赖问题"></a>7. Bean的循环依赖问题</h1><h2 id="7-1-什么是Bean的循环依赖"><a href="#7-1-什么是Bean的循环依赖" class="headerlink" title="7.1 什么是Bean的循环依赖"></a>7.1 什么是Bean的循环依赖</h2><p>A对象中有B属性。B对象中有A属性。这就是循环依赖。我依赖你，你也依赖我。</p>
+<h1 id="6-Bean的循环依赖问题"><a href="#6-Bean的循环依赖问题" class="headerlink" title="6. Bean的循环依赖问题"></a>6. Bean的循环依赖问题</h1><h2 id="6-1-什么是Bean的循环依赖"><a href="#6-1-什么是Bean的循环依赖" class="headerlink" title="6.1 什么是Bean的循环依赖"></a>6.1 什么是Bean的循环依赖</h2><p>A对象中有B属性。B对象中有A属性。这就是循环依赖。我依赖你，你也依赖我。</p>
 <p>比如：丈夫类Husband，妻子类Wife。Husband中有Wife的引用。Wife中有Husband的引用。</p>
 <p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/SSMIMG/accidence-spring/Bean%E7%9A%84%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96.png"></p>
 <p>Husband</p>
@@ -16750,7 +16806,7 @@
 <p>Wife</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Wife</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Husband husband;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="7-2-singleton下的set注入产生的循环依赖"><a href="#7-2-singleton下的set注入产生的循环依赖" class="headerlink" title="7.2 singleton下的set注入产生的循环依赖"></a>7.2 singleton下的set注入产生的循环依赖</h2><p>我们来编写程序，测试一下在 <code>singleton + setter</code> 的模式下产生的循环依赖，Spring是否能够解决？</p>
+<h2 id="6-2-singleton下的set注入产生的循环依赖"><a href="#6-2-singleton下的set注入产生的循环依赖" class="headerlink" title="6.2 singleton下的set注入产生的循环依赖"></a>6.2 singleton下的set注入产生的循环依赖</h2><p>我们来编写程序，测试一下在 <code>singleton + setter</code> 的模式下产生的循环依赖，Spring是否能够解决？</p>
 <p>a. 给上面的类添加方法</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Getter</span></span><br><span class="line"><span class="meta">@Setter</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Husband</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Wife wife;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// toString()方法重写时需要注意：不能直接输出wife，输出wife.getName()。要不然会出现递归导致的栈内存溢出错误。</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Husband&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, wife=&quot;</span> + wife.getName() +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Getter</span></span><br><span class="line"><span class="meta">@Setter</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Wife</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Husband husband;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// toString()方法重写时需要注意：不能直接输出husband，输出husband.getName()。要不然会出现递归导致的栈内存溢出错误。</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Wife&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, husband=&quot;</span> + husband.getName() +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -16764,7 +16820,7 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Husband&#123;name=&#x27;张三&#x27;, wife=小花&#125;</span><br><span class="line">Wife&#123;name=&#x27;小花&#x27;, husband=张三&#125;</span><br></pre></td></tr></table></figure>
 
 <p>通过测试得知：在 <code>singleton  +  set</code> 注入的情况下，循环依赖是没有问题的。Spring 可以解决这个问题。</p>
-<h2 id="7-3-prototype下的set注入产生的循环依赖"><a href="#7-3-prototype下的set注入产生的循环依赖" class="headerlink" title="7.3 prototype下的set注入产生的循环依赖"></a>7.3 prototype下的set注入产生的循环依赖</h2><p>我们再来测试一下：<code>prototype + set</code> 注入的方式下，循环依赖会不会出现问题？</p>
+<h2 id="6-3-prototype下的set注入产生的循环依赖"><a href="#6-3-prototype下的set注入产生的循环依赖" class="headerlink" title="6.3 prototype下的set注入产生的循环依赖"></a>6.3 prototype下的set注入产生的循环依赖</h2><p>我们再来测试一下：<code>prototype + set</code> 注入的方式下，循环依赖会不会出现问题？</p>
 <p>a. 修改<code>spring.xml</code></p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;husbandBean&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.muyoukule.Bean.Husband&quot;</span> <span class="attr">scope</span>=<span class="string">&quot;prototype&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;张三&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;wife&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;wifeBean&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;wifeBean&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.muyoukule.Bean.Wife&quot;</span> <span class="attr">scope</span>=<span class="string">&quot;prototype&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;小花&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;husband&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;husbandBean&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -16775,7 +16831,7 @@
 <p>大家可以测试一下，以上两个 Bean，如果其中一个是 <code>singleton</code> ，另一个是 <code>prototype</code> ，是没有问题的。</p>
 <p>为什么两个Bean都是 <code>prototype</code> 时会出错呢？</p>
 <p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/SSMIMG/accidence-spring/%E4%B8%A4%E4%B8%AABean%E9%83%BD%E6%98%AFprototype%E6%97%B6%E5%87%BA%E9%94%99%E7%9A%84%E5%8E%9F%E5%9B%A0.png"></p>
-<h2 id="7-4-singleton下的构造注入产生的循环依赖"><a href="#7-4-singleton下的构造注入产生的循环依赖" class="headerlink" title="7.4 singleton下的构造注入产生的循环依赖"></a>7.4 singleton下的构造注入产生的循环依赖</h2><p>我们再来测试一下 <code>singleton + 构造注入</code> 的方式下，spring是否能够解决这种循环依赖。</p>
+<h2 id="6-4-singleton下的构造注入产生的循环依赖"><a href="#6-4-singleton下的构造注入产生的循环依赖" class="headerlink" title="6.4 singleton下的构造注入产生的循环依赖"></a>6.4 singleton下的构造注入产生的循环依赖</h2><p>我们再来测试一下 <code>singleton + 构造注入</code> 的方式下，spring是否能够解决这种循环依赖。</p>
 <p>a. 创建如下类</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Getter</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="meta">@ToString</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Husband</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Wife wife;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Getter</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="meta">@ToString</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Wife</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Husband husband;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -16788,7 +16844,7 @@
 <p>d. 结果</p>
 <p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/SSMIMG/accidence-spring/%E6%8F%90%E7%A4%BA%E4%BA%A7%E7%94%9F%E4%BA%86%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96.png"></p>
 <p>和上一个测试结果相同，都是提示产生了循环依赖，并且Spring是无法解决这种循环依赖的。这是通过构造方法注入导致的：因为构造方法注入会导致实例化对象的过程和对象属性赋值的过程没有分离开，必须在一起完成。</p>
-<h2 id="7-5-Spring解决循环依赖的机理"><a href="#7-5-Spring解决循环依赖的机理" class="headerlink" title="7.5 Spring解决循环依赖的机理"></a>7.5 Spring解决循环依赖的机理</h2><p>Spring 为什么可以解决 <code>set + singleton</code> 模式下循环依赖？</p>
+<h2 id="6-5-Spring解决循环依赖的机理"><a href="#6-5-Spring解决循环依赖的机理" class="headerlink" title="6.5 Spring解决循环依赖的机理"></a>6.5 Spring解决循环依赖的机理</h2><p>Spring 为什么可以解决 <code>set + singleton</code> 模式下循环依赖？</p>
 <p>根本的原因在于：这种方式可以做到将“实例化 Bean ”和“给 Bean 属性赋值”这两个动作分开去完成。</p>
 <ul>
 <li><p>实例化 Bean 的时候：调用无参数构造方法来完成。此时可以先不给属性赋值，可以提前将该 Bean 对象“曝光”给外界。</p>
@@ -18171,7 +18227,7 @@
 <p>安装完 Git 后首先要做的事情是设置用户名和 email 地址。这非常重要，因为每次 Git 提交都会使用该信息，它被永远的嵌入到了提交中。<font color="red"><strong>所以！！！是一定要配置的！！！</strong></font></p>
 <p>否则就会出现如下提示：</p>
 <p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/ToolsIMG/Git/Git%E6%9C%AA%E8%AE%BE%E7%BD%AE%E5%90%8D%E7%A7%B0%E5%92%8C%E9%82%AE%E7%AE%B1.png"></p>
-<p>此时需要按照下面两个命令来设置用户名🏃和邮箱📧( muyoukule 是我的用户名，<a href="mailto:&#x79;&#x6f;&#x75;&#x72;&#x5f;&#101;&#109;&#97;&#105;&#x6c;&#64;&#101;&#120;&#x61;&#109;&#x70;&#x6c;&#x65;&#46;&#x63;&#111;&#x6d;">&#x79;&#x6f;&#x75;&#x72;&#x5f;&#101;&#109;&#97;&#105;&#x6c;&#64;&#101;&#120;&#x61;&#109;&#x70;&#x6c;&#x65;&#46;&#x63;&#111;&#x6d;</a> 是邮箱，你需要设置属于你自己的用户名和邮箱)。</p>
+<p>此时需要按照下面两个命令来设置用户名🏃和邮箱📧( muyoukule 是我的用户名，<a href="mailto:&#x79;&#111;&#x75;&#114;&#95;&#101;&#109;&#x61;&#x69;&#x6c;&#64;&#x65;&#120;&#97;&#x6d;&#x70;&#x6c;&#101;&#46;&#99;&#x6f;&#x6d;">&#x79;&#111;&#x75;&#114;&#95;&#101;&#109;&#x61;&#x69;&#x6c;&#64;&#x65;&#120;&#97;&#x6d;&#x70;&#x6c;&#101;&#46;&#99;&#x6f;&#x6d;</a> 是邮箱，你需要设置属于你自己的用户名和邮箱)。</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global user.name muyoukule</span><br><span class="line">git config --global user.email your_email@example.com</span><br></pre></td></tr></table></figure>
 
 <p>如果使用了 <code>--global</code> 选项，表示设置了全局的用户名和邮箱。如果希望在一个特定的项目中使用不同的用户名和邮箱，可以在该项目中运行该命令而不添加 –global 选项。总之 <code>--global</code> 为全局配置，不加为某个项目的特定配置。</p>
