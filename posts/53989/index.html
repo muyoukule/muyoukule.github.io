@@ -1,0 +1,481 @@
+<!DOCTYPE html><html class="hide-aside" lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【设计模式】策略模式 | muyoukule</title><meta name="author" content="木又枯了"><meta name="copyright" content="木又枯了"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 定义及特点策略模式定义了一系列算法，并将它们封装起来，使它们可以相互替换。这些算法被封装在独立的策略类中，客户端通过策略接口来调用算法，而不需要知道具体的算法实现。这样，算法的变化就不会影响到使用这些算法的客户，从而实现了算法与客户端的解耦。  优点   算法的自由切换：策略模式使得算法可以独立于使用它们的客户端而变化，从而可以在运行时动态地切换算法。 避免使用多重条件语句：通过将算法封装在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【设计模式】策略模式">
+<meta property="og:url" content="https://zz.muyoukule.cn/posts/53989/index.html">
+<meta property="og:site_name" content="muyoukule">
+<meta property="og:description" content="1. 定义及特点策略模式定义了一系列算法，并将它们封装起来，使它们可以相互替换。这些算法被封装在独立的策略类中，客户端通过策略接口来调用算法，而不需要知道具体的算法实现。这样，算法的变化就不会影响到使用这些算法的客户，从而实现了算法与客户端的解耦。  优点   算法的自由切换：策略模式使得算法可以独立于使用它们的客户端而变化，从而可以在运行时动态地切换算法。 避免使用多重条件语句：通过将算法封装在">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/Source/CoverIMG/cover-strategy.png">
+<meta property="article:published_time" content="2024-07-28T09:13:00.000Z">
+<meta property="article:modified_time" content="2024-07-28T09:13:00.000Z">
+<meta property="article:author" content="木又枯了">
+<meta property="article:tag" content="DesignPattern">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/Source/CoverIMG/cover-strategy.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zz.muyoukule.cn/posts/53989/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"距离本文上次更新已经过去","messageNext":"天，请注意时效性。"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":10,"languages":{"author":"作者: 木又枯了","link":"链接: ","source":"来源: muyoukule","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【设计模式】策略模式',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-28 17:13:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 22
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="https://jsd.proxy.aks.moe/gh/muyoukule/blog-static-resource/css/custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://jsd.proxy.aks.moe/gh/muyoukule/blog-static-resource/css/progress_bar.css"><link rel="stylesheet" href="https://cdn1.tianli0.top/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><div id="myscoll"></div><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/animate.min.css" media="print" onload="this.media='screen'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"></head><body><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><div class="loading-img"></div><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+document.addEventListener('pjax:send', () => {
+  Pace.restart()
+})
+</script><link rel="stylesheet" href="/css/progress_bar.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/essay/"><i class="fa-fw fas fa-comment-dots"></i><span> 哔哔</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-heart"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-home-lg"></i><span> 关于本站</span></a></li><li><a class="site-page child" href="/me/"><i class="fa-fw fas fa-address-card"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/crazy/"><i class="fa-fw fas fa-heart"></i><span> 测试</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/Source/CoverIMG/cover-strategy.png')"><nav id="nav"><span id="blog-info"><a href="/" title="muyoukule"><span class="site-name">muyoukule</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/essay/"><i class="fa-fw fas fa-comment-dots"></i><span> 哔哔</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-heart"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-home-lg"></i><span> 关于本站</span></a></li><li><a class="site-page child" href="/me/"><i class="fa-fw fas fa-address-card"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/crazy/"><i class="fa-fw fas fa-heart"></i><span> 测试</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【设计模式】策略模式</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-07-28T09:13:00.000Z" title="发表于 2024-07-28 17:13:00">2024-07-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-28T09:13:00.000Z" title="更新于 2024-07-28 17:13:00">2024-07-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/DesignPattern/">DesignPattern</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3856</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【设计模式】策略模式"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="1-定义及特点"><a href="#1-定义及特点" class="headerlink" title="1. 定义及特点"></a>1. 定义及特点</h1><p>策略模式定义了一系列算法，并将它们封装起来，使它们可以相互替换。这些算法被封装在独立的策略类中，客户端通过策略接口来调用算法，而不需要知道具体的算法实现。这样，算法的变化就不会影响到使用这些算法的客户，从而实现了算法与客户端的解耦。</p>
+<blockquote>
+<p>优点</p>
+</blockquote>
+<ul>
+<li><strong>算法的自由切换</strong>：策略模式使得算法可以独立于使用它们的客户端而变化，从而可以在运行时动态地切换算法。</li>
+<li><strong>避免使用多重条件语句</strong>：通过将算法封装在独立的策略类中，可以避免在客户端代码中使用大量的 <code>if-else</code> 或 <code>switch</code> 语句来选择算法，从而提高代码的可读性和可维护性。</li>
+<li><strong>提高扩展性</strong>：当需要添加新的算法时，只需要新增一个策略类实现策略接口即可，无需修改原有的代码，符合开闭原则（对扩展开放，对修改关闭）。</li>
+<li><strong>算法的可重用性</strong>：策略模式中的算法被封装在独立的类中，可以被多个客户端重复使用，提高了算法的可重用性。</li>
+<li><strong>算法的保密性和安全性</strong>：客户端只需要知道策略接口，而不需要知道具体的算法实现，这在一定程度上提高了算法的保密性和安全性。</li>
+</ul>
+<blockquote>
+<p>缺点</p>
+</blockquote>
+<ul>
+<li><strong>客户端必须了解所有策略</strong>：客户端必须知道所有的策略类，并自行决定使用哪一个策略类。这意味着客户端需要理解这些算法的区别，以便在适当的时候选择正确的算法。这可能会增加客户端的复杂性。</li>
+<li><strong>增加对象的数目</strong>：策略模式将每个算法都封装在独立的类中，如果算法很多，那么就会产生大量的策略类。这可能会增加系统中对象的数量，从而增加系统的复杂性和维护成本。</li>
+<li><strong>策略类的设计难度</strong>：设计合理的策略类接口和具体的策略类需要一定的技巧和经验。如果设计不当，可能会导致策略类之间的耦合度过高，从而影响系统的灵活性和可扩展性。</li>
+</ul>
+<h1 id="2-适用场景"><a href="#2-适用场景" class="headerlink" title="2. 适用场景"></a>2. 适用场景</h1><p>策略模式适用于以下场景：</p>
+<ul>
+<li>存在多种算法或行为，且需要根据不同条件或需求进行切换。</li>
+<li>算法或行为频繁变化，且这些变化可能影响到多个客户端。</li>
+<li>需要将算法或行为封装起来，以提高代码的模块化和可重用性。</li>
+<li>系统需要支持可扩展性，能够在不修改现有代码的情况下添加新的算法或行为。</li>
+<li>算法或行为具有相似的接口，但实现不同。</li>
+<li>数据处理存在多种方式，且这些方式需要根据数据的不同特性或需求进行选择。</li>
+<li>业务逻辑复杂且规则频繁变更的系统中，用于封装不同的业务规则。</li>
+</ul>
+<h1 id="3-简单应用"><a href="#3-简单应用" class="headerlink" title="3. 简单应用"></a>3. 简单应用</h1><h2 id="3-1-场景假设"><a href="#3-1-场景假设" class="headerlink" title="3.1 场景假设"></a>3.1 场景假设</h2><p>假设你经营着一家餐厅，为了吸引顾客，你决定在一段时间内对菜单上的所有菜品进行折扣促销。最初，你决定所有菜品都享受8折优惠。</p>
+<p>顾客来点餐时，服务员会根据菜单上的原价，简单地乘以0.8来计算折扣后的价格。比如，一道原价100元的菜品，现在只需支付80元。</p>
+<p>然而，促销活动进行了一段时间后，你发现8折的优惠力度过大，影响了餐厅的利润。于是，你决定紧急调整折扣策略，改为9折优惠。这时，服务员需要记住新的折扣率，并在计算价格时改用0.9来乘以原价。</p>
+<p>但好景不长，随着市场竞争的加剧和你对利润的追求，你可能需要频繁地调整折扣策略。比如，为了吸引更多的家庭顾客，你可能推出“满300元减50元”的优惠活动。这时，服务员就需要根据消费金额的不同，选择不同的折扣计算方式，这无疑增加了出错的概率。</p>
+<p>更重要的是，如果你的餐厅有多个分店，每个分店都可能有自己的促销活动，而每个活动都需要服务员记住不同的折扣计算方式。这不仅增加了培训成本，还可能导致服务不一致，影响顾客体验。</p>
+<p>这显然不是一种很好的解决方式。</p>
+<h2 id="3-2-解决方案"><a href="#3-2-解决方案" class="headerlink" title="3.2 解决方案"></a>3.2 解决方案</h2><p>那么应该怎么解决这个问题呢？我们可以这样做：</p>
+<p>想象我们拥有一个类似“锦囊”的机制，每个“锦囊”中都封装着一种计算商品价格的算法。当遇到不同的价格计算需求时，我们只需选择并打开相应的“锦囊”即可。</p>
+<p>为了实现这种机制，我们可以定义一个接口（或抽象类），该接口声明了所有价格计算算法所共有的方法。然后，我们为每一种具体的价格计算方式实现这个接口，每个实现都可以看作是一个“锦囊”。</p>
+<p>为了在应用中使用这些“锦囊”，我们还需要一个上下文类（Context），它持有一个接口类型的成员变量，这个成员变量在运行时可以指向任何一个实现了价格计算接口的对象。上下文类提供了一个接口来设置这个成员变量的值（即选择“锦囊”），并允许客户通过该接口来执行价格计算。</p>
+<p>通过这种方式，我们实现了算法的选择与使用的解耦。高层模块（即需要计算价格的模块）不需要直接知道具体使用了哪种价格计算算法，它只需要通过上下文类来调用算法即可。这种设计不仅提高了系统的灵活性，还使得算法的变化不会影响到其他部分的代码，从而降低了系统的维护成本。</p>
+<h2 id="3-3-代码实现"><a href="#3-3-代码实现" class="headerlink" title="3.3 代码实现"></a>3.3 代码实现</h2><blockquote>
+<p>先准备一个折扣策略接口，定义了所有折扣策略必须实现的计算方法：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 折扣策略接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">DiscountStrategy</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 计算折扣</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">calculateDiscount</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>然后编写折扣方法的具体实现类，编写不同的折扣方案：</p>
+</blockquote>
+<p>8折折扣策略实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EightyPercentOffStrategy</span> <span class="keyword">implements</span> <span class="title class_">DiscountStrategy</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">calculateDiscount</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;8折策略&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>9折折扣策略实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">NinetyPercentOffStrategy</span> <span class="keyword">implements</span> <span class="title class_">DiscountStrategy</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">calculateDiscount</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;9折策略&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>定义上下文类，用于管理折扣策略：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DiscountContext</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 当前使用的折扣策略</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> DiscountStrategy strategy; </span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 构造方法，初始化折扣策略</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> strategy 初始的折扣策略</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">DiscountContext</span><span class="params">(DiscountStrategy strategy)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.strategy = strategy;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 应用折扣策略计算折扣后的价格</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">applyDiscount</span><span class="params">()</span> &#123;</span><br><span class="line">        strategy.calculateDiscount();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>测试：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">testDiscount</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// 8折策略</span></span><br><span class="line">    <span class="type">DiscountContext</span> <span class="variable">contextA</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DiscountContext</span>(<span class="keyword">new</span> <span class="title class_">EightyPercentOffStrategy</span>());</span><br><span class="line">    contextA.applyDiscount();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 9折策略</span></span><br><span class="line">    <span class="type">DiscountContext</span> <span class="variable">contextB</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DiscountContext</span>(<span class="keyword">new</span> <span class="title class_">NinetyPercentOffStrategy</span>());</span><br><span class="line">    contextB.applyDiscount();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">8折策略</span><br><span class="line">9折策略</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-4-模式的结构"><a href="#3-4-模式的结构" class="headerlink" title="3.4 模式的结构"></a>3.4 模式的结构</h2><p>策略模式是准备一组算法，并将这组算法封装到一系列的策略类里面，作为一个抽象策略类的子类。策略模式的重心不是如何实现算法，而是如何组织这些算法，从而让程序结构更加灵活，具有更好的维护性和扩展性，现在我们来分析其基本结构和实现方法。</p>
+<p>策略模式通常包括三个角色：</p>
+<ul>
+<li>策略接口（Strategy）：定义所有支持的算法的公共接口。</li>
+<li>具体策略（ConcreteStrategy）：封装了具体的算法或行为，并实现了策略接口。</li>
+<li>上下文（Context）：接受客户的请求，随后把请求委托给某一个策略类。</li>
+</ul>
+<p>策略模式结构图：</p>
+<p><img src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/DesignPatternIMG/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%BB%93%E6%9E%84%E5%9B%BE.png" alt="策略模式的结构图"></p>
+<h1 id="4-鸭子案例"><a href="#4-鸭子案例" class="headerlink" title="4. 鸭子案例"></a>4. 鸭子案例</h1><h2 id="4-1-场景假设"><a href="#4-1-场景假设" class="headerlink" title="4.1 场景假设"></a>4.1 场景假设</h2><p>假设有如下三种鸭子：</p>
+<ul>
+<li><p>野鸭：会飞、会叫、会游泳。</p>
+</li>
+<li><p>玩具鸭：会叫、会飞，不能游泳。</p>
+</li>
+<li><p>北京烤鸭：只能被吃，其他啥都不会。</p>
+</li>
+</ul>
+<p>我应该怎么描述它们呢？</p>
+<h2 id="4-2-解决方案"><a href="#4-2-解决方案" class="headerlink" title="4.2 解决方案"></a>4.2 解决方案</h2><p>我们可以先写一个 <code>Duck</code> 抽象类，里面定义一些与鸭子行为相关的方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Duck</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 展示鸭子信息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">display</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">quack</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;鸭子会叫 ~~&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">swim</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;鸭子会下水 ~~&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">fly</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;鸭子会上天 ~~&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>具体的鸭子只需要继承这个类，然后针对自己所具备的特性进行方法的重写即可：</p>
+<p>野鸭会飞、会叫、会游泳，所以：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WildDuck</span> <span class="keyword">extends</span> <span class="title class_">Duck</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">display</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是一只野鸭！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而玩具鸭不能游泳，因此需要重写 <code>swim()</code> 方法，抛出异常：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ToyDuck</span> <span class="keyword">extends</span> <span class="title class_">Duck</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">display</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是一只玩具鸭！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">swim</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>北京烤鸭啥都不会，所以需要重写所有方法并抛出异常：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PekingDuck</span> <span class="keyword">extends</span> <span class="title class_">Duck</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">display</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是一只北京烤鸭！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">quack</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">swim</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">fly</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中的问题显而易见：</p>
+<ol>
+<li><p>首先所有鸭子都继承了 <code>Duck</code> 类，让所有鸭子都会飞、都会叫、都会游泳，这显然是不对的。</p>
+</li>
+<li><p>修改 <code>Duck</code> 超类可能影响所有继承它的子类。</p>
+</li>
+<li><p>针对第一个问题可以采用方法的重写来解决，但是如果遇到像北京烤鸭这种，需要重写或覆盖所有相关方法以适应其特性。</p>
+</li>
+</ol>
+<p>这个时候就需要使用到 <strong>策略模式</strong> 来解决。</p>
+<h2 id="4-3-策略模式解决"><a href="#4-3-策略模式解决" class="headerlink" title="4.3 策略模式解决"></a>4.3 策略模式解决</h2><p>与前面简单应用时一样，先抽象出具体的行为，然后利用接口来编码。</p>
+<blockquote>
+<p>先编写鸭子不同行为的接口：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">FlyBehavior</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 鸭子飞</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">fly</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">QuackBehavior</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 鸭子叫</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">quack</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">SwimBehavior</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 鸭子游泳</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">swim</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>改造抽象类，使用定义的行为接口：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Duck</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> FlyBehavior flyBehavior;</span><br><span class="line">    <span class="keyword">public</span> SwimBehavior swimBehavior;</span><br><span class="line">    <span class="keyword">public</span> QuackBehavior quackBehavior;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 展示鸭子信息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">display</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">quack</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (quackBehavior != <span class="literal">null</span>) &#123;</span><br><span class="line">            quackBehavior.quack();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">swim</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (swimBehavior != <span class="literal">null</span>) &#123;</span><br><span class="line">            swimBehavior.swim();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">fly</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (flyBehavior != <span class="literal">null</span>) &#123;</span><br><span class="line">            flyBehavior.fly();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>编写具体鸭子的具体行为：</p>
+</blockquote>
+<p>野鸭：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WildDuck</span> <span class="keyword">extends</span> <span class="title class_">Duck</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">WildDuck</span><span class="params">()</span> &#123;</span><br><span class="line">        flyBehavior = () -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;野鸭能飞&quot;</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        swimBehavior = () -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;野鸭能游泳&quot;</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        quackBehavior = () -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;野鸭能叫&quot;</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">display</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是一只野鸭！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>玩具鸭：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ToyDuck</span> <span class="keyword">extends</span> <span class="title class_">Duck</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ToyDuck</span><span class="params">()</span> &#123;</span><br><span class="line">        flyBehavior = () -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;玩具鸭能飞&quot;</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        swimBehavior = () -&gt; &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>();</span><br><span class="line">        &#125;;</span><br><span class="line">        quackBehavior = () -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;玩具鸭能叫&quot;</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">display</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是一只玩具鸭！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>北京烤鸭：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PekingDuck</span> <span class="keyword">extends</span> <span class="title class_">Duck</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">PekingDuck</span><span class="params">()</span> &#123;</span><br><span class="line">        flyBehavior = () -&gt; &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>();</span><br><span class="line">        &#125;;</span><br><span class="line">        swimBehavior = () -&gt; &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>();</span><br><span class="line">        &#125;;</span><br><span class="line">        quackBehavior = () -&gt; &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>();</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">display</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是一只北京烤鸭！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>编写测试：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testDuck</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">PekingDuck</span> <span class="variable">pekingDuck</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PekingDuck</span>();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        pekingDuck.fly();</span><br><span class="line">        Assertions.fail();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        Assertions.assertInstanceOf(UnsupportedOperationException.class, e);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">ToyDuck</span> <span class="variable">toyDuck</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ToyDuck</span>();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        toyDuck.swim();</span><br><span class="line">        Assertions.fail();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        Assertions.assertInstanceOf(UnsupportedOperationException.class, e);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">WildDuck</span> <span class="variable">wildDuck</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">WildDuck</span>();</span><br><span class="line">    wildDuck.fly();</span><br><span class="line">    wildDuck.swim();</span><br><span class="line">    wildDuck.quack();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">鸭子会上天 ~~</span><br><span class="line">鸭子会下水 ~~</span><br><span class="line">鸭子会叫 ~~</span><br></pre></td></tr></table></figure>
+
+<h1 id="5-JDK源码解析"><a href="#5-JDK源码解析" class="headerlink" title="5. JDK源码解析"></a>5. JDK源码解析</h1><p>在 JDK 中，Arrays类中有一个 <code>sort()</code> 方法就是使用了 <strong>策略模式</strong>，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Arrays</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="keyword">void</span> <span class="title function_">sort</span><span class="params">(T[] a, Comparator&lt;? <span class="built_in">super</span> T&gt; c)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (c == <span class="literal">null</span>) &#123;</span><br><span class="line">            sort(a);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (LegacyMergeSort.userRequested)</span><br><span class="line">                legacyMergeSort(a, c);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                TimSort.sort(a, <span class="number">0</span>, a.length, c, <span class="literal">null</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>Arrays</code> 就是一个环境角色类，而抽象策略类为 <code>Comparator</code> ，这个 sort 方法可以传一个新策略让 Arrays 根据这个策略来进行排序，至于这个策略是什么，那就得让使用者自由定义了。</p>
+<p>比如我想要将一个数组以升序的方式进行排序：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testSort</span><span class="params">()</span> &#123;</span><br><span class="line">    Integer[] array = &#123;<span class="number">12</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>&#125;;</span><br><span class="line">    <span class="comment">// 升序</span></span><br><span class="line">    Arrays.sort(array, <span class="keyword">new</span> <span class="title class_">Comparator</span>&lt;Integer&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(Integer o1, Integer o2)</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> o1 - o2;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    System.out.println(Arrays.toString(array));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1, 2, 2, 3, 4, 5, 12]</span><br></pre></td></tr></table></figure>
+
+<h1 id="6-在-SpringBoot-应用"><a href="#6-在-SpringBoot-应用" class="headerlink" title="6. 在 SpringBoot 应用"></a>6. 在 SpringBoot 应用</h1><p>在日常开发中通常会用到 SpringBoot ，那在 SpringBoot 中该怎样结合策略模式呢？</p>
+<p>还是以上面鸭子案例作为基础，改写代码完成应用吧。</p>
+<p>提供一个 <code>DuckType</code> 枚举，用于描述鸭子的种类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> <span class="title class_">DuckType</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 野鸭</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    WILD_DUCK,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 玩具鸭</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    TOY_DUCK,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 北京烤鸭</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    PEKING_DUCK</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将 <code>Duck</code> 抽象类的 <code>display()</code> 方法修改为获取当前鸭子种类的抽象方法，其他代码保持不变：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Duck</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> FlyBehavior flyBehavior;</span><br><span class="line">    <span class="keyword">public</span> SwimBehavior swimBehavior;</span><br><span class="line">    <span class="keyword">public</span> QuackBehavior quackBehavior;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取鸭子的类型</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 鸭子类型</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> DuckType <span class="title function_">getDuckType</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">quack</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (quackBehavior != <span class="literal">null</span>) &#123;</span><br><span class="line">            quackBehavior.quack();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">swim</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (swimBehavior != <span class="literal">null</span>) &#123;</span><br><span class="line">            swimBehavior.swim();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">fly</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (flyBehavior != <span class="literal">null</span>) &#123;</span><br><span class="line">            flyBehavior.fly();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后是在三种具体的鸭子类中重写 <code>getDuckType()</code> 方法，并且 <strong>将它们交给 Spring 管理</strong>， 其余部分基本不变：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WildDuck</span> <span class="keyword">extends</span> <span class="title class_">Duck</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">WildDuck</span><span class="params">()</span> &#123;</span><br><span class="line">        flyBehavior = () -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;野鸭能飞 ~~&quot;</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        swimBehavior = () -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;野鸭能游泳 ~~&quot;</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        quackBehavior = () -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;野鸭能叫 ~~&quot;</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> DuckType <span class="title function_">getDuckType</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> DuckType.WILD_DUCK;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ToyDuck</span> <span class="keyword">extends</span> <span class="title class_">Duck</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ToyDuck</span><span class="params">()</span> &#123;</span><br><span class="line">        flyBehavior = () -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;玩具鸭能飞&quot;</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        swimBehavior = () -&gt; &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>();</span><br><span class="line">        &#125;;</span><br><span class="line">        quackBehavior = () -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;玩具鸭能叫&quot;</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> DuckType <span class="title function_">getDuckType</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> DuckType.TOY_DUCK;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PekingDuck</span> <span class="keyword">extends</span> <span class="title class_">Duck</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">PekingDuck</span><span class="params">()</span> &#123;</span><br><span class="line">        flyBehavior = () -&gt; &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>();</span><br><span class="line">        &#125;;</span><br><span class="line">        swimBehavior = () -&gt; &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>();</span><br><span class="line">        &#125;;</span><br><span class="line">        quackBehavior = () -&gt; &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>();</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> DuckType <span class="title function_">getDuckType</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> DuckType.PEKING_DUCK;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后创建 <code>StrategyDuckContext</code> 类，让它被Spring管理并实现 <code>ApplicationContextAware</code> 。Spring 会在 Bean 创建时自动调用 <code>setApplicationContext()</code>，在此方法中收集所有由 Spring 管理的鸭子对象到一个集合，供后续使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StrategyDuckContext</span> <span class="keyword">implements</span> <span class="title class_">ApplicationContextAware</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;DuckType, Duck&gt; duckStrategyMap = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setApplicationContext</span><span class="params">(ApplicationContext applicationContext)</span> &#123;</span><br><span class="line">        Map&lt;String, Duck&gt; duckBeanMap = applicationContext.getBeansOfType(Duck.class);</span><br><span class="line">        duckBeanMap.values().forEach(duck -&gt; duckStrategyMap.put(duck.getDuckType(), duck));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">fly</span><span class="params">(DuckType type)</span> &#123;</span><br><span class="line">        <span class="type">Duck</span> <span class="variable">duck</span> <span class="operator">=</span> duckStrategyMap.get(type);</span><br><span class="line">        <span class="keyword">if</span> (duck != <span class="literal">null</span>) &#123;</span><br><span class="line">            duck.fly();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">quack</span><span class="params">(DuckType type)</span> &#123;</span><br><span class="line">        <span class="type">Duck</span> <span class="variable">duck</span> <span class="operator">=</span> duckStrategyMap.get(type);</span><br><span class="line">        <span class="keyword">if</span> (duck != <span class="literal">null</span>) &#123;</span><br><span class="line">            duck.quack();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">swim</span><span class="params">(DuckType type)</span> &#123;</span><br><span class="line">        <span class="type">Duck</span> <span class="variable">duck</span> <span class="operator">=</span> duckStrategyMap.get(type);</span><br><span class="line">        <span class="keyword">if</span> (duck != <span class="literal">null</span>) &#123;</span><br><span class="line">            duck.swim();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> StrategyDuckContext duckContext;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testStrategy</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        duckContext.fly(DuckType.PEKING_DUCK);</span><br><span class="line">        Assertions.fail();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        Assertions.assertInstanceOf(UnsupportedOperationException.class, e);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        duckContext.swim(DuckType.TOY_DUCK);</span><br><span class="line">        Assertions.fail();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        Assertions.assertInstanceOf(UnsupportedOperationException.class, e);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        duckContext.swim(DuckType.WILD_DUCK);</span><br><span class="line">        duckContext.fly(DuckType.WILD_DUCK);</span><br><span class="line">        duckContext.quack(DuckType.WILD_DUCK);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        Assertions.fail();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">野鸭能游泳 ~~</span><br><span class="line">野鸭能飞 ~~</span><br><span class="line">野鸭能叫 ~~</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zz.muyoukule.cn">木又枯了</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zz.muyoukule.cn/posts/53989/">https://zz.muyoukule.cn/posts/53989/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zz.muyoukule.cn" target="_blank">muyoukule</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/DesignPattern/">DesignPattern</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/posts/45112/" title="【设计模式】建造者模式"><img class="cover" src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/Source/CoverIMG/cover-builder.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【设计模式】建造者模式</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/45112/" title="【设计模式】建造者模式"><img class="cover" src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/Source/CoverIMG/cover-builder.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-07-13</div><div class="title">【设计模式】建造者模式</div></div></a></div><div><a href="/posts/8343/" title="【设计模式】工厂模式"><img class="cover" src="https://muyoukule-blog-pics.oss-cn-chengdu.aliyuncs.com/Source/CoverIMG/cover-factory-method.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-20</div><div class="title">【设计模式】工厂模式</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="card-info-avatar"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-status-box"><div class="author-status"><g-emoji class="g-emoji" alias="palm_tree" fallback-src="https://lskypro.acozycotage.net/LightPicture/2022/12/fe1dc0402e623096.jpg">🎯</g-emoji><span>专注学习中</span></div></div></div><div class="author-info__name">木又枯了</div><div class="author-info__description">莫道桑榆晚，为霞尚满天</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" href="mailto:muyoukule@gmail.com"><i class="far fa-envelope"></i><span>Follow Me</span></a></div><div class="card-widget" id="card-tuijian"><div id="tj-box"><div id="tj-box1"><div id="tj-left"><p>扫一扫</p>
+<span>快速打开移动端➤</span></div><div id="tj-right"><div id="tj-img-box"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACHUlEQVR42u3bQZLDIAwEQP//07sPSK13JDCQpH3KIUXUPoBqRK6fj34uPDw8PDw8PDw8PDw8PDw8PDw8vC/mXfFzv0Ly+a81J9SAh4eHt5z3z7b78p2r9SQvpVcnHh4e3i7e/cZd3e7vvz9SAx4eHt478u5/+P4gGa8BDw8P73151cCitz4eHh7eybzqK6gGFnMDETw8PLy9vDyEfe7zEfM9PDw8vIBXfXqBRR5MNKvCw8PDW8gbCRqSsCCPfauHAR4eHt4u3uRQoBU9VF8lHh4e3gm86hX8+02/d0V1pNXGw8PDW8lLYtbept/j5c06Hh4e3i5eNSDoHQDV7X5yGIGHh4c3ldcLbatFjLysoTACDw8P7+Gcs1rQrHB2PJjAw8PDW8+rsvPwt7dyeSyHh4eHt5CXX5zKx2b3W3y1BX9kAIaHh4c3KedMlh4JFKrNev5S8PDw8Nbz8gMjZ/cY1WYaDw8Pby8vKSK/zJrHHNXYAg8PD+9kXtJGJ/FuPmBrtul4eHh4C3m9kVj1+mm+QsLGw8PD28urhgh545tfqOodBnh4eHh7eb3goNoKj/ydAA8PD+9M3siwKjlyemHEIwMwPDw8vGN41UtXeSWTU2o8PDy8A3hJcdWBWSEKwcPDw9vEq0a0SQPdu4pabazx8PDw1vN6F/Sr5VbHaRvme3h4eHgB7zMePDw8PDw8PDw8PDw8PDw8PDw8vC/g/QIPSho0ZPX6EgAAAABJRU5ErkJggg=="/></div></div></div><div id="tj-box2"><div id="tj-left"><p>扫一扫</p>
+<span>快速打开移动端➤</span></div><div id="tj-right"><div id="tj-img-box"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACHUlEQVR42u3bQZLDIAwEQP//07sPSK13JDCQpH3KIUXUPoBqRK6fj34uPDw8PDw8PDw8PDw8PDw8PDw8vC/mXfFzv0Ly+a81J9SAh4eHt5z3z7b78p2r9SQvpVcnHh4e3i7e/cZd3e7vvz9SAx4eHt478u5/+P4gGa8BDw8P73151cCitz4eHh7eybzqK6gGFnMDETw8PLy9vDyEfe7zEfM9PDw8vIBXfXqBRR5MNKvCw8PDW8gbCRqSsCCPfauHAR4eHt4u3uRQoBU9VF8lHh4e3gm86hX8+02/d0V1pNXGw8PDW8lLYtbept/j5c06Hh4e3i5eNSDoHQDV7X5yGIGHh4c3ldcLbatFjLysoTACDw8P7+Gcs1rQrHB2PJjAw8PDW8+rsvPwt7dyeSyHh4eHt5CXX5zKx2b3W3y1BX9kAIaHh4c3KedMlh4JFKrNev5S8PDw8Nbz8gMjZ/cY1WYaDw8Pby8vKSK/zJrHHNXYAg8PD+9kXtJGJ/FuPmBrtul4eHh4C3m9kVj1+mm+QsLGw8PD28urhgh545tfqOodBnh4eHh7eb3goNoKj/ydAA8PD+9M3siwKjlyemHEIwMwPDw8vGN41UtXeSWTU2o8PDy8A3hJcdWBWSEKwcPDw9vEq0a0SQPdu4pabazx8PDw1vN6F/Sr5VbHaRvme3h4eHgB7zMePDw8PDw8PDw8PDw8PDw8PDw8vC/g/QIPSho0ZPX6EgAAAABJRU5ErkJggg=="/></div></div></div></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><center>菜就多练</center></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%AE%9A%E4%B9%89%E5%8F%8A%E7%89%B9%E7%82%B9"><span class="toc-text">1. 定义及特点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">2. 适用场景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E7%AE%80%E5%8D%95%E5%BA%94%E7%94%A8"><span class="toc-text">3. 简单应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E5%9C%BA%E6%99%AF%E5%81%87%E8%AE%BE"><span class="toc-text">3.1 场景假设</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">3.2 解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">3.3 代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-text">3.4 模式的结构</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E9%B8%AD%E5%AD%90%E6%A1%88%E4%BE%8B"><span class="toc-text">4. 鸭子案例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E5%9C%BA%E6%99%AF%E5%81%87%E8%AE%BE"><span class="toc-text">4.1 场景假设</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">4.2 解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E8%A7%A3%E5%86%B3"><span class="toc-text">4.3 策略模式解决</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-JDK%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">5. JDK源码解析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E5%9C%A8-SpringBoot-%E5%BA%94%E7%94%A8"><span class="toc-text">6. 在 SpringBoot 应用</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/53989/" title="【设计模式】策略模式">【设计模式】策略模式</a><time datetime="2024-07-28T09:13:00.000Z" title="更新于 2024-07-28 17:13:00">2024-07-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/45112/" title="【设计模式】建造者模式">【设计模式】建造者模式</a><time datetime="2024-07-13T09:16:00.000Z" title="更新于 2024-07-13 17:16:00">2024-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/8343/" title="【设计模式】工厂模式">【设计模式】工厂模式</a><time datetime="2024-06-20T12:02:00.000Z" title="更新于 2024-06-20 20:02:00">2024-06-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/15127/" title="Java相关知识补充">Java相关知识补充</a><time datetime="2024-06-16T10:13:00.000Z" title="更新于 2024-06-16 18:13:00">2024-06-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/2728/" title="Spring入门（下）">Spring入门（下）</a><time datetime="2024-06-10T02:54:00.000Z" title="更新于 2024-06-10 10:54:00">2024-06-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright"><span><b>&copy;2024</b></span><span><b>&nbsp;&nbsp;By 木又枯了</b></span></div><div class="footer_custom_text">【The future of the past is now】</div><div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" title="博客框架为Hexo"><img src="https://img.shields.io/badge/Frame-Hexo-blue?logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" title="主题为Butterfly"><img src="https://img.shields.io/badge/Frame-Butterfly-%237957D5?logo=buefy&amp;logoColor=white" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" title="本站托管于Vercel"><img src="https://img.shields.io/badge/Hosted-Vercel-green?logo=vercel&amp;logoColor=white" alt=""/></a><a class="github-badge" target="_blank" href="https://www.aliyun.com/" style="margin-inline:5px" title="本网站由阿里云提供对象存储服务"><img src="https://img.shields.io/badge/Bucket-阿里云oss-F0AC11?logo=automattic&amp;logoColor=white" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" title="本网站源码由Github提供存储仓库"><img src="https://img.shields.io/badge/Source-Github-%23CC2ED1?logo=github" alt=""/></a></p></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button class="darkmode" type="button" title="切换模式" onclick="darkmode()"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="share" type="button" title="分享链接" onclick="share()"><i class="fas fa-share-nodes"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button><button id="go-down" type="button" title="直达底部" onclick="btf.scrollToDest(document.body.scrollHeight, 500)"><i class="fas fa-arrow-down"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><script async src="https://cdn1.tianli0.top/npm/vue@2.6.14/dist/vue.min.js"></script><script async src="https://cdn1.tianli0.top/npm/element-ui@2.15.6/lib/index.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script><script async src="https://jsd.proxy.aks.moe/gh/muyoukule/blog-static-resource/js/muyoukule.js"></script><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script><script data-pjax defer src="https://jsd.proxy.aks.moe/gh/muyoukule/muyoukule.github.io/js/custom/fixed_card_widget.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-show-text.min.js" data-mobile="true" data-text="Freedom,Enthusiasm,Patience,Love" data-fontsize="20px" data-random="true" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/metingjs/dist/Meting.min.js"></script><script src="https://lib.baomitu.com/pjax/0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show","#fixedcard-dashboard",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="fixedcard-dashboard"><button class="fixedcard-activebtn" type="button" title="用户信息" onclick="FixedCardWidget(&quot;class&quot;,&quot;card-info&quot;,&quot;0&quot;)"><i class="fas fa-address-book"></i></button><button class="fixedcard-activebtn" type="button" title="最新文章" onclick="FixedCardWidget(&quot;class&quot;,&quot;card-recent-post&quot;,&quot;0&quot;)"><i class="fas fa-history"></i></button><div class="fixedcard-user-avatar fixedcard-activebtn" onclick="RemoveFixedCardWidget()"><img class="fixedcard-user-avatar-img" src="/img/avatar.png" title="木又枯了"></div></div><div class="docsearch-wrap"><div id="docsearch" style="display:none"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.5.2/dist/style.min.css"/><script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3.5.2/dist/umd/index.min.js"></script><script>(() => {
+  docsearch(Object.assign({
+    appId: '8Y220YX5OM',
+    apiKey: 'e8862f5d2e0ebdce05962b4b98dad983',
+    indexName: 'zz-muyoukule',
+    container: '#docsearch',
+  }, {"placeholder":"Please enter search keywords"}))
+
+  const handleClick = () => {
+    document.querySelector('.DocSearch-Button').click()
+  }
+
+  const searchClickFn = () => {
+    btf.addEventListenerPjax(document.querySelector('#search-button > .search'), 'click', handleClick)
+  }
+
+  searchClickFn()
+  window.addEventListener('pjax:complete', searchClickFn)
+})()</script></div></div><!-- hexo injector body_end start --><div class="js-pjax"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '2s');
+    arr[i].setAttribute('data-wow-delay', '200ms');
+    arr[i].setAttribute('data-wow-offset', '50');
+    arr[i].setAttribute('data-wow-iteration', '1');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer src="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow.min.js"></script><script defer src="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow_init.js"></script><!-- hexo injector body_end end --></body></html>
